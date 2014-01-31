@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<head class="no-js" lang="{{ g.lang }}"{% if g.lang == 'ar' %} dir="rtl"{% endif %}>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{{ _("DzLibs Project") }} | {% block title %}{{ page_title }}{% endblock %}</title>
+
+    <meta name="description" content="{{ _('The Algerian index of reusable resources and librairies') }}">
+    <meta name="author" content="Walid ZIOUCHE">
+
+    <link rel="Shortcut Icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/x-icon">
+
+    {% block css %}
+        {% if g.lang == 'ar' %}
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/app.rtl.css') }}">
+        {% else %}
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+        {% endif %}
+    {% endblock %}
+
+</head>
+<body>
+    {% include "macros/_ask_user_to_update_ie.html" %}
+
+    <div class='row'>
+        {% block container %}
+        <div class="small-5 columns small-centered">
+            {% block body %}
+            {% endblock %}
+        </div>
+        {% endblock %}
+    </div>
+</body>
+</html>

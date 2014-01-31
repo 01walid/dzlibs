@@ -1,0 +1,10 @@
+{% extends 'layouts/base.html' %}
+
+{% block body %}
+
+<div class="row">
+    <h1>{{ current_user.name }}</h1>
+    <h1 class="subheader">{{ current_user.email }}</h1>
+    <h1>{% if remember %} remembered {% endif %}</h1>
+</div>
+{% endblock %}

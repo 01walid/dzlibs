@@ -1,0 +1,14 @@
+{
+  "name": "cloudgrid",
+  "homepage": "https://github.com/pinterest/cloudgrid",
+  "_release": "e19c3102f0",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "e19c3102f0403e4d6a44de655b75fa4e8b4f68bf"
+  },
+  "_source": "https://github.com/pinterest/cloudgrid.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/pinterest/cloudgrid.git",
+  "_direct": true
+}

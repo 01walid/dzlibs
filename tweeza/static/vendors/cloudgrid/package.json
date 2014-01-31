@@ -1,0 +1,30 @@
+{
+  "name": "jQuery.cloudGrid",
+  "version": "0.1.0",
+  "description": "Display your content in a CloudGrid format.",
+  "main": "src/cloudGrid.js",
+  "directories": {
+    "example": "examples"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/xethorn/cloudGrid"
+  },
+  "keywords": [
+    "grid",
+    "layout",
+    "javascript",
+    "element",
+    "positioning"
+  ],
+  "author": "Michael Ortali",
+  "contributors": [
+    "Michael Ortali (https://github.com/xethorn)",
+  ],
+  "bugs": {
+    "url": "https://github.com/xethorn/cloudGrid/issues"
+  },
+  "dependencies": {
+    "leaflet": "~0.7.0"
+  }
+}

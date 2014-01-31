@@ -1,0 +1,15 @@
+{
+  "name": "foundation-compass-app",
+  "version": "0.0.1",
+  "private": "true",
+  "dependencies": {
+    "foundation": "zurb/bower-foundation",
+    "tag-it": "https://github.com/aehlke/tag-it.git",
+    "underscore": "~1.5.2",
+    "jquery-ui": "~1.10.3",
+    "dropzone": "~3.8.2",
+    "jquery-filedrop": "https://github.com/weixiyen/jquery-filedrop.git#~0.1.0",
+    "FileDrop": "https://github.com/chrismbarr/FileDrop.git",
+    "cloudgrid": "https://github.com/pinterest/cloudgrid.git"
+  }
+}

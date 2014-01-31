@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>cloudGrid</title>
+		<link rel="stylesheet" href="index.css" title="CloudGrid stylesheet">
+	</head>
+	<body>
+		<h1>.cloudGrid example</h1>
+
+		<div class="grid"></div>
+
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="../src/cloudGrid.js"></script>
+		<script>
+			// Create a random number of items between 100 and 200.
+			var $element;
+			var children = [];
+			var $gridContainer = $('.grid');
+			var items = Math.floor(100 + Math.random() * 200);
+			var columns;
+			var rows;
+
+			for (var i=0; i < items; i++) {
+				// Set the number of rows and columns the element should use.
+				$element = $('<div>').addClass('gridItem');
+				columns = 1 + Math.floor(Math.random() * 2) % 2;
+				rows = 1 + Math.floor(Math.random() * 2) % 2;
+
+				$element.text(columns + 'x' + rows);
+				$.data($element, 'grid-columns', columns);
+				$.data($element, 'grid-rows', rows);
+				$gridContainer.append($element);
+
+				children.push($element);
+			}
+
+			$gridContainer.cloudGrid({
+				children: children,
+				gridGutter: 13,
+				gridSize: 100
+			});
+
+			$(window).on('resize', function() {
+				$gridContainer.cloudGrid('reflowContent');
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "FileDrop",
+  "homepage": "https://github.com/chrismbarr/FileDrop",
+  "_release": "7bb9cef60c",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "7bb9cef60cbe4b5ccb964d2bbb5c6664cba20adf"
+  },
+  "_source": "https://github.com/chrismbarr/FileDrop.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/chrismbarr/FileDrop.git",
+  "_direct": true
+}

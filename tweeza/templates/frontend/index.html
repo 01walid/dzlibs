@@ -1,0 +1,56 @@
+{% extends 'layouts/base.html' %}
+
+{% set page_title = _("Home") %}
+
+{% block container %}
+
+<div class="container short-header text-center">
+  <div class="row headline-down">
+    <div class="seven columns">
+      <div class="main-headline">
+        <div class="push"></div>
+        <img src="{{ url_for('static', filename='images/dzlibs-small.png') }}">
+        <h2 class="logo-typography"><a href="{{ url_for('frontend.index') }}">Dz Libs</a></h2>
+        <h4 class="slogan subheader">{{ _("The Algerian index of reusable assets and libraries") }}</h4>
+
+        <p>That is made  of two parts:</p>
+        <div class="show-for-small clear"></div>
+      </div>
+
+      <div class="row">
+        <p class="text-center">
+            <a href="#" class="button secondary">{{ _("ara") }}</a>
+            &amp;
+            <a href="#" class="button secondary">{{ _("tweeza") }}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="row grid">
+        {% for item in items %}
+        <div class="item">
+            <div class="item-info" style="background-image: url('https://d3i5ls5z2ayn6d.cloudfront.net/drops/af9419ba83f0d90d9ad9b7b416d17609.jpg');">
+                <a href="{{ url_for('items.detail', item_id=item.item_id) }}">
+                <hgroup>
+                    <h5>48 Wilaya in XML / Json / xsl (3 languages)</h4>
+                    <h6 class="subheader">{{ item.submitted_at | prettify }} <em>in</em> Category</h6>
+                </hgroup>
+
+                    <!--<h5>{{ item.thumbnail_path }}</h5> -->
+                </a>
+            </div>
+            <a class="submitter" href="">
+                <img src="{{ item.submitter.email | gravatar(size=30) }}"> {{ item.submitter }}
+            </a>
+        </div>
+        {% endfor %}
+        </div>
+
+{% endblock %}
+
+{% block js_btm %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='vendors/underscore/underscore-min.js') }}"></script>
+{% endblock %}

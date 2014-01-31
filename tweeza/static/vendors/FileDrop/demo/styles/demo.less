@@ -1,0 +1,76 @@
+@import "bootstrap-assets/variables.less";
+@import "bootstrap-assets/bootswatch-variables.less";
+@import "bootstrap-assets/mixins.less";
+
+//Give vertical space to the top and bottom of the page
+body{
+	margin-top: @padding-large-vertical;
+	margin-bottom: @padding-large-vertical;
+}
+
+//Make sure the screen isn't overtaken by file displays!
+#drop-demo-output{
+	
+	max-height: 1500px;
+	overflow: auto;
+
+	img{
+		max-width: 100%;
+	}
+
+	p{
+		max-height: 300px;
+		overflow: auto;
+	}
+}
+
+#drop-overlay,
+#drop-msg,
+#drop-backdrop{
+	.transition(all 0.3s);
+}
+
+#drop-overlay{
+	height:100%;
+	left: 0;
+	pointer-events:none; //allow click through!
+	position: fixed;
+	top:0;
+	width:100%;
+}
+
+#drop-msg{
+	background-color: @brand-primary;
+	border: 1px solid @brand-info;
+	border-radius: @border-radius-large;
+	.box-shadow(0 0 50px @brand-info);
+	left:50%;
+	margin-left: -15%;
+	opacity: 0;
+	padding: @padding-large-vertical @padding-large-horizontal;
+	position:absolute;
+	text-align: center;
+	top:50%;
+	width:30%;
+	z-index: 100;
+
+	.state-over &{
+		opacity: 1;
+	}
+}
+
+#drop-backdrop{
+	height:100%;
+	left: 0;
+	opacity: 0;
+	position:absolute;
+	top:0;
+	width:100%;
+	z-index: 99;
+
+	#gradient > .radial(fadeout(@brand-primary, 70%), darken(@brand-primary, 70%));
+
+	.state-over &{
+		opacity: 0.4;
+	}
+}

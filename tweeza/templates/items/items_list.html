@@ -1,0 +1,43 @@
+{% extends 'layouts/base.html' %}
+
+{% set page_title = _("Explore items") %}
+
+{% block container %}
+	<div class="row">
+    	<h2>{{ _('Items list') }}</h2>
+    	<hr>
+
+		<div class="grid">
+		{% for item in items %}
+		<div class="item">
+	        <div class="item-info" style="background-image: url('https://d3i5ls5z2ayn6d.cloudfront.net/drops/af9419ba83f0d90d9ad9b7b416d17609.jpg');">
+		        <a href="{{ url_for('items.detail', item_id=item.item_id) }}">
+		        <hgroup>
+			        {% for meta in item.meta_info %}
+			        	{% if meta.lang == g.lang %}
+			        		<h5>{{ meta.title }}</h5>
+			        	{% endif %}
+			        {% endfor%}
+
+	   		    	<!-- <h5>48 Wilaya in XML / Json / xsl (3 languages)</h5> -->
+	   		        <h6 class="subheader">{{ item.submitted_at | prettify }} <em>in</em> Category</h6>
+	   		    </hgroup>
+
+		        	<!--<h5>{{ item.thumbnail_path }}</h5> -->
+	        	</a>
+	        </div>
+	        <a class="submitter" href="">
+	        	<img src="{{ item.submitter.email | gravatar(size=30) }}"> {{ item.submitter }}
+	        </a>
+	    </div>
+	    {% endfor %}
+		</div>
+	</div>
+
+{% endblock %}
+
+{% block js_btm %}
+    {{ super() }}
+
+    <script src="{{ url_for('static', filename='vendors/underscore/underscore-min.js') }}"></script>
+{% endblock %}

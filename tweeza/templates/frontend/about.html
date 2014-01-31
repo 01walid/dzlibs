@@ -1,0 +1,30 @@
+{% from "macros/_form.html" import render_form %}
+
+{% set page_title = _("About") %}
+
+{% extends "layouts/base.html" %}
+
+{% block body %}
+
+<div class="row">
+    <h1>{{ _('About DzLibs project') }}</h1>
+    <p>Have you ever needed the XML or the JSON of all Algerian Wilayas to build your next awesome app? wether it's a web, mobile or desktop app, or just you needed them in Excel. You're a designer? didn't you look up for a vectorized version of <a href="http://en.wikipedia.org/wiki/Maqam_Echahid">Maqam Echahid</a>, or even the Algerian Flag, I'm sure  someday you did! (these are just examples).</p>
+
+    <p>Then you either start by searching the web, wasting minutes to hours, or you just give up and start creating your own data structure or design. somebody else need <strong>exactly</strong> the thing you're building, probably he will build it again the same way you did, and that is not very <a href="http://en.wikipedia.org/wiki/Don%27t_repeat_yourself">DRY</a>.</p>
+
+    <p>Now, imagine you, or somebody else needs Algiers Train/Bus timing database, another needs the the prayer time database/algorithm of Algeria or some of its cities, or a Class/Librairy <strong><i>X</i></strong> of Language <strong><i>Y</i></strong> to some Algerian <strong><i>Z</i></strong> functionalities. </p>
+
+    <p>These Are <strong>reusable</strong> resources, they need to be gathered, indexed, enriched, developed, centralized in one place and easy to find, that's DzLibs project's mission, a community-driven Algerian index of reusable assets and libraries.</p>
+
+    <p>The project consists of two parts, Tweeza and Ara.</p>
+
+    <h2>Tweeza</h2>
+
+    <p>As our Algerian ancetors did -and still do-, they gathered food, meal in their villages then they share it equaly. With the same concept, DzLibs tweeza part is about gathering assets and librairies and share it for public good (see <a href="http://www.djelfa.info/vb/showthread.php?t=1029239"></a>tweeza).</p>
+
+    <h2>Ara</h2>
+
+    <p>Ara on the other hand, is the Algerian slang word that means 'give me'. </p>
+</div>
+{% endblock %}
+

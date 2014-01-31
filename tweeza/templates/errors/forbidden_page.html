@@ -1,0 +1,14 @@
+{% extends 'errors/layout.html' %}
+
+{% set page_title = _("Forbidden page") %}
+
+{% block body %}
+
+    <h1>{{ _("Forbidden Page") }} <span>:(</span></h1>
+
+    <p>{{ _("You shall NOT pass!") }}</p>
+    <p>{{ _("It looks like this was the result of either:") }}</p>
+    <ul>
+        <li>{{ _("no permission") }}</li>
+    </ul>
+{% endblock %}

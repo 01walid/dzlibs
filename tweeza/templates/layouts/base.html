@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<head class="no-js" lang="{{ g.lang }}"{% if g.lang == 'ar' %} dir="rtl"{% endif %}>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{{ _("DzLibs Project") }} | {% block title %}{{ page_title }}{% endblock %}</title>
+
+    <meta name="description" content="{{ _('The Algerian index of reusable resources and librairies') }}">
+    <meta name="author" content="Walid ZIOUCHE">
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="Shortcut Icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/x-icon">
+
+    {% block css %}
+        {% if g.lang == 'ar' %}
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/app.rtl.css') }}">
+        {% else %}
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+        {% endif %}
+    {% endblock %}
+
+    {% block js_top %}
+        <script src="{{ url_for('static', filename='vendors/jquery/jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendors/modernizr/modernizr.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendors/foundation/js/vendor/fastclick.js') }}"></script>
+    {% endblock %}
+
+    {% block css_style %}
+    {% endblock %}
+
+    <!-- IE Fix for HTML5 Tags -->
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+    {% include "macros/_ask_user_to_update_ie.html" %}
+        
+    {% block topbar %}
+        <nav class="top-bar" data-topbar>
+            <ul class="title-area">
+                <li class="name"><!-- Title Area -->
+                <h1>
+                    <a href="{{ url_for('frontend.index') }}">DZ <strong>Libs</strong> <small>(beta)</small></a>
+                </h1>
+                </li>
+                <li class="toggle-topbar"><a href="#"><i class="fi-list large"></i></a></li>
+            </ul>
+
+            <section class="top-bar-section"><!-- Right Nav Section -->
+
+                <ul class="left">
+                    <li><a href="#">{{ _('Contact') }}</a></li>
+                    <li><a href="{{ url_for('frontend.about') }}">{{ _('About') }}</a></li>
+                    <li class="has-dropdown">
+                        <a href="#">{{ _('Language') }}</a>
+                        <ul class="dropdown">
+                            <li><a href="#">العربية</a></li>
+                            <li><a href="#">French</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="right">
+                    <li><a href="{{ url_for('items.index') }}">{{ _('Explore items') }}</a></li>
+
+                    {% if current_user.is_authenticated() %}
+                        <li><a href="{{ url_for('items.add') }}">{{ _('Add item') }}</a></li>
+                        <li class="has-dropdown">
+                            <a href="#"><img src="{{ current_user.email | gravatar }}"> {{ current_user.name }}</a>
+                            <ul class="dropdown">
+                                <li><a href="#"><i class="fi-list-thumbnails"></i> {{ _('My items') }}</a></li>
+                                <li><a href="{{ url_for('users.index') }}"><i class="fi-torso"></i> {{ _('Profile') }}</a></li>
+                                <li class="active"><a href="{{ url_for('frontend.logout') }}" class=""><i class="fi-arrow-left"></i> {{ _('Logout') }}</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li class="has-form"><a href="{{ url_for('frontend.login') }}" class="button">{{ _('Register / Sign In') }}</a></li>
+                        <li></li>
+                    {% endif %}
+                </ul>
+            </section>
+        </nav> 
+    {% endblock %}
+
+    {% block flash_message %}
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+            <div class="row">
+                {% for category, msg in messages %}
+                    <div data-alert class="alert-box {{ category }}">
+                        {{ msg }}
+                        <a href="#" class="close">&times;</a>
+                    </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        {% endwith %}
+    {% endblock %}
+
+        {% block container %}
+
+            {% block body %}
+            {% endblock %}
+    
+        {% endblock %}
+
+    <div class="footer-bottom">
+        <div class="row">
+            <div class="medium-4 medium-4 push-8 columns">
+                <ul class="home-social inline-list right">
+                    <li><a href="#"><i class="fi-social-twitter"></i></a></li>
+                    <li><a href="#"><i class="fi-social-facebook"></i></a></li>
+                    <li><a href="#"><i class="fi-mail"></i></a></li>
+                </ul>
+            </div>
+            <div class="medium-8 medium-8 pull-4 columns">
+                <p class="copyright">
+                &copy; {{ current_year() }} {{ _("DzLibs. Copyleft. email: 01walid@gmail.com") }}
+                </p>
+            </div>          
+        </div>
+    </div>
+
+    {% block js_btm %}
+        <script src="{{ url_for('static', filename='vendors/foundation/js/foundation.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    {% endblock %}
+</body>
+</html>

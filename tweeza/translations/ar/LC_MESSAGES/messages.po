@@ -1,0 +1,379 @@
+# Arabic translations for PROJECT.
+# Copyright (C) 2014 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2014-01-05 21:21+0100\n"
+"PO-Revision-Date: 2014-01-05 21:23+0100\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: ar <LL@li.org>\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 "
+"&& n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 1.3\n"
+
+#: utils.py:68
+msgid "just now"
+msgstr ""
+
+#: utils.py:82
+#, python-format
+msgid "%(num)s year"
+msgid_plural "%(num)s years"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: utils.py:83
+#, python-format
+msgid "%(num)s month"
+msgid_plural "%(num)s months"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: utils.py:84
+#, python-format
+msgid "%(num)s week"
+msgid_plural "%(num)s weeks"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: utils.py:85
+#, python-format
+msgid "%(num)s day"
+msgid_plural "%(num)s days"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: utils.py:86
+#, python-format
+msgid "%(num)s hour"
+msgid_plural "%(num)s hours"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: utils.py:87
+#, python-format
+msgid "%(num)s minute"
+msgid_plural "%(num)s minutes"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: utils.py:88
+#, python-format
+msgid "%(num)s second"
+msgid_plural "%(num)s seconds"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: utils.py:93
+#, python-format
+msgid "%(period)s ago"
+msgstr ""
+
+#: frontend/views.py:103 frontend/views.py:129
+msgid "Logged in"
+msgstr ""
+
+#: frontend/views.py:132
+msgid "Sorry, invalid password"
+msgstr ""
+
+#: frontend/views.py:134
+msgid "Sorry, incorrect email!"
+msgstr ""
+
+#: frontend/views.py:145
+msgid "Logged out"
+msgstr ""
+
+#: items/forms.py:14
+msgid "Remote repository URL"
+msgstr ""
+
+#: items/forms.py:16
+msgid "Item title in Arabic"
+msgstr ""
+
+#: items/forms.py:17
+msgid "Item title in English"
+msgstr ""
+
+#: items/forms.py:18
+msgid "Item title in French"
+msgstr ""
+
+#: items/forms.py:20
+msgid "Short description in Arabic"
+msgstr ""
+
+#: items/forms.py:21
+msgid "Short description in English"
+msgstr ""
+
+#: items/forms.py:22
+msgid "Short description in French"
+msgstr ""
+
+#: items/forms.py:24
+msgid "Long description"
+msgstr ""
+
+#: items/forms.py:25 items/forms.py:28
+msgid "Thumbnail (minimum dimensions 230x230)"
+msgstr ""
+
+#: items/forms.py:31
+msgid "Tags"
+msgstr ""
+
+#: items/forms.py:33 templates/items/add_item.html:5
+#: templates/layouts/base.html:67
+msgid "Add item"
+msgstr ""
+
+#: templates/errors/forbidden_page.html:3
+msgid "Forbidden page"
+msgstr ""
+
+#: templates/errors/forbidden_page.html:7
+msgid "Forbidden Page"
+msgstr ""
+
+#: templates/errors/forbidden_page.html:9
+msgid "You shall NOT pass!"
+msgstr ""
+
+#: templates/errors/forbidden_page.html:10
+#: templates/errors/page_not_found.html:27
+msgid "It looks like this was the result of either:"
+msgstr ""
+
+#: templates/errors/forbidden_page.html:12
+msgid "no permission"
+msgstr ""
+
+#: templates/errors/layout.html:6 templates/layouts/base.html:6
+msgid "DzLibs Project"
+msgstr ""
+
+#: templates/errors/layout.html:8 templates/layouts/base.html:8
+msgid "The Algerian index of reusable resources and librairies"
+msgstr ""
+
+#: templates/errors/page_not_found.html:3
+msgid "Page not found"
+msgstr ""
+
+#: templates/errors/page_not_found.html:7
+msgid "Bachee"
+msgstr ""
+
+#: templates/errors/page_not_found.html:8
+msgid "Not found"
+msgstr ""
+
+#: templates/errors/page_not_found.html:11
+msgid "Look underneath, you may find something:"
+msgstr ""
+
+#: templates/errors/page_not_found.html:30
+msgid "a mistyped address"
+msgstr ""
+
+#: templates/errors/page_not_found.html:31
+msgid "an out-of-date link"
+msgstr ""
+
+#: templates/errors/server_error.html:3
+msgid "Server error"
+msgstr ""
+
+#: templates/errors/server_error.html:7
+msgid "Server Error"
+msgstr ""
+
+#: templates/errors/server_error.html:8
+msgid "Inner peacer..."
+msgstr ""
+
+#: templates/frontend/create_profile.html:10
+msgid "One more step, and you're done!"
+msgstr ""
+
+#: templates/frontend/index.html:3
+msgid "Home"
+msgstr ""
+
+#: templates/frontend/index.html:14
+msgid "The Algerian index of reusable assets and libraries"
+msgstr ""
+
+#: templates/frontend/index.html:22
+msgid "ara"
+msgstr ""
+
+#: templates/frontend/index.html:24
+msgid "tweeza"
+msgstr ""
+
+#: templates/frontend/login.html:3 templates/frontend/login.html:22
+msgid "Sign in"
+msgstr ""
+
+#: templates/frontend/login.html:16
+msgid "Sign in/up with Github"
+msgstr ""
+
+#: templates/frontend/login.html:34
+msgid "Register"
+msgstr ""
+
+#: templates/frontend/login.html:34
+msgid "If don't have an account"
+msgstr ""
+
+#: templates/frontend/search.html:6
+#, python-format
+msgid "Search results for \"%(keywords)s\""
+msgstr ""
+
+#: templates/frontend/search.html:8
+msgid "Keywords needed!"
+msgstr ""
+
+#: templates/frontend/search.html:13
+#, python-format
+msgid ""
+"<strong>%(total)s</strong> found for your search "
+"\"<strong>%(keywords)s</strong>\"."
+msgstr ""
+
+#: templates/frontend/search.html:17
+#, python-format
+msgid "Sorry, Nothing found for your search \"<strong>%(keywords)s</strong>\"."
+msgstr ""
+
+#: templates/frontend/search.html:18
+msgid ""
+"\n"
+"    <p>Suggestions:</p>\n"
+"    <ul>\n"
+"       <li>Make sure all words are spelled correctly.</li>\n"
+"       <li>Try different keywords.</li>\n"
+"       <li>Try more general keywords.</li>\n"
+"    </ul>\n"
+"    "
+msgstr ""
+
+#: templates/items/add_item.html:31
+msgid "Item thumbnail will appear here"
+msgstr ""
+
+#: templates/items/add_item.html:35
+msgid "Upload thumbnail "
+msgstr ""
+
+#: templates/items/add_item.html:50
+msgid "From a remote repository (e.g. github)"
+msgstr ""
+
+#: templates/items/add_item.html:53
+msgid "Past your item repository URL here"
+msgstr ""
+
+#: templates/items/add_item.html:56
+msgid "From my computer"
+msgstr ""
+
+#: templates/items/add_item.html:93 templates/items/add_item.html:112
+#: templates/items/add_item.html:119
+msgid "Item title"
+msgstr ""
+
+#: templates/items/item_details.html:3
+msgid "Item details"
+msgstr ""
+
+#: templates/items/items_list.html:3 templates/layouts/base.html:64
+msgid "Explore items"
+msgstr ""
+
+#: templates/items/items_list.html:7
+msgid "Items list"
+msgstr ""
+
+#: templates/layouts/base.html:53
+msgid "Contact"
+msgstr ""
+
+#: templates/layouts/base.html:54
+msgid "About"
+msgstr ""
+
+#: templates/layouts/base.html:56
+msgid "Language"
+msgstr ""
+
+#: templates/layouts/base.html:71
+msgid "My items"
+msgstr ""
+
+#: templates/layouts/base.html:72
+msgid "Profile"
+msgstr ""
+
+#: templates/layouts/base.html:73
+msgid "Logout"
+msgstr ""
+
+#: templates/layouts/base.html:77
+msgid "Register / Sign In"
+msgstr ""
+
+#: templates/layouts/base.html:118
+msgid "DzLibs. Copyleft. email: 01walid@gmail.com"
+msgstr ""
+
+#: templates/macros/_ask_user_to_update_ie.html:3
+msgid ""
+"You are using an <strong>outdated</strong> browser. Please <a "
+"href=\"http://browsehappy.com/\">upgrade your browser</a> or <a "
+"href=\"http://www.google.com/chromeframe/?redirect=true\">activate Google"
+" Chrome Frame</a> to improve your experience."
+msgstr ""
+

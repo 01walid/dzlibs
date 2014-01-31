@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="author" content="Chris Barr - chris-barr.com">
+	<meta name="description" content="A simple way to add file drag-n-drop to your web projects">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+	<title>jQuery.FileDrop.js Demo</title>
+	
+	<link rel="stylesheet" type="text/css" href="styles/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="styles/demo.css">
+
+	<!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="../jQuery.FileDrop.js"></script>
+	<script src="demo.js"></script>
+</head>
+<body class='container'>
+	<header class='jumbotron'>
+		<h1>jQuery.FileDrop.js</h1>
+		<h3>A simple way to add file drag-n-drop to your web projects</h3>
+
+		<a class='btn btn-lg btn-primary' href="https://github.com/chrismbarr/FileDrop/">Fork on GitHub</a>
+		<a class='btn btn-lg btn-info' href="https://github.com/chrismbarr/FileDrop/archive/master.zip">Download</a>
+	</header>
+
+	<div class="row">
+		<div class="col-md-6">
+			<p class='lead'>FileDrop is made to be <em>dead simple</em> to use.  At minimum all you need to do is select the element you want to be able to drop files onto, and then provide a function to loop over the array of returned files.</p>
+		</div>
+		<div class="col-md-6">
+				<strong>Like This:</strong>
+<pre>$('html').fileDrop(function(fileCollection){
+    $.each(fileCollection, function(){
+        console.log(this);
+    });
+});</pre>
+		</div>
+	</div>
+
+	
+
+
+
+	<div class="page-header">
+		<h2>Try It Out!</h2>
+	</div>
+
+	<div class="row">
+		<div class="col-md-4">
+			<div class="well">
+				<h3>Drop some files anywhere on this page!</h3>
+			</div>
+			<small class="text-muted">Also, open the console to see the file objects as you drop them!</small>
+		</div>
+		<div class="col-md-8">
+			<strong id='drop-demo-count'></strong>
+			<pre id='drop-demo-output'>
+The file contents will be displayed over here
+			</pre>
+		</div>
+	</div>
+	
+	<div class="page-header">
+		<h2>Options</h2>
+	</div>
+
+	<p>You may either pass in a function to loop over the collection of file (as in the example above) or you may pass in an option object if you need to be more specific.  All the possible options are below.</p>
+
+	<table class='table table-striped table-bordered'>
+		<colgroup>
+			<col />
+			<col style='width:110px;' />
+			<col />
+			<col />
+		</colgroup>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Type</th>
+				<th>Default Value</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>onFileRead</code></td>
+				<td><code>function</code></td>
+				<td><code>null</code></td>
+				<td><strong class='text-warning'>This option is required!</strong> You must provide a function to process the collection of file object that will be returned as the only argument.  This function can optionally be the only argument passed if you do not need to specify any other options.</td>
+			</tr>
+			<tr>
+				<td><code>overClass</code></td>
+				<td><code>string</code></td>
+				<td><code>'state-over'</code></td>
+				<td>When files are dragged over the browser window, this is the CSS class that will be applied to the selected element or the element specified with the <code>addClassTo</code> option.</td>
+			</tr>
+			<tr>
+				<td><code>addClassTo</code></td>
+				<td>jQuery selector string or object</td>
+				<td><code>null</code></td>
+				<td>This is the element that will have the CSS class set with the <code>overClass</code> option applied to it.  By default whatever you select with jQuery to will also have <code>addClassTo</code> applied to it. Of course, you can specify a different element with this option if needed.</td>
+			</tr>
+			<tr>
+				<td><code>removeDataUriScheme</code></td>
+				<td><code>boolean</code></td>
+				<td><code>true</code></td>
+				<td>When JavaScript reads the file data, it comes back as base64 encoded data which begins with something like <code>'data:text/plain;base64,'</code>.  When this option is enabled, this will be removed from the base64 string so that the pure base64 data can be processed or sent to a server. It is recommended to keep this option enabled unless you need to work with dropped images in JavaScript.</td>
+			</tr>
+			<tr>
+				<td><code>decodebase64</code></td>
+				<td><code>boolean</code></td>
+				<td><code>false</code></td>
+				<td>When JavaScript reads the file data, it comes back as base64 encoded data.  Enabling this option will decode the base64 data into the raw file contents.  This is useful for pure JavaScript applications where you might want to parse file contents directly in the browser.  It is not recommended to use this option if you plan on sending the file contents to a server via AJAX.</td>
+			</tr>
+		</tbody>
+	</table>
+	
+		<strong>Example Usage:</strong>
+<pre>$('#myElement').fileDrop({
+    onFileRead : function(fileCollection){
+        $.each(fileCollection, function(){
+            //Do stuff with fileCollection here!
+        });
+    },
+    overClass : 'my-custom-class',
+    addClassTo : '#anotherElement',
+    decodebase64 : true
+});</pre>
+
+	<div class="page-header">
+		<h2>File Objects</h2>
+	</div>
+	<p>When implementing the <code>onFileRead</code> function, it needs to loop over the array of files that have been dropped onto the browser window.  Each of the returned File Objects will have several properties on them.</p>
+
+	<table class='table table-striped table-bordered'>
+		<colgroup>
+			<col />
+			<col style='width:100px;' />
+			<col />
+		</colgroup>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Type</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>data</code></td>
+				<td><code>string</code></td>
+				<td>This is the actual data of the file. Depending on the options you set, this will be either a base64 encoded string, or the raw file contents.</td>
+			</tr>
+			<tr>
+				<td><code>lastModified</code></td>
+				<td><code>Date</code> object</td>
+				<td>The date that the file was last modified on.</td>
+			</tr>
+			<tr>
+				<td><code>name</code></td>
+				<td><code>string</code></td>
+				<td>The file name.</td>
+			</tr>
+			<tr>
+				<td><code>size</code></td>
+				<td><code>integer</code></td>
+				<td>The size of the file, in bytes.</td>
+			</tr>
+			<tr>
+				<td><code>type</code></td>
+				<td><code>string</code></td>
+				<td>The MIME type of the file.</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<div class="row">
+		<div class="col-md-6">
+			<strong>Example File Object with base64 encoded data</strong>
+<pre>{
+    data: "/9j/4AAQSkCAgLCg … KKACiooooA//Z"
+    lastModified: Tue Jul 30 2013 21:29:54 GMT-0500 (CDT)
+    name: "fileName.jpg"
+    size: 74196
+    type: "image/jpeg"
+}</pre>
+		</div>
+
+		<div class="col-md-6">
+			<strong>Example File Object with decoded base64 data</strong>
+<pre>{
+    data: "Hello World!"
+    lastModified: Sat Aug 17 2013 15:04:20 GMT-0500 (CDT)
+    name: "hello.txt"
+    size: 12
+    type: "text/plain"
+}</pre>
+		</div>
+
+	</div>
+
+	<div class="page-header">
+		<h2>Methods</h2>
+	</div>
+
+	<table class='table table-striped table-bordered'>
+		<colgroup>
+			<col />
+			<col style='width:130px;' />
+			<col />
+			<col />
+		</colgroup>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Accepts</th>
+				<th>Returns</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>$.removeUriScheme('...')</code></td>
+				<td><code>string</code></td>
+				<td><code>string</code></td>
+				<td>This will remove the data URI scheme from the beginning on the base64 string.  Data URI schemes look like <code>"data:text/plain;base64,"</code></td>
+			</tr>
+			<tr>
+				<td><code>window.atob('...')</code></td>
+				<td>base64 <code>string</code></td>
+				<td><code>string</code></td>
+				<td>This will decode a base64 encoded string. This is built into most browsers, but this plugin also enables this feature on browsers that do not support it natively.</td>
+			</tr>
+			<tr>
+				<td><code>$.support.fileDrop</code></td>
+				<td class='text-muted'>N/A</td>
+				<td><code>boolean</code></td>
+				<td>Tells you if the browser natively supports file drag-n-drop. This does not <em>give</em> support to the browser, it only detects support.</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<p>If you need the flexibility of deciding when to base64 decode the file data, don't worry!</p>
+
+	<p>Let's say you have both the <code>removeDataUriScheme</code> and <code>decodebase64</code> options set to <code>false</code>, and then you have a file dropped onto the page and it's data reads <code>"data:text/plain;base64,SGVsbG8gV29ybGQh"</code>.</p>
+
+	<p>You can pass that string into the public method <code>$.removeUriScheme('...');</code> and it will turn the above data string into <code>"SGVsbG8gV29ybGQh"</code> which is now just pure base64 encoded data.  If you need to actually decode the base64 data manually, just pass it into <code>window.atob('...');</code>. This is native to most browsers, but this plugin will enable it for older browsers as well.  After decoding you are left with the raw file contents, which in this case is <code>Hello World!</code></p>
+
+	<div class="page-header">
+		<h2>Support</h2>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6">
+			<p>Not all browsers support file drag-n-drop, and this plugin <em>does not</em> magically give drag-n-drop support to browsers. <strong>BUT</strong> at least there's an easy way to test for this.
+		<br/>
+		When you include this plugin on your page, just call <code>$.support.fileDrop</code> to find out if the browser supports file drag-n-drop or not.  If so you can use this plugin, if not you will need to give your users other instructions.  </p>
+		</div>
+		<div class="col-md-6">
+				<strong>Example:</strong>
+<pre>if($.support.fileDrop){
+    $('html').fileDrop(function(fileCollection){
+        $.each(fileCollection, function(){
+            console.log(this);
+        });
+    });
+}else{
+    alert('Your browser does not support file drag-n-drop :(');
+}</pre>
+		</div>
+	</div>
+
+	
+
+
+
+
+	<div id="drop-overlay">
+		<h1 id='drop-msg'>Drop Your Files Anywhere!</h1>
+		<div id="drop-backdrop"></div>
+	</div>
+
+</body>
+</html>

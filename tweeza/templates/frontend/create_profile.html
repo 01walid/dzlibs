@@ -1,0 +1,21 @@
+{% from "macros/_form.html" import render_form %}
+
+{% set page_title = "Create Profile" %}
+
+{% extends "layouts/base.html" %}
+
+{% block body %}
+
+<div class="row">
+	<h1>{{ _("One more step, and you're done!") }}</h1>
+	<h2>Create Profile <small>Already have an account? <a href="{{ url_for('frontend.login') }}">Sign in</a>, please.</small></h2>
+	<h3>{{ session['email'] }}</h3>
+	<h3>{{ session['github_id'] }}</h3>
+	<h3>{{ session['name'] }}</h3>
+	<h3>{{ session['location'] }}</h3>
+	<h3>{{ session['oauth_token'] }}</h3>
+	<h3>{{ session['github_username'] }}</h3>
+	{{ render_form(url_for('frontend.create_profile'), form) }}
+</div>
+
+{% endblock %}

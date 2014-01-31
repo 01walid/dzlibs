@@ -1,0 +1,14 @@
+{
+  "name": "tag-it",
+  "homepage": "https://github.com/aehlke/tag-it",
+  "_release": "65d6fb4dad",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "65d6fb4dad833bf490f2a7b27063ecd08f792ede"
+  },
+  "_source": "https://github.com/aehlke/tag-it.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/aehlke/tag-it.git",
+  "_direct": true
+}

@@ -1,0 +1,15 @@
+{
+  "name": "jquery-filedrop",
+  "homepage": "https://github.com/weixiyen/jquery-filedrop",
+  "version": "0.1.0",
+  "_release": "0.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.1.0",
+    "commit": "b6315b7be74f4785f1106b4c9f622397c3824df3"
+  },
+  "_source": "https://github.com/weixiyen/jquery-filedrop.git",
+  "_target": "~0.1.0",
+  "_originalSource": "https://github.com/weixiyen/jquery-filedrop.git",
+  "_direct": true
+}
