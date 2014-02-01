@@ -8,23 +8,21 @@
 
 <div class="row">
     <h1>{{ _('About DzLibs project') }}</h1>
-    <p>Have you ever needed the XML or the JSON of all Algerian Wilayas to build your next awesome app? wether it's a web, mobile or desktop app, or just you needed them in Excel. You're a designer? didn't you look up for a vectorized version of <a href="http://en.wikipedia.org/wiki/Maqam_Echahid">Maqam Echahid</a>, or even the Algerian Flag, I'm sure  someday you did! (these are just examples).</p>
+    <p>A community-driven Algerian index of reusable assets and libraries. A web app and a set of RESTful APIs to provide a platform for Algerian developers and designers to share reusable resources (Classes, Libraries, Vector files..etc) and easily access them.</p>
+    <h3>For instance:</h3>
+    <p>You can share/find the XML or JSON of the 48 Algerian Wilayas instead of recreating it every time you need it for your next awesome web/mobile/desktop app. the same goes for the database of the Train/Bus timetable of your city, the Algeria SVG map, the Vector file of <a href="http://en.wikipedia.org/wiki/Maqam_Echahid">Maqam Echahid</a>, and countless other examples, these are *reusable* items we can share for the public good, from developers/designers to developers/designers, for a better Algeria.</p>
 
-    <p>Then you either start by searching the web, wasting minutes to hours, or you just give up and start creating your own data structure or design. somebody else need <strong>exactly</strong> the thing you're building, probably he will build it again the same way you did, and that is not very <a href="http://en.wikipedia.org/wiki/Don%27t_repeat_yourself">DRY</a>.</p>
+    <h3>The APIs part is mostly for developers, it consists of :</h3>
 
-    <p>Now, imagine you, or somebody else needs Algiers Train/Bus timing database, another needs the the prayer time database/algorithm of Algeria or some of its cities, or a Class/Librairy <strong><i>X</i></strong> of Language <strong><i>Y</i></strong> to some Algerian <strong><i>Z</i></strong> functionalities. </p>
+    <p>
+        <ul>
+            <li>Making <strong>some</strong> of these assets accessible via http(s) requests, for instance: a mobile developer (especially now that we've got the 3G network) could make a GET to <code>api.dzlibs.io/wilayas/23</code> that returns the name of the Wilaya and other on-demand information (e.g. its prayer times).</li>
 
-    <p>These Are <strong>reusable</strong> resources, they need to be gathered, indexed, enriched, developed, centralized in one place and easy to find, that's DzLibs project's mission, a community-driven Algerian index of reusable assets and libraries.</p>
+            <li>pushing for a kind of <strong>standardized</strong> ways to share public data among Algerian developers and different DZ organizations.</li>
+        </ul>
+    </p>
 
-    <p>The project consists of two parts, Tweeza and Ara.</p>
-
-    <h2>Tweeza</h2>
-
-    <p>As our Algerian ancetors did -and still do-, they gathered food, meal in their villages then they share it equaly. With the same concept, DzLibs tweeza part is about gathering assets and librairies and share it for public good (see <a href="http://www.djelfa.info/vb/showthread.php?t=1029239"></a>tweeza).</p>
-
-    <h2>Ara</h2>
-
-    <p>Ara on the other hand, is the Algerian slang word that means 'give me'. </p>
+    <p>These are <strong>just examples</strong>, what we can do and share is countless. we just need to unit, and do the same as our ancestors did, the <strong>Tweeza</strong> of the Algerian web. boosting the IT industry is our shared duty, and for that we need to <strong>share</strong> and think of ourselves as contributors rather than as competitors.</p>
 </div>
 {% endblock %}
 

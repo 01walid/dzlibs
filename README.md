@@ -3,16 +3,16 @@
 
 A community-driven Algerian index of reusable assets and libraries. A web app and a set of RESTful APIs to provide a platform for Algerian developers and designers to share reusable resources (Classes, Libraries, Vector files..etc) and easily access them. 
 
-*For instance*:
+**For instance**:
 
 You can share/find the XML or JSON of the 48 Algerian Wilayas instead of recreating it every time you need it for your next awesome web/mobile/desktop app. the same goes for the database of the Train/Bus timetable of your city, the Algeria SVG map, the Vector file of [Maqam Echahid](http://en.wikipedia.org/wiki/Maqam_Echahid), and countless other examples, these are *reusable* items we can share for the public good, from developers/designers to developers/designers, for a better Algeria.
 
 The APIs part is mostly for developers, it consists of :
 
-* Making *some* of these assets accessible via http(s) requests, for instance: a mobile developer (especially now that we've got the 3G network) could make a GET to `api.dzlibs.io/wilayas/5` that returns the name of the Wilaya and other on-demand information (e.g. its prayer times).
-* pushing for a kind of *standardized* ways to share public data among Algerian developers and different DZ organizations.
+* Making **some** of these assets accessible via http(s) requests, for instance: a mobile developer (especially now that we've got the 3G network) could make a GET to `api.dzlibs.io/wilayas/23` that returns the name of the Wilaya and other on-demand information (e.g. its prayer times).
+* pushing for a kind of **standardized** ways to share public data among Algerian developers and different DZ organizations.
 
-These are *just examples*, what we can do and share is countless. we just need to unit, and do the same as our ancestors did, the *tweeza* of the Algerian web. boosting the IT industry is our shared duty, and for that we need to *share* and think of ourselves as contributors rather than as competitors.
+These are **just examples**, what we can do and share is countless. we just need to unit, and do the same as our ancestors did, the **tweeza** of the Algerian web. boosting the IT industry is our shared duty, and for that we need to **share** and think of ourselves as contributors rather than as competitors.
 
 # Installation
 
@@ -71,10 +71,10 @@ Exit the virtual Python environment, type:`deactivate`.
 
 ```bash
 .
-├── ara # the API part (not yet developed)
+├── api # the API part (not yet developed)
 │   └── tests # tests for the APIs
 ├── docs # where the documentation reside
-├── tweeza # The tweeza part 
+├── tweeza # The Tweeza part 
 │   ├── app.py # the main entry file
 │   ├── babel.cfg
 │   ├── config.py # where all the config goes.
@@ -116,7 +116,7 @@ Soon. but if you really want to, be sure to write a [PEP](http://www.python.org/
 # TODO
 
 - ☐ Automate the frontend development with Grunt.
-- ☐ Ara (the APIs part).
+- ☐ The APIs part (I'm considering the use of [python-eve](http://python-eve.org/), please tell me if you have a better suggestion on how to design the APIs).
 - ☐ Docs/Wiki (coming soon).
 
 
