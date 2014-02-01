@@ -8,7 +8,7 @@
     <h1>{{ _("Not found") }} <span>:(</span></h1>
     <div class="row text-center">
         <img class="th" src="{{ url_for('static', filename='images/404.jpg') }}" />
-         <p> {{ _("Look underneath, you may find something:") }}</p>
+         <p> {{ _("Look underneath ya Kho, you may find something:") }}</p>
     </div>
 
    
@@ -16,18 +16,12 @@
         <div class="row">
             <div class="row collapse">
                 <div class="small-10 columns">
-                    <input type="text" name="search" placeholder="search for an item here...">
+                    <input type="text" name="search" placeholder="{{ _('search for an item here...') }}">
                 </div>
                 <div class="small-2 columns">
-                    <a href="#" class="button postfix">Go</a>
+                    <a href="#" class="button postfix">{{ _("Go") }}</a>
                 </div>
             </div>
         </div>
     </form>
-    <p>{{ _("It looks like this was the result of either:") }}</p>
-
-    <ul>
-        <li>{{ _("a mistyped address") }}</li>
-        <li>{{ _("an out-of-date link") }}</li>
-    </ul>
 {% endblock %}
