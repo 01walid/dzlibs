@@ -88,8 +88,9 @@ def configure_extensions(app):
     gravatar.init_app(app)
 
     # Debug Toolbar
-    from flask_debugtoolbar import DebugToolbarExtension
-    DebugToolbarExtension(app)
+    if app.config['DEBUG']:
+        from flask_debugtoolbar import DebugToolbarExtension
+        DebugToolbarExtension(app)
 
     @babel.localeselector
     def get_locale():
