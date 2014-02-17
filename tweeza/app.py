@@ -54,7 +54,7 @@ def configure_app(app, config=None):
     """
     config_file = None
 
-    if os.environ.get('PRODUCTION'):  # are we in production?
+    if bool(os.environ.get('PRODUCTION')):  # in production?
         config_file = os.path.join(app.instance_path, 'production.cfg')
     else:  # No? use development config with Debug mode On
         config_file = os.path.join(app.instance_path, 'config.cfg')
