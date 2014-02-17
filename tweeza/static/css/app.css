@@ -7976,12 +7976,13 @@ textarea {
   height: auto;
 }
 
-.tabs dd > a {
+.tabs dd a {
   border: 1px solid #DDD;
+  border-top: none;
+  border-left: none;
 }
-.tabs.vertical dd > a {
-  border: none;
-  border-bottom: 1px solid #DDD;
+.tabs dd:last-child a {
+  border-right: none;
 }
 
 .accordion dd a {

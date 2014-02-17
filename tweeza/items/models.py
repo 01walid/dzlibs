@@ -3,10 +3,9 @@ from users.models import User
 import datetime
 
 
-class Meta(db.EmbeddedDocument):
+class Titles(db.EmbeddedDocument):
 
     title = db.StringField()
-    short_description = db.StringField()
     lang = db.StringField(max_length=3)
 
 
@@ -18,7 +17,7 @@ class Category(db.Document):
     name_fr = db.StringField(max_length=50)
     name_en = db.StringField(max_length=50)
     description = db.StringField()
-   
+
 
 class Item(db.Document):
 
@@ -27,8 +26,8 @@ class Item(db.Document):
     submitted_at = db.DateTimeField(default=datetime.datetime.now,
                                     required=True)
 
-    meta_info = db.ListField(db.EmbeddedDocumentField(Meta),
-                             required=True)
+    titles = db.ListField(db.EmbeddedDocumentField(Titles),
+                          required=True)
 
     submitter = db.ReferenceField(User)
 
@@ -37,6 +36,8 @@ class Item(db.Document):
     item_data = db.ListField(db.StringField())
 
     vcs_url = db.URLField()
+
+    blog_post = db.URLField()
 
     tags = db.ListField(db.StringField(max_length=30))
 

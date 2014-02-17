@@ -3,7 +3,7 @@ from flask import (Blueprint, request, render_template, flash,
 from werkzeug import secure_filename
 from flask.views import MethodView
 from users.models import User
-from models import Item, Meta
+from models import Item, Titles
 from flask.ext.login import login_required, current_user
 from forms import AddItemForm
 from utils import allowed_file, make_dir
@@ -39,25 +39,22 @@ class AddView(MethodView):
         item = Item()
 
         if form.validate_on_submit():
-            ar_meta = Meta()
-            fr_meta = Meta()
-            en_meta = Meta()
+            ar_title = Titles()
+            fr_title = Titles()
+            en_title = Titles()
 
-            ar_meta.title = form.ar_title.data.strip()
-            ar_meta.short_description = form.ar_short_description.data
-            ar_meta.lang = 'ar'
+            ar_title.title = form.ar_title.data.strip()
+            ar_title.lang = 'ar'
 
-            fr_meta.title = form.fr_title.data.strip()
-            fr_meta.short_description = form.fr_short_description.data
-            fr_meta.lang = 'fr'
+            fr_title.title = form.fr_title.data.strip()
+            fr_title.lang = 'fr'
 
-            en_meta.title = form.en_title.data.strip()
-            en_meta.short_description = form.en_short_description.data
-            en_meta.lang = 'en'
+            en_title.title = form.en_title.data.strip()
+            en_title.lang = 'en'
 
-            item.meta_info.append(ar_meta)
-            item.meta_info.append(fr_meta)
-            item.meta_info.append(en_meta)
+            item.titles.append(ar_title)
+            item.titles.append(fr_title)
+            item.titles.append(en_title)
 
             item.description = form.description.data
 
@@ -77,7 +74,7 @@ class AddView(MethodView):
         if thumbnail and allowed_file(thumbnail.filename):
             thumbnail.save(os.path.join(path, thumbnail_name))
 
-        filenames = []
+        # filenames = []
         for file in uploaded_files:
             # Check if the file is one of the allowed types/extensions
             if file and allowed_file(file.filename):

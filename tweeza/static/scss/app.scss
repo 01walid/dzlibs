@@ -12,11 +12,12 @@ body {
 textarea {height: auto;}
 
 .tabs {
-    dd > a { border: 1px solid #DDD; }
-
-    &.vertical dd > a {
-        border: none;
-        border-bottom: 1px solid #DDD;
+    dd{
+        a { 
+            border: 1px solid #DDD;
+            border-top: none; border-left: none;
+        }
+        &:last-child a { border-right: none; }
     }
 }
 
