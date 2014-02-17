@@ -52,11 +52,17 @@ def configure_app(app, config=None):
     Looks for the 'config.cfg' file under the instance folder
     then load it or fallbacks to example.cfg
     """
-    config_file = os.path.join(app.instance_path, 'config.cfg')
+    config_file = None
+
+    if os.environ.get('PRODUCTION'):  # are we in production?
+        config_file = os.path.join(app.instance_path, 'production.cfg')
+    else:  # No? use development config with Debug mode On
+        config_file = os.path.join(app.instance_path, 'config.cfg')
 
     if not os.path.isfile(config_file):
         config_file = os.path.join(app.instance_path, 'example.cfg')
 
+    print(config_file)
     try:
         app.config.from_pyfile(config_file)
     except IOError:

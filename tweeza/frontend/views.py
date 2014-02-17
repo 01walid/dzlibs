@@ -1,14 +1,15 @@
 from flask import (Blueprint, request, redirect, session, url_for,
-                   render_template, flash)
+                   render_template, flash, current_app as app)
 from flask.ext.login import (login_required, login_user, current_user,
                              logout_user)
 from users import User
 from flask.ext.babel import gettext as _
 from forms import LoginForm, SignupForm, CreateProfileForm
-from extensions import github
 from items.models import Item
 
 frontend = Blueprint('frontend', __name__)
+
+github = None  # Global object
 
 
 @frontend.route("/")
@@ -29,6 +30,9 @@ def oauth_github():
     Redirect the user/resource owner to the OAuth provider (i.e. Github)
     using an URL with a few key OAuth parameters.
     """
+    from extensions import github_oauth
+    global github
+    github = github_oauth(app)
     redirect_uri = url_for('frontend.callback',
                            next=request.args.get('next') or
                            request.referrer or None, _external=True)
