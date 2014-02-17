@@ -62,7 +62,6 @@ def configure_app(app, config=None):
     if not os.path.isfile(config_file):
         config_file = os.path.join(app.instance_path, 'example.cfg')
 
-    print(config_file)
     try:
         app.config.from_pyfile(config_file)
     except IOError:
