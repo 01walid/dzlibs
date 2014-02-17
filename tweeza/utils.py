@@ -10,10 +10,6 @@ import os
 from datetime import datetime
 from flask.ext.babel import gettext, ngettext
 
-
-# Instance folder path, make it independent.
-INSTANCE_FOLDER_PATH = os.path.join('/tmp', 'instance')
-
 ALLOWED_AVATAR_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'zip',
                           'doc', 'docx', 'php', 'gzip', 'rar', 'java',

@@ -10,7 +10,7 @@ from dashboard.views import dashboard
 from users import users, User
 from items.views import items
 # from flask.ext.security import Security
-from utils import INSTANCE_FOLDER_PATH, current_year, pretty_date
+from utils import current_year, pretty_date
 from extensions import (db, mail, babel, login_manager, bcrypt,
                         gravatar)
 from flask.ext.mongoengine import MongoEngineSessionInterface
@@ -35,8 +35,7 @@ def create_app(config=None, app_name=None, blueprints=None):
     if blueprints is None:
         blueprints = DEFAULT_BLUEPRINTS
 
-    app = Flask(app_name, instance_path=INSTANCE_FOLDER_PATH,
-                instance_relative_config=True)
+    app = Flask(app_name, instance_relative_config=True)
     configure_app(app, config)
     configure_hook(app)
     configure_blueprints(app, blueprints)
@@ -49,19 +48,22 @@ def create_app(config=None, app_name=None, blueprints=None):
 
 
 def configure_app(app, config=None):
-    """Different ways of configurations."""
+    """
+    Looks for the 'config.cfg' file under the instance folder
+    then load it or fallbacks to example.cfg
+    """
+    config_file = os.path.join(app.instance_path, 'config.cfg')
 
-    # http://flask.pocoo.org/docs/api/#configuration
-    app.config.from_object(DevelopmentConfig)
+    if not os.path.isfile(config_file):
+        config_file = os.path.join(app.instance_path, 'example.cfg')
 
-    if config:
-        app.config.from_object(config)
+    try:
+        app.config.from_pyfile(config_file)
+    except IOError:
+        print("didn't find any configuration files!\nexiting...")
+        raise SystemExit
 
-    os.environ['DEBUG'] = "1"
-    app.secret_key = os.urandom(24)
-    # Use instance folder instead of env variables to make deployment easier.
-    #app.config.from_envvar('%s_APP_CONFIG' % DefaultConfig.PROJECT.upper(),
-    # silent=True)
+    os.environ['DEBUG'] = "1"  # required to test Oauth with github
 
 
 def configure_extensions(app):
@@ -128,7 +130,7 @@ def configure_template_filters(app):
 
 def configure_logging(app):
     """Configure file(info) and email(error) logging."""
-
+    return
     if app.debug or app.testing:
         # Skip debug and test mode. Just check standard output.
         return
