@@ -12,6 +12,7 @@ from items.views import items
 from utils import current_year
 from extensions import (db, mail, babel, login_manager, bcrypt,
                         gravatar)
+from flask.ext.babel import lazy_gettext as _
 from flask.ext.mongoengine import MongoEngineSessionInterface
 
 
@@ -129,6 +130,22 @@ def configure_template_filters(app):
         import humanize
         humanize.activate(g.lang)
         return humanize.naturaltime(datetime)
+
+    @app.template_filter('what_title')
+    def what_title(titles_list):
+        new_list = []
+        # first get rid of empty titles
+        for title in titles_list:
+            if title.title:
+                new_list.append(title)
+        # in those non-empty titles, find the one who matches the user language
+        for title in new_list:
+            if title.lang == g.lang:
+                return title.title
+        # no hope? ok, just choose the first in the list!
+        if len(new_list) > 0:
+            return new_list[0].title
+        return _("No title!")  # no luck, but this shouldn't happen
 
 
 def configure_logging(app):

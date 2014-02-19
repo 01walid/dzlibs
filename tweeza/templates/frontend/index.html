@@ -34,11 +34,7 @@
             <div class="item-info" style="background-image: url({{ url_for('items.serve_thumbnail', item_id=item.item_id, filename=item.thumbnail.filename) }});">
                 <a href="{{ url_for('items.detail', item_id=item.item_id) }}">
                 <hgroup>
-                {% for title in item.titles %}
-                    {% if title.lang == g.lang %}
-                        <h5>{{ title.title }}</h5>
-                    {% endif %}
-                {% endfor %}
+                    <h5>{{ item.titles | what_title}}</h5>
                     <h6 class="subheader">{{ item.submitted_at | prettify }} <em>{{_("in") }}</em> Category</h6>
                 </hgroup>
 

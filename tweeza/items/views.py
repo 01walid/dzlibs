@@ -57,6 +57,7 @@ class AddView(MethodView):
             item.titles.append(en_title)
 
             item.description = form.description.data
+            item.tags = form.tags.data.split(',')
 
             item.submitter = User.objects.get(id=current_user.id)
 
