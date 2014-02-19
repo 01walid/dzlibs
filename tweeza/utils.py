@@ -8,7 +8,6 @@ import random
 import os
 
 from datetime import datetime
-from flask.ext.babel import gettext, ngettext
 
 ALLOWED_THUMBNAILS = set(['png', 'jpg', 'jpeg', 'gif'])
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'zip',
@@ -52,43 +51,6 @@ def get_current_time():
 def current_year():
     from datetime import date
     return date.today().year
-
-
-def pretty_date(dt, default=None):
-    """
-    Returns string representing "time since" e.g.
-    3 days ago, 5 hours ago etc.
-    NB: when/if Babel 1.0 released use format_timedelta/timedeltaformat instead
-    """
-    if default is None:
-        default = gettext("just now")
-
-    now = datetime.utcnow()
-    diff = now - dt
-
-    years = diff.days / 365
-    months = diff.days / 30
-    weeks = diff.days / 7
-    days = diff.days
-    hours = diff.seconds / 3600
-    minutes = diff.seconds / 60
-    seconds = diff.seconds
-
-    periods = (
-        (years, ngettext("%(num)s year", "%(num)s years", num=years)),
-        (months, ngettext("%(num)s month", "%(num)s months", num=months)),
-        (weeks, ngettext("%(num)s week", "%(num)s weeks", num=weeks)),
-        (days, ngettext("%(num)s day", "%(num)s days", num=days)),
-        (hours, ngettext("%(num)s hour", "%(num)s hours", num=hours)),
-        (minutes, ngettext("%(num)s minute", "%(num)s minutes", num=minutes)),
-        (seconds, ngettext("%(num)s second", "%(num)s seconds", num=seconds)),
-    )
-
-    for period, trans in periods:
-        if period:
-            return gettext("%(period)s ago", period=trans)
-
-    return default
 
 
 def allowed_thumbnails(filename):

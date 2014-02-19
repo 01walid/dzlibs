@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from flask.ext.wtf import Form
-from wtforms import (ValidationError, BooleanField, TextField,
-                     TextAreaField, SubmitField)
-from wtforms.validators import Required, url
+from wtforms import TextField, TextAreaField, SubmitField
+from wtforms.validators import Required
 from wtforms.fields.html5 import URLField
 from flask.ext.babel import lazy_gettext as _
 from flask_wtf.file import FileField

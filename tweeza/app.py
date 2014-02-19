@@ -9,7 +9,7 @@ from dashboard.views import dashboard
 from users import users, User
 from items.views import items
 # from flask.ext.security import Security
-from utils import current_year, pretty_date
+from utils import current_year
 from extensions import (db, mail, babel, login_manager, bcrypt,
                         gravatar)
 from flask.ext.mongoengine import MongoEngineSessionInterface
@@ -125,12 +125,10 @@ def configure_blueprints(app, blueprints):
 def configure_template_filters(app):
 
     @app.template_filter('prettify')
-    def prettify(value):
-        return pretty_date(value)
-
-    @app.template_filter('format_date')
-    def format_date(value, format='%Y-%m-%d'):
-        return value.strftime(format)
+    def prettify(datetime):
+        import humanize
+        humanize.activate(g.lang)
+        return humanize.naturaltime(datetime)
 
 
 def configure_logging(app):
