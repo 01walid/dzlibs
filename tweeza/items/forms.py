@@ -11,9 +11,9 @@ from flask_wtf.file import FileField
 
 class AddItemForm(Form):
 
-    vcs_url = URLField(_('Remote repository URL'))  # , validators=[url()])
+    vcs_url = URLField(_('Remote repository URL'))
 
-    blog_post = URLField(_('Blog post URL'), validators=[url()])
+    blog_post = URLField(_('Blog post URL'))
 
     ar_title = TextField(_('Item title in Arabic'))
     en_title = TextField(_('Item title in English'))

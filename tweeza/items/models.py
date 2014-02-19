@@ -9,6 +9,14 @@ class Titles(db.EmbeddedDocument):
     lang = db.StringField(max_length=3)
 
 
+# class File(db.EmbeddedDocument):
+#     """docstring for file"""
+
+#     filename = db.StringField()
+#     file_type = db.StringField(max_length=30)
+#     file = db.FileField()
+
+
 class Category(db.Document):
 
     created_at = db.DateTimeField(default=datetime.datetime.now,
@@ -33,7 +41,7 @@ class Item(db.Document):
 
     category = db.ReferenceField(Category)
 
-    item_data = db.ListField(db.StringField())
+    files = db.ListField(db.FileField())
 
     vcs_url = db.URLField()
 
@@ -43,6 +51,6 @@ class Item(db.Document):
 
     description = db.StringField()
 
-    thumbnail_path = db.StringField()
+    thumbnail = db.ImageField(thumbnail_size=(230, 230, True))
 
     license_name = db.StringField(max_length=50)

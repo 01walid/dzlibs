@@ -10,7 +10,7 @@ import os
 from datetime import datetime
 from flask.ext.babel import gettext, ngettext
 
-ALLOWED_AVATAR_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+ALLOWED_THUMBNAILS = set(['png', 'jpg', 'jpeg', 'gif'])
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'zip',
                           'doc', 'docx', 'php', 'gzip', 'rar', 'java',
                           'python'])
@@ -91,9 +91,9 @@ def pretty_date(dt, default=None):
     return default
 
 
-def allowed_avatars(filename):
+def allowed_thumbnails(filename):
     return '.' in filename and \
-        filename.rsplit('.', 1)[1] in ALLOWED_AVATAR_EXTENSIONS
+        filename.rsplit('.', 1)[1] in ALLOWED_THUMBNAILS
 
 
 # For a given file, return whether it's an allowed type or not

@@ -1,13 +1,13 @@
 from flask import (Blueprint, request, render_template, flash,
-                   send_from_directory, current_app as app)
+                   Response, stream_with_context, abort)
 from werkzeug import secure_filename
 from flask.views import MethodView
 from users.models import User
 from models import Item, Titles
 from flask.ext.login import login_required, current_user
 from forms import AddItemForm
-from utils import allowed_file, make_dir
-import os
+from utils import allowed_thumbnails, allowed_file
+from mongoengine.fields import GridFSProxy
 
 items = Blueprint('items', __name__)
 
@@ -61,43 +61,58 @@ class AddView(MethodView):
             item.submitter = User.objects.get(id=current_user.id)
 
         else:
-            flash('upload unsuccesful', 'error')
+            flash('upload unsuccessful', 'error')
             return render_template('items/add_item.html', form=form)
 
         uploaded_files = request.files.getlist("files")
         thumbnail = request.files['thumbnail']
+
         thumbnail_name = secure_filename(thumbnail.filename)
 
-        path = os.path.join(app.config['UPLOAD_FOLDER'], str(item.item_id))
-        make_dir(path)
+        if thumbnail and allowed_thumbnails(thumbnail_name):
+            ext = thumbnail.mimetype.split('/')[-1]
+            # use the 'thumbnail' name for all thumbnails
+            filename = '.'.join(["thumbnail", ext])
+            item.thumbnail.put(thumbnail.stream,
+                               content_type=thumbnail.mimetype,
+                               filename=filename)
 
-        if thumbnail and allowed_file(thumbnail.filename):
-            thumbnail.save(os.path.join(path, thumbnail_name))
-
-        # filenames = []
         for file in uploaded_files:
+            # Make the filename safe, remove unsupported chars
+            filename = secure_filename(file.filename)
             # Check if the file is one of the allowed types/extensions
-            if file and allowed_file(file.filename):
-                # Make the filename safe, remove unsupported chars
-                filename = secure_filename(file.filename)
-                # Move the file form the temporal folder to the upload
-                # folder we setup
-                file.save(os.path.join(path, filename))
-                # Save the filename into a list, we'll use it later
-                # filenames.append(filename)
-                item.item_data.append(filename)
-                # Redirect the user to the uploaded_file route, which
-                # will basicaly show on the browser the uploaded file
-        # Load an html page with a link to each uploaded file
-        # item.item_data.append(filenames)
+            if file and allowed_file(filename):
+                # put the file in the ListField.
+                # see https://gist.github.com/tfausak/1299339
+                file_ = GridFSProxy()
+                file_.put(file.stream,
+                          content_type=file.mimetype,
+                          filename=filename)
+                item.files.append(file_)
+        # Save the thing
         item.save()
-        flash('upload succesful')
+        flash('upload successful')
         return render_template('items/add_item.html', form=form)
 
 
-@items.route('/uploads/<filename>')
-def uploaded_file(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+@items.route('/thumbnails/<int:item_id>/<filename>')
+def serve_thumbnail(item_id, filename):
+    item = Item.objects.get(item_id=item_id)
+    if filename == item.thumbnail.filename:
+        return Response(stream_with_context(item.thumbnail.read()),
+                        mimetype=item.thumbnail.content_type)
+
+    return abort(404)
+
+
+@items.route('/uploads/<int:item_id>/<filename>')
+def serve_file(item_id, filename):
+    item = Item.objects.get(item_id=item_id)
+    for file in item.files:
+        if file.filename == filename:
+            return Response(stream_with_context(file.read()),
+                            mimetype=file.content_type)
+    return abort(404)
 
 # Register the urls
 items.add_url_rule('/items/', view_func=ListView.as_view('index'))

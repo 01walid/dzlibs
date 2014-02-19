@@ -3,7 +3,6 @@
 
 import os
 from flask import Flask, request, g, render_template
-from config import DevelopmentConfig
 # Bluprints:
 from frontend.views import frontend
 from dashboard.views import dashboard
@@ -31,7 +30,7 @@ def create_app(config=None, app_name=None, blueprints=None):
     """Create a Flask app."""
 
     if app_name is None:
-        app_name = DevelopmentConfig.PROJECT
+        app_name = "DzLibs"
     if blueprints is None:
         blueprints = DEFAULT_BLUEPRINTS
 
@@ -53,8 +52,8 @@ def configure_app(app, config=None):
     then load it or fallbacks to example.cfg
     """
     config_file = None
-
-    if bool(os.environ.get('PRODUCTION')):  # in production?
+    prod = os.environ.get('PRODUCTION')
+    if prod and prod.lower() in ['true', '1', 'yes', 'y']:  # in production?
         config_file = os.path.join(app.instance_path, 'production.cfg')
     else:  # No? use development config with Debug mode On
         config_file = os.path.join(app.instance_path, 'config.cfg')
@@ -88,7 +87,7 @@ def configure_extensions(app):
     gravatar.init_app(app)
 
     # Debug Toolbar
-    if app.config['DEBUG']:
+    if app.debug:
         from flask_debugtoolbar import DebugToolbarExtension
         DebugToolbarExtension(app)
 
