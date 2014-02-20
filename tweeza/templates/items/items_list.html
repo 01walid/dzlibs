@@ -8,7 +8,7 @@
     	<hr>
 
 		<div class="grid">
-		{% for item in items %}
+		{% for item in items.items %}
 		<div class="item">
 	        <div class="item-info" style="background-image: url('https://d3i5ls5z2ayn6d.cloudfront.net/drops/af9419ba83f0d90d9ad9b7b416d17609.jpg');">
 		        <a href="{{ url_for('items.detail', item_id=item.item_id) }}">

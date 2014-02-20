@@ -35,7 +35,7 @@ class Item(db.Document):
 
     files = db.ListField(db.FileField())
 
-    vcs_url = db.URLField()
+    github = db.URLField()
 
     blog_post = db.URLField()
 

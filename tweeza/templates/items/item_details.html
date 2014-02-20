@@ -3,9 +3,99 @@
 {% set page_title = _("Item details") %}
 
 {% block body %}
+    
+    <div class="row">
+        <h2>{{ page_title }}</h2>
+        <hr>
 
-    <h2>Item details</h2>
+        <div class="row">
+            <div class="small-10 large-8 columns">
+                <h3><strong>{{ item.titles | what_title | capitalize }}</strong></h3>
 
+                <ul class="no-bullet inline-list tags">
+                    {% for tag in item.tags %}
+                        <li>{% if loop.first %} <strong> {{ _('Tags') }}:</strong> {% endif %}</li>
+                        <li><span>
+                            <a class="button tiny secondary"><i class="fi-price-tag"></i> {{ tag }}</a>
+                        </span></li>
+                    {% endfor %}
+                </ul>
+                <ul class="no-bullet inline-list">
+                    <li><strong>{{ _("Category: ") }}</strong></li>
+                    <li>{{ item.category.name_en }}</li>
+                </ul>
+                <h3 class="subheader">{{ _("Item description") }}</h3>
+                <article class="panel markdown">
+                    {% if item.github %}
+                        {{ content | markdown }}
+                    {% else %}
+                        {% if item.description %}
+                            {{ item.description}}
+                        {% else %}
+                            {{ _("No description yet!") }}
+                        {% endif %}
+                    {% endif %}
+                </article>
+            </div>
 
+            <div class="small-4 large-4 columns">
+                <div class="row submitter_details">
+                    <h3 class="items_details_title"><i class="fi-torso"></i> {{ _('Submitter') }}</h3>
+                    <div class="small-9 columns">
+                        <ul class="no-bullet">
+                            <li><h5><a href="">{{ item.submitter.name }}</a></h5></li>
+                            <li><h5 class="subheader">{{ item.submitted_at | prettify }}</h5></li>
+                        </ul>                     
+                        <ul class="no-bullet inline-list user-socials">
+                            <li><a href=""><i class="fi-social-github"></i></a></li>
+                            <li><a href=""><i class="fi-social-twitter"></i></a></li>
+                            <li><a href=""><i class="fi-social-facebook"></i></a></li>
+                        </ul>
+                        {% if item.submitter.website %}
+                            <ul class="no-bullet">
+                                <li><strong>{{ _("Website") }}: </strong><a href="">{{ item.submitter.website }}</a></li>
+                            </ul>
+                        {% endif %}
+                        {% if item.submitter.hireable %}
+                            <p class="text-center">
+                            <span class="label success round">{{ _("This guy is free to hire!") }}</span></p>
+                        {% endif %}
+                    </div>
+                    <div class="small-3 columns">
+                        <div class="circle">
+                            <a href="">
+                                <img src="{{ item.submitter.email | gravatar(size=60) }}">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                {% if item.github %}
+                    <h3 class="items_details_title"><i class="fi-folder"></i> {{ _("Item information") }}:</h3>
+                    <ul class="no-bullet">
+                        <li><a href="{{ item.github }}" class="button secondary expand"><i class="fi-link"></i> {{ _("Item repository on Github") }}</a></li>
+                        <li><strong>{{ _("Clone it: ") }}</strong></li>
+                        <li><input type="text" value="{{ clone_string }}" readonly></li>
+                        <li><a href="{{ zip_link }}" class="button expand"><i class="fi-download"></i> {{ _("Download") }}</a></li>
+                    </ul>
+                {% else %}
+                    <h3 class="items_details_title"><i class="fi-folder"></i> {{ _("Item files") }}:</h3>
+                    <hr>
+                    <ul class="no-bullet">
+                        {% for file in item.files %}
+                            <ul class="no-bullet">
+                                <li>
+                                    <i class="fi-download"></i>
+                                    <a href="{{ url_for('items.serve_file', item_id=item.item_id, filename=file.filename) }}">{{ file.filename }}</a>
+                                    <span class="label secondary">{{ file.length | filesizeformat }}</span>
+                                </li>
+                                <li><ul><li><span class="label secondary"><strong>md5:</strong> {{ file.md5 }}</span></li></ul></li>
+                            </ul>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 
 {% endblock body %}

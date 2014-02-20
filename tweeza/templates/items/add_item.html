@@ -47,10 +47,10 @@
                 <div class="medium-9 columns">
                     <dl class="accordion" data-accordion> 
                         <dd> 
-                            <a href="#panel1"><i class="fi-link"></i> {{ _("From a remote repository (e.g. github)") }}</a> 
+                            <a href="#panel1"><i class="fi-link"></i> {{ _("From a remote repository (we only Github for now)") }}</a> 
                             <div id="panel1" class="content"> 
-                                {{ form.vcs_url.label }}
-                                {{ form.vcs_url(placeholder=_("Past your item's repository URL here")) }}
+                                {{ form.github.label }}
+                                {{ form.github(placeholder=_("Past your item's repository URL here")) }}
                             </div> 
                         </dd> 
                         <dd> <a href="#panel2"><i class="fi-upload"></i> {{ _("From my computer") }}</a> 

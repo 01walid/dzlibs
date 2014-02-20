@@ -201,3 +201,93 @@ div.drag {
     opacity:0.6; 
     cursor:default;
 }
+
+.markdown {
+    font: 13px/1.4 Helvetica,arial,freesans,clean,sans-serif !important;
+    background-color: white;
+    font-size: 15px;
+    line-height: 1.7;
+    overflow: hidden;
+    word-wrap: break-word;
+    color: #333;
+    pre {
+        background-color: #F8F8F8;
+        border: 1px solid #DDD;
+        line-height: 19px;
+        overflow: auto;
+        padding: 6px 10px;
+        border-radius: 3px; 
+        code {
+            padding: none;
+            border: none;
+            color: #333;
+            font-size: 13px;
+            font-family: Consolas,"Liberation Mono",Courier,monospace;
+            font-weight: normal;
+        }
+    }
+    code {
+        padding: 4px;
+        background-color: #F8F8F8;
+        border: 1px solid #DDD;
+        border-radius: 3px; 
+        color: #333;
+        font-size: 13px;
+        font-family: Consolas,"Liberation Mono",Courier,monospace;
+        font-weight: normal;
+    } 
+
+    h1, h2, h3, h4, h5, h6 {
+        margin: 1em 0px 15px;
+        padding: 0px;
+        font-weight: bold;
+        line-height: 1.7;
+        cursor: text;
+        position: relative;
+    }
+
+    h1 {
+        font-size: 2.5em;
+        border-bottom: 1px solid #DDD;
+    }
+}
+
+.submitter_details {
+    border: none;
+    padding: 10px;
+}
+
+.circle {
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    img {
+        border-radius: 50%;
+        display: block;
+    }
+}
+
+.items_details_title {
+    font-weight: bold;
+    color: #333;
+}
+
+.tags {
+    padding: 6px;
+    border: 1px dashed #DDD;
+    border-left: none; border-right: none;
+    .button.tiny {
+        font-size: 13px;
+        i {
+            font-size: 15px;
+        }
+    }
+}
+
+.user-socials {
+    font-size: 30px;
+    a {
+        color: #DADADA;
+        &:hover { color: #333}
+    }
+}

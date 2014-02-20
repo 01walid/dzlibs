@@ -1,5 +1,5 @@
 from flask import (Blueprint, request, render_template, flash,
-                   Response, stream_with_context, abort)
+                   Response, stream_with_context, abort, current_app as app)
 from werkzeug import secure_filename
 from flask.views import MethodView
 from users.models import User
@@ -8,22 +8,39 @@ from flask.ext.login import login_required, current_user
 from forms import AddItemForm
 from utils import allowed_thumbnails, allowed_file
 from mongoengine.fields import GridFSProxy
+import requests
 
 items = Blueprint('items', __name__)
 
 
 class ListView(MethodView):
 
-    def get(self):
-        items = Item.objects.all()
+    def get(self, page=1):
+        items = Item.objects.paginate(page=page, per_page=5)
         return render_template('items/items_list.html', items=items)
 
 
 class DetailView(MethodView):
 
     def get(self, item_id):
-        return "hi from " + str(item_id)
         item = Item.objects.get_or_404(item_id=item_id)
+
+        if item.github:
+            repo = item.github.split('/')[-1]
+            url = 'https://api.github.com/repos/%s/%s/readme' \
+                  % (item.submitter.github_username, repo)
+            payload = {'client_id': app.config['GITHUB_CONSUMER_KEY'],
+                       'client_secret': app.config['GITHUB_CONSUMER_SECRET']}
+            headers = {'Accept': 'application/vnd.github.v3.raw'}
+            description = requests.get(url, headers=headers, params=payload)
+            zip_link = "https://api.github.com/repos/%s/%s/tarball" \
+                       % (item.submitter.github_username, repo)
+            clone_string = 'git clone https://github.com/%s/%s.git' \
+                           % (item.submitter.github_username, repo)
+            return render_template('items/item_details.html', item=item,
+                                   content=description.text,
+                                   zip_link=zip_link,
+                                   clone_string=clone_string)
         return render_template('items/item_details.html', item=item)
 
 
@@ -61,23 +78,29 @@ class AddView(MethodView):
 
             item.submitter = User.objects.get(id=current_user.id)
 
+            thumbnail = request.files['thumbnail']
+            thumbnail_name = secure_filename(thumbnail.filename)
+
+            if thumbnail and allowed_thumbnails(thumbnail_name):
+                ext = thumbnail.mimetype.split('/')[-1]
+                # use the 'thumbnail' name for all thumbnails
+                filename = '.'.join(["thumbnail", ext])
+                item.thumbnail.put(thumbnail.stream,
+                                   content_type=thumbnail.mimetype,
+                                   filename=filename)
+
+            if form.github.data:
+                item.github = form.github.data
+                item.save()
+                # no need to process any uploaded files
+                flash('Item submitted successfully', category='success')
+                return render_template('items/add_item.html', form=form)
+
         else:
-            flash('upload unsuccessful', 'error')
+            flash('upload unsuccessful', category='error')
             return render_template('items/add_item.html', form=form)
 
         uploaded_files = request.files.getlist("files")
-        thumbnail = request.files['thumbnail']
-
-        thumbnail_name = secure_filename(thumbnail.filename)
-
-        if thumbnail and allowed_thumbnails(thumbnail_name):
-            ext = thumbnail.mimetype.split('/')[-1]
-            # use the 'thumbnail' name for all thumbnails
-            filename = '.'.join(["thumbnail", ext])
-            item.thumbnail.put(thumbnail.stream,
-                               content_type=thumbnail.mimetype,
-                               filename=filename)
-
         for file in uploaded_files:
             # Make the filename safe, remove unsupported chars
             filename = secure_filename(file.filename)
@@ -112,11 +135,15 @@ def serve_file(item_id, filename):
     for file in item.files:
         if file.filename == filename:
             return Response(stream_with_context(file.read()),
-                            mimetype=file.content_type)
+                            mimetype=file.content_type,
+                            headers={"Content-Disposition":
+                                     "attachment;filename=%s" % (filename)})
     return abort(404)
 
 # Register the urls
 items.add_url_rule('/items/', view_func=ListView.as_view('index'))
+items.add_url_rule('/items/<int:page>/',
+                   view_func=ListView.as_view('paginate'))
 items.add_url_rule('/<int:item_id>/', view_func=DetailView.as_view('detail'))
 
 # login required urls

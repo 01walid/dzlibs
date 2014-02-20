@@ -6,6 +6,7 @@ from users import User
 from flask.ext.babel import gettext as _
 from forms import LoginForm, SignupForm, CreateProfileForm
 from items.models import Item
+from flask.ext.mongoengine import Pagination
 
 frontend = Blueprint('frontend', __name__)
 
@@ -14,11 +15,11 @@ github = None  # Global object
 
 @frontend.route("/")
 def index():
-    items = Item.objects.all()
+    items = Item.objects[:12]
     return render_template('frontend/index.html', items=items)
 
 
-@frontend.route("/about")
+@frontend.route("/about/")
 def about():
     return render_template('frontend/about.html')
 
@@ -179,6 +180,7 @@ def signup():
                            signupForm=form)
 
 
-@frontend.route('/help')
-def help():
-    return render_template('frontend/footers/help.html', active="help")
+@frontend.route('/tag/<tag>/<int:page>')
+def tag(tag, page=1):  # tag 3a men tag :)
+    items = Pagination(Item.objects(tags=tag), page, 1)
+    return render_template('items/items_list.html', items=items)
