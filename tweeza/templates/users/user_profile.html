@@ -1,0 +1,48 @@
+{% extends 'layouts/base.html' %}
+{% set page_title = user.name + ' ' + _("Profile") %}
+{% block body %}
+
+    <div class="row">
+        <h2><strong>{{ page_title }}</strong></h2>
+        <hr>
+      <div class="small-6 large-8 columns">
+        <ul class="no-bullet">
+            <li><h2><i class="fi-torso"></i> {{ _('Name') }}: {{ user.name }}</h2></li>
+
+            <li><h2><i class="fi-link"></i> {{ _('Website') }}: <a href="{{ user.website }}">{{ user.website or '' }}</a></h2></li>
+
+            <li><h2><i class="fi-social-github"></i> {{ _('Github') }}: <a href="{{ user.getGithub() }}">{{ user.github_username or '' }}</a></h2></li>
+
+            <li><h2><i class="fi-social-twitter"></i> {{ _('Twitter') }}: <a href="{{ user.getTwitter() }}">{{ user.twitter_username or '' }}</a></h2></li>
+
+            <li><h2><i class="fi-social-facebook"></i> {{ _('Facebook') }}: <a href="{{ user.getFacebook() }}">{{ user.facebook_username or '' }}</a></h2></li>
+
+            <li><h2><i class="fi-marker"></i> {{ _('Location') }}: {{ user.location or '' }}</h2></li>
+
+            <li><h2>{{ _('Bio') }}:</h2></li>
+            <li>
+                <div class="panel secondary">
+                    {{ user.bio or _('No bio for this user') }}
+                </div>
+            </li>
+        </ul>
+          
+      </div>
+            <div class="small-3 columns text-center">
+                <div class="circle">
+                    <a href="">
+                        <img src="{{ user.email | gravatar(size=60) }}">
+                    </a>
+                </div>
+                <hr>
+                <h3 class="subheader">{{ _('Joined') }}:</h3>
+                <h4 class="subheader">{{ user.created_at | prettify }}</h4>
+                <hr>
+                <h3 class="subheader">{{ _('Tweezed') }}: {{ items_count }} {{ _('items!') }}</h3>
+                <hr>
+                {% if user.hireable %}
+                    <p><span class="label success round">{{ _("This guy is free to hire!") }}</span></p>
+                {% endif %}
+            </div>
+    </div>
+{% endblock %}

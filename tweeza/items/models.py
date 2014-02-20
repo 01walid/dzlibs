@@ -47,6 +47,16 @@ class Item(db.Document):
 
     license_name = db.StringField(max_length=50)
 
+    def get_thumbnail(self):
+        from flask import url_for
+        if self.thumbnail:
+            return url_for('items.serve_thumbnail',
+                           item_id=self.item_id,
+                           filename=self.thumbnail.filename)
+
+        return url_for('static',
+                       filename='images/no-thumbnail.png')
+
     meta = {
         'indexes': ['-submitted_at', 'tags'],
         'ordering': ['-submitted_at']

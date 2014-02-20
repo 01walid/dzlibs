@@ -48,7 +48,7 @@
                     <h3 class="items_details_title"><i class="fi-torso"></i> {{ _('Submitter') }}</h3>
                     <div class="small-9 columns">
                         <ul class="no-bullet">
-                            <li><h5><a href="">{{ item.submitter.name }}</a></h5></li>
+                            <li><h5><a href="{{ url_for('users.user_profile', id=item.submitter.user_id) }}">{{ item.submitter.name }}</a></h5></li>
                             <li><h5 class="subheader">{{ item.submitted_at | prettify }}</h5></li>
                         </ul>                     
                         <ul class="no-bullet inline-list user-socials">
@@ -68,7 +68,7 @@
                     </div>
                     <div class="small-3 columns">
                         <div class="circle">
-                            <a href="">
+                            <a href="{{ url_for('users.user_profile', id=item.submitter.user_id) }}">
                                 <img src="{{ item.submitter.email | gravatar(size=60) }}">
                             </a>
                         </div>

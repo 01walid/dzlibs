@@ -9,6 +9,8 @@ class User(db.Document):
     created_at = db.DateTimeField(default=datetime.datetime.now,
                                   required=True)
 
+    user_id = db.SequenceField(unique=True)
+
     is_admin = db.BooleanField(default=False)
 
     email = db.EmailField(unique=True)
@@ -57,6 +59,21 @@ class User(db.Document):
 
     def get_id(self):
         return str(self.id)
+
+    def getGithub(self):
+        if self.github_username:
+            return "https://github.com/%s" % (self.github_username)
+        return ''
+
+    def getTwitter(self):
+        if self.twitter_username:
+            return "https://twitter.com/%s" % (self.twitter_username)
+        return ''
+
+    def getFacebook(self):
+        if self.facebook_username:
+            return "https://facebook.com/%s" % (self.facebook_username)
+        return ''
 
     # Required for administrative interface
     def __unicode__(self):
