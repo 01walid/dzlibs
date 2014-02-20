@@ -24,6 +24,9 @@ gravatar = Gravatar(size=35, rating='g', default='mm',
 from flask.ext.misaka import Misaka
 md = Misaka(fenced_code=True, superscript=True, strikethrough=True)
 
+from flask.ext.cache import Cache
+cache = Cache()  # cache cache :)
+
 
 def github_oauth(app):
     from rauth.service import OAuth2Service

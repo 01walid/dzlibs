@@ -11,7 +11,7 @@ from items.views import items
 # from flask.ext.security import Security
 from utils import current_year
 from extensions import (db, mail, babel, login_manager, bcrypt,
-                        gravatar, md)
+                        gravatar, md, cache)
 from flask.ext.babel import lazy_gettext as _
 from flask.ext.mongoengine import MongoEngineSessionInterface
 
@@ -89,6 +89,9 @@ def configure_extensions(app):
 
     # Markdown
     md.init_app(app)
+
+    # Caching
+    cache.init_app(app)
 
     # Debug Toolbar
     if app.debug:

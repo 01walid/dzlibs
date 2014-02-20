@@ -1,19 +1,24 @@
 from flask import (Blueprint, request, render_template, flash,
-                   Response, stream_with_context, abort, current_app as app)
+                   Response, stream_with_context, abort, send_file,
+                   current_app as app)
 from werkzeug import secure_filename
 from flask.views import MethodView
 from users.models import User
 from models import Item, Titles
 from flask.ext.login import login_required, current_user
 from forms import AddItemForm
-from utils import allowed_thumbnails, allowed_file
+from utils import allowed_thumbnails, allowed_file, make_dir
 from mongoengine.fields import GridFSProxy
+from extensions import cache
 import requests
+import os
+import tempfile
 
 items = Blueprint('items', __name__)
 
 
 class ListView(MethodView):
+    decorators = [cache.cached(3600 * 24 * 7)]
 
     def get(self, page=1):
         items = Item.objects.paginate(page=page, per_page=5)
@@ -21,6 +26,7 @@ class ListView(MethodView):
 
 
 class DetailView(MethodView):
+    decorators = [cache.cached(400)]
 
     def get(self, item_id):
         item = Item.objects.get_or_404(item_id=item_id)
@@ -120,11 +126,23 @@ class AddView(MethodView):
 
 
 @items.route('/thumbnails/<int:item_id>/<filename>')
+@cache.cached(300)
 def serve_thumbnail(item_id, filename):
+    tmp_path = tempfile.gettempdir()
+    path = os.path.join(tmp_path, 'dzlibs', str(item_id), filename)
+    if os.path.isfile(path):
+        return send_file(path)
+
+    # else
     item = Item.objects.get(item_id=item_id)
     if filename == item.thumbnail.filename:
-        return Response(stream_with_context(item.thumbnail.read()),
-                        mimetype=item.thumbnail.content_type)
+        dzlibs_path = os.path.join(tmp_path, 'dzlibs')
+        make_dir(dzlibs_path)
+        make_dir(os.path.join(dzlibs_path, str(item_id)))
+        f = open(path, 'wb')
+        f.write(item.thumbnail.read())
+        f.close
+        return send_file(path)
 
     return abort(404)
 
