@@ -42,9 +42,9 @@ class DetailView(MethodView):
             headers = {'Accept': 'application/vnd.github.v3.raw'}
             description = requests.get(url, headers=headers, params=payload)
             zip_link = "https://api.github.com/repos/%s/%s/tarball" \
-                       % (item.submitter.github_username, repo_name)
+                       % (user, repo_name)
             clone_string = 'git clone https://github.com/%s/%s.git' \
-                           % (item.submitter.github_username, repo_name)
+                           % (user, repo_name)
             return render_template('items/item_details.html', item=item,
                                    content=description.text,
                                    zip_link=zip_link,
