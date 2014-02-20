@@ -32,17 +32,19 @@ class DetailView(MethodView):
         item = Item.objects.get_or_404(item_id=item_id)
 
         if item.github:
-            repo = item.github.split('/')[-1]
+            repo = item.github.strip('/').split('/')  # remove trailing slahes
+            repo_name = repo[-1]
+            user = repo[-2]
             url = 'https://api.github.com/repos/%s/%s/readme' \
-                  % (item.submitter.github_username, repo)
+                  % (user, repo_name)
             payload = {'client_id': app.config['GITHUB_CONSUMER_KEY'],
                        'client_secret': app.config['GITHUB_CONSUMER_SECRET']}
             headers = {'Accept': 'application/vnd.github.v3.raw'}
             description = requests.get(url, headers=headers, params=payload)
             zip_link = "https://api.github.com/repos/%s/%s/tarball" \
-                       % (item.submitter.github_username, repo)
+                       % (item.submitter.github_username, repo_name)
             clone_string = 'git clone https://github.com/%s/%s.git' \
-                           % (item.submitter.github_username, repo)
+                           % (item.submitter.github_username, repo_name)
             return render_template('items/item_details.html', item=item,
                                    content=description.text,
                                    zip_link=zip_link,
@@ -126,7 +128,6 @@ class AddView(MethodView):
 
 
 @items.route('/thumbnails/<int:item_id>/<filename>')
-@cache.cached(300)
 def serve_thumbnail(item_id, filename):
     tmp_path = tempfile.gettempdir()
     path = os.path.join(tmp_path, 'dzlibs', str(item_id), filename)

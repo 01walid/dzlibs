@@ -8156,7 +8156,6 @@ div.drag {
 .markdown {
   font: 13px/1.4 Helvetica,arial,freesans,clean,sans-serif !important;
   background-color: white;
-  font-size: 15px;
   line-height: 1.7;
   overflow: hidden;
   word-wrap: break-word;
@@ -8188,7 +8187,11 @@ div.drag {
   font-family: Consolas,"Liberation Mono",Courier,monospace;
   font-weight: normal;
 }
+.markdown p {
+  font-size: 15px;
+}
 .markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6 {
+  font-size: 15px;
   margin: 1em 0px 15px;
   padding: 0px;
   font-weight: bold;
@@ -8197,7 +8200,7 @@ div.drag {
   position: relative;
 }
 .markdown h1 {
-  font-size: 2.5em;
+  font-size: 2.8em !important;
   border-bottom: 1px solid #DDD;
 }
 

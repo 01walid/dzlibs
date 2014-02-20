@@ -22,7 +22,8 @@ gravatar = Gravatar(size=35, rating='g', default='mm',
                     force_lower=False)
 
 from flask.ext.misaka import Misaka
-md = Misaka(fenced_code=True, superscript=True, strikethrough=True)
+md = Misaka(fenced_code=True, superscript=True, strikethrough=True,
+            hard_wrap=True, autolink=True)
 
 from flask.ext.cache import Cache
 cache = Cache()  # cache cache :)
