@@ -13,14 +13,8 @@
 	        <div class="item-info" style="background-image: url( {{ item.get_thumbnail() }});">
 		        <a href="{{ url_for('items.detail', item_id=item.item_id) }}">
 		        <hgroup>
-			        {% for meta in item.meta_info %}
-			        	{% if meta.lang == g.lang %}
-			        		<h5>{{ meta.title }}</h5>
-			        	{% endif %}
-			        {% endfor%}
-
-	   		    	<!-- <h5>48 Wilaya in XML / Json / xsl (3 languages)</h5> -->
-	   		        <h6 class="subheader">{{ item.submitted_at | prettify }} <em>in</em> Category</h6>
+			        <h5>{{ item.titles | what_title }}</h5>
+	   		        <h6 class="subheader">{{ item.submitted_at | prettify }} <em>{{ _('in') }}</em> Category</h6>
 	   		    </hgroup>
 
 		        	<!--<h5>{{ item.thumbnail_path }}</h5> -->

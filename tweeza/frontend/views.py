@@ -1,5 +1,5 @@
 from flask import (Blueprint, request, redirect, session, url_for,
-                   render_template, flash, current_app as app)
+                   render_template, flash, current_app as app, abort)
 from flask.ext.login import (login_required, login_user, current_user,
                              logout_user)
 from users import User
@@ -186,5 +186,7 @@ def signup():
 @frontend.route('/tag/<tag>/<int:page>')
 @cache.cached(60)
 def tag(tag, page=1):  # tag 3a men tag :)
-    items = Pagination(Item.objects(tags=tag), page, 1)
+    items = Pagination(Item.objects(tags=tag), page, 12)
+    if len(items.items) == 0:
+        return abort(404)
     return render_template('items/items_list.html', items=items)

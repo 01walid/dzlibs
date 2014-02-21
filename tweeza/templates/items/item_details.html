@@ -16,7 +16,7 @@
                     {% for tag in item.tags %}
                         <li>{% if loop.first %} <strong> {{ _('Tags') }}:</strong> {% endif %}</li>
                         <li><span>
-                            <a class="button tiny secondary"><i class="fi-price-tag"></i> {{ tag }}</a>
+                            <a href="{{ url_for('frontend.tag', tag=tag, page=1) }}" class="button tiny secondary"><i class="fi-price-tag"></i> {{ tag }}</a>
                         </span></li>
                     {% endfor %}
                 </ul>
@@ -76,7 +76,7 @@
                 </div>
 
                 {% if item.github %}
-                    <h3 class="items_details_title"><i class="fi-folder"></i> {{ _("Item information") }}:</h3>
+                    <h3 class="items_details_title"><i class="fi-info"></i> {{ _("Item information") }}:</h3>
                     <ul class="no-bullet">
                         <li><a href="{{ item.github }}" target="_blank" class="button secondary expand"><i class="fi-social-github"></i> {{ _("Item repository on Github") }}</a></li>
                         <li><strong>{{ _("Clone it: ") }}</strong></li>
