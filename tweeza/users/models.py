@@ -60,6 +60,7 @@ class User(db.Document):
     def get_id(self):
         return str(self.id)
 
+    # helpers
     def getGithub(self):
         if self.github_username:
             return "https://github.com/%s" % (self.github_username)

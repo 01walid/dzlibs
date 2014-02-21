@@ -4,9 +4,9 @@ from flask import (Blueprint, request, render_template, flash,
 from werkzeug import secure_filename
 from flask.views import MethodView
 from users.models import User
-from models import Item, Titles
+from models import Item, Title
 from flask.ext.login import login_required, current_user
-from forms import AddItemForm
+from forms import AddItemForm, EditGithubItemForm, EditItemForm
 from utils import allowed_thumbnails, allowed_file, make_dir
 from mongoengine.fields import GridFSProxy
 from extensions import cache
@@ -64,9 +64,9 @@ class AddView(MethodView):
         item = Item()
 
         if form.validate_on_submit():
-            ar_title = Titles()
-            fr_title = Titles()
-            en_title = Titles()
+            ar_title = Title()
+            fr_title = Title()
+            en_title = Title()
 
             ar_title.title = form.ar_title.data.strip()
             ar_title.lang = 'ar'
@@ -123,8 +123,97 @@ class AddView(MethodView):
                 item.files.append(file_)
         # Save the thing
         item.save()
-        flash('upload successful')
+        flash('Item uploaded successfully', category='success')
         return render_template('items/add_item.html', form=form)
+
+
+class EditView(MethodView):
+
+    def get(self, item_id):
+        item = Item.objects.get_or_404(item_id=item_id)
+
+        # only admins or the item submitter can edit the item
+        if item.submitter.id != current_user.id:
+            if not current_user.is_admin:
+                abort(403)
+
+        form = None
+        if item.github:
+            form = EditGithubItemForm()
+        else:
+            form = EditItemForm()
+            form.description.data = item.description
+
+        return render_template('items/edit_item.html', form=form, item=item)
+
+    def post(self, item_id):
+        item = Item.objects.get_or_404(item_id=item_id)
+
+        # only admins or the item submitter can edit the item
+        if item.submitter.id != current_user.id:
+            if not current_user.is_admin:
+                abort(403)
+
+        form = None
+        if item.github:
+            form = EditGithubItemForm()
+        else:
+            form = EditItemForm()
+
+        if form.validate_on_submit():
+
+            for title in item.titles:  # ugly, I'll make it shorter, later...
+                if title.lang == 'ar':
+                    title.title = form.ar_title.data.strip()
+                elif title.lang == 'en':
+                    title.title = form.en_title.data.strip()
+                else:
+                    title.title = form.fr_title.data.strip()
+
+            item.tags = form.tags.data.split(',')
+            if form.blog_post.data.strip():
+                item.blog_post = form.blog_post.data
+            if not item.github:
+                item.description = form.description.data
+            else:
+                item.github = form.github.data
+                item.save()
+                # no need to process any uploaded files
+                flash('Item updated successfully', category='success')
+                return render_template('items/edit_item.html', form=form,
+                                       item=item)
+
+        else:
+            flash("Couldn't update item", category='error')
+            return render_template('items/edit_item.html', form=form,
+                                   item=item)
+
+        if form.files.data:  # if the user is uploading new files
+            # delete old files first
+            for file in item.files:
+                file.delete()
+
+            # now, replace them with the new ones
+            uploaded_files = request.files.getlist("files")
+            new_files = []
+            for file in uploaded_files:
+                # Make the filename safe, remove unsupported chars
+                filename = secure_filename(file.filename)
+                # Check if the file is one of the allowed types/extensions
+                if file and allowed_file(filename):
+                    # put the file in the ListField.
+                    # see https://gist.github.com/tfausak/1299339
+                    file_ = GridFSProxy()
+                    file_.put(file.stream,
+                              content_type=file.mimetype,
+                              filename=filename)
+                    new_files.append(file_)
+            item.files = new_files
+        # Save the thing
+        item.save()
+        flash('Item updated successfully', category='success')
+        return render_template('items/edit_item.html', form=form,
+                               item=item)
 
 
 @items.route('/thumbnails/<int:item_id>/<filename>')
@@ -163,9 +252,14 @@ def serve_file(item_id, filename):
 items.add_url_rule('/items/', view_func=ListView.as_view('index'))
 items.add_url_rule('/items/<int:page>/',
                    view_func=ListView.as_view('paginate'))
-items.add_url_rule('/<int:item_id>/', view_func=DetailView.as_view('detail'))
+items.add_url_rule('/item/<int:item_id>/',
+                   view_func=DetailView.as_view('detail'))
 
 # login required urls
 add_view = login_required(AddView.as_view('add'))
 # add_view = AddView.as_view('add')
 items.add_url_rule('/add/', view_func=add_view)
+
+# Edit item
+edit_view = login_required(EditView.as_view('edit'))
+items.add_url_rule('/item/<int:item_id>/edit/', view_func=edit_view)

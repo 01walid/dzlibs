@@ -22,4 +22,3 @@ OAUTH_PROVIDERS = {
 }
 
 DEFAULT_USER_AVATAR = 'default.jpg'
-

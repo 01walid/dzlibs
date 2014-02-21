@@ -1,0 +1,200 @@
+{% from "macros/_form.html" import render_form %}
+
+{% extends 'layouts/base.html' %}
+
+{% set page_title = _("Edit item") %}
+
+    {% block css_style %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendors/jquery-ui/themes/flick/jquery-ui.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendors/tag-it/css/jquery.tagit.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendors/tag-it/css/tagit.ui-zendesk.css') }}">
+    {% endblock %}
+
+
+    {% block js_top %}
+        {{ super() }}
+        <script src="{{ url_for('static', filename='vendors/dropzone/downloads/dropzone.min.js') }}"></script>
+    {% endblock %}
+
+    {% block body %}
+
+        <form method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <h2>{{ page_title }}</h2>
+
+                <hr>
+                <div class="medium-3 columns">
+                    <div class="thumbnail text-center">
+                        {% if item.thumbnail %}
+                            <img src="{{ item.get_thumbnail() }}" alt="" class="thumbnail-image">
+                        {% else %}
+                            <img src="" alt="" class="thumbnail-image">
+                            <h1 class="subheader" id="thumbnail-text">
+                            {{ _('Item thumbnail will appear here') }}</h1>
+                        {% endif %}
+                    </div>
+                    <a href="#" class="button small thumbnail-button" onclick="getFile()">
+                    <i class="fi-upload-cloud"></i> 
+                    {{ _('Upload thumbnail ') }}</a>
+
+                    {{ form.thumbnail(style='height: 0px;width:0px; overflow:hidden;') }}
+
+                    {% if form.thumbnail.errors -%}
+                        {% for error in form.thumbnail.errors -%}
+                            <span class="help-block error">{{ error }}</span>
+                        {%- endfor %}
+                    {%- endif %}
+
+                </div>
+
+                <div class="medium-9 columns">
+                    <dl class="accordion" data-accordion> 
+                        <dd> 
+                            <a href="#panel1">
+                            {% if item.github %}
+                                <i class="fi-link"></i> {{ _("From a remote repository (we only support Github for now)") }}</a> 
+                                <div id="panel1" class="active content"> 
+                                    {{ form.github.label }}
+                                    {{ form.github(placeholder=_("Past your item's repository URL here"), value=item.github) }}
+                                </div> 
+                            {% else %}
+                                <i class="fi-upload"></i> {{ _("From my computer") }}</a> 
+                                <div id="panel" class="active content"> 
+                                    {{ form.files(multiple=True, class_='button secondary') }}
+                                    <div class="drag"></div>
+
+                                    {% if form.files.errors -%}
+                                        {% for error in form.files.errors -%}
+                                        <span class="help-block error">{{ error }}</span>
+                                        {%- endfor %}
+                                    {%- endif %}
+                                </div> 
+                            {% endif %}
+                        </dd> 
+                    </dl>
+                </div>
+
+            </div>
+            <div class="row">
+
+                <hr>
+                {% if form.errors -%}
+                    {% for error in form.errors -%}
+                    <span class="help-block error">{{ error }}</span>
+                    {%- endfor %}
+                {%- endif %}
+                
+                <div class="row">
+                    <div class="small-6 columns">                   
+
+                        {{ form.csrf_token }}
+                        
+                        <dl class="tabs" data-tab>
+                            <dd class="active"><a href="#panel1a">En</a></dd>
+                            <dd><a href="#panel2a">Ar</a></dd>
+                            <dd><a href="#panel3a">Fr</a></dd>
+                        </dl>
+                        
+                        <div class="small-12 tabs-content">
+                            <div class="small-12 content active" id="panel1a">
+                                {{ form.en_title.label }}
+                                {{ form.en_title(placeholder=_('Item title'),
+                                value=item.get_title('en')) }}
+
+                                {% if form.en_title.errors -%}
+                                    {% for error in form.en_title.errors -%}
+                                    <span class="help-block error">{{ error }}</span>
+                                    {%- endfor %}
+                                {%- endif %}
+                            </div>
+                            <div class="small-12 content" id="panel2a">
+                                {{ form.ar_title.label }}
+                                {{ form.ar_title(placeholder=_('Item title'),
+                                value=item.get_title('ar')) }}
+
+                                {% if form.ar_title.errors -%}
+                                    {% for error in form.ar_title.errors -%}
+                                    <span class="help-block error">{{ error }}</span>
+                                    {%- endfor %}
+                                {%- endif %}
+                            </div>
+                            <div class="small-12 content" id="panel3a">
+                                {{ form.fr_title.label }}
+                                {{ form.fr_title(placeholder=_('Item title'),
+                                value=item.get_title('fr') ) }}
+
+                                {% if form.fr_title.errors -%}
+                                    {% for error in form.fr_title.errors -%}
+                                    <span class="help-block error">{{ error }}</span>
+                                    {%- endfor %}
+                                {%- endif %}
+                            </div>
+                        </div>
+                    </div>  
+                    {% if not item.github %}
+                        <div class="small-6 columns">
+                            {{ form.description.label}}
+                            {{ form.description(rows=6, placeholder=('You do not need to provide any description if your remote repository has a README.[md/rst] file (recommended).'), data=item.description) }}
+                        </div>
+                    {% endif %}
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="small-6 columns">
+                        {{ form.blog_post.label }}
+                        {{ form.blog_post(placeholder=_("If you blogged about this item, you can share your blog post here!"), value=item.blog_post or '' ) }}
+                    </div>
+                    <div class="small-6 columns">
+                        {{ form.tags.label }}
+                        {{ form.tags(class_='tags') }}
+                    </div>
+                </div>
+                
+
+            </div>
+            <hr>
+            <div class="row">{{ form.submit(class_='button expand') }}</div>
+        </form>
+    {% endblock body %}
+
+
+    {% block js_btm %}
+        {{ super() }}
+        <script src="{{ url_for('static', filename='vendors/jquery-ui/ui/minified/jquery-ui.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendors/tag-it/js/tag-it.min.js') }}"></script>
+        <script type="text/javascript">
+            function getFile(){
+                document.getElementById("thumbnail").click();
+            }
+
+            function readURL(input) {
+
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#thumbnail-text').remove();
+                        $('.thumbnail-image').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("#thumbnail").change(function(){
+                readURL(this);
+            });
+
+            $(document).ready(function()
+            {
+                $('#tags').tagit({
+                    availableTags: ["c++", "java", "php", "javascript", "ruby", "python", "c"]
+                });
+
+                {% for tag in item.tags %}
+                    $("#tags").tagit("createTag", "{{ tag }}");
+                {% endfor %}
+
+            });
+        </script>
+    {% endblock js_btm %}

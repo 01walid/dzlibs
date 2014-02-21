@@ -3,19 +3,33 @@ from users.models import User
 import datetime
 
 
-class Titles(db.EmbeddedDocument):
+class Title(db.EmbeddedDocument):
 
     title = db.StringField()
     lang = db.StringField(max_length=3)
 
 
-class Category(db.Document):
+class Category(db.DynamicDocument):
+    """
+    Why dynamic document ?
+    So we can add other languages fields dynamically (e.g. Tamazight language)
+    and add the new translation to all existing categories, see:
+
+    docs.mongoengine.org/guide/defining-documents.html#dynamic-document-schemas
+
+    """
 
     created_at = db.DateTimeField(default=datetime.datetime.now,
                                   required=True)
+
+    category_id = db.SequenceField(primary_key=True)
+
+    # you can add your name_[lang] at runtime with no worries,
+    # it's a Dynamic Document!
     name_ar = db.StringField(max_length=50)
     name_fr = db.StringField(max_length=50)
     name_en = db.StringField(max_length=50)
+
     description = db.StringField()
 
 
@@ -26,7 +40,7 @@ class Item(db.Document):
     submitted_at = db.DateTimeField(default=datetime.datetime.now,
                                     required=True)
 
-    titles = db.ListField(db.EmbeddedDocumentField(Titles),
+    titles = db.ListField(db.EmbeddedDocumentField(Title),
                           required=True)
 
     submitter = db.ReferenceField(User)
@@ -47,6 +61,9 @@ class Item(db.Document):
 
     license_name = db.StringField(max_length=50)
 
+    has_api = db.BooleanField()
+    api_url = db.URLField()
+
     def get_thumbnail(self):
         from flask import url_for
         if self.thumbnail:
@@ -56,6 +73,13 @@ class Item(db.Document):
 
         return url_for('static',
                        filename='images/no-thumbnail.png')
+
+    def get_title(self, lang):
+        for title in self.titles:
+            if title.lang == lang:
+                return title.title
+
+        return ''
 
     meta = {
         'indexes': ['-submitted_at', 'tags'],

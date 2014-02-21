@@ -20,8 +20,43 @@ class AddItemForm(Form):
     description = TextAreaField(_('Description'))
     thumbnail = FileField(_('Thumbnail (minimum dimensions 230x230)'))
 
-    files = FileField(_('Thumbnail (minimum dimensions 230x230)'))
+    files = FileField(_('Files'))
 
     tags = TextField(_('Tags'))
 
     submit = SubmitField(_('Add item'))
+
+
+class EditGithubItemForm(Form):
+
+    github = URLField(_('Remote repository URL'))
+
+    blog_post = URLField(_('Blog post URL'))
+
+    ar_title = TextField(_('Item title in Arabic'))
+    en_title = TextField(_('Item title in English'))
+    fr_title = TextField(_('Item title in French'))
+
+    thumbnail = FileField(_('Thumbnail (minimum dimensions 230x230)'))
+
+    tags = TextField(_('Tags'))
+
+    submit = SubmitField(_('Update'))
+
+
+class EditItemForm(Form):
+
+    blog_post = URLField(_('Blog post URL'))
+
+    ar_title = TextField(_('Item title in Arabic'))
+    en_title = TextField(_('Item title in English'))
+    fr_title = TextField(_('Item title in French'))
+
+    description = TextAreaField(_('Description'))
+    thumbnail = FileField(_('Thumbnail (minimum dimensions 230x230)'))
+
+    files = FileField(_('Files'))
+
+    tags = TextField(_('Tags'))
+
+    submit = SubmitField(_('Update'))
