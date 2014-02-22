@@ -32,6 +32,23 @@ class Category(db.DynamicDocument):
 
     description = db.StringField()
 
+    def get_name(self, lang):
+        # make this better, latter
+        return eval('self.name_%s' % lang) or 'Unknown'
+
+
+class License(db.DynamicDocument):
+
+    created_at = db.DateTimeField(default=datetime.datetime.now,
+                                  required=True)
+
+    license_id = db.SequenceField(primary_key=True)
+
+    name = db.StringField()
+    link = db.URLField()
+
+    description = db.StringField()
+
 
 class Item(db.Document):
 
@@ -59,7 +76,7 @@ class Item(db.Document):
 
     thumbnail = db.ImageField(thumbnail_size=(230, 230, True))
 
-    license_name = db.StringField(max_length=50)
+    license = db.ReferenceField(License)
 
     has_api = db.BooleanField()
     api_url = db.URLField()

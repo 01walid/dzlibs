@@ -69,6 +69,95 @@ def delete_users():
 
 
 @manager.command
+def setup():
+
+    from items.models import Category, License
+
+    # create categories
+    Category.objects.delete()
+
+    assets = Category()
+    assets.name_fr = 'Resources'
+    assets.name_ar = u'مصادر'
+    assets.name_en = 'Assets'
+    assets.save()
+
+    libraries = Category()
+    libraries.name_fr = 'Librairies'
+    libraries.name_ar = u'مكتبات برمجية'
+    libraries.name_en = 'libraries'
+    libraries.save()
+
+    data = Category()
+    data.name_fr = u'Données'
+    data.name_ar = u'بيانات'
+    data.name_en = u'Data'
+    data.save()
+
+    templates = Category()
+    templates.name_fr = 'Templates'
+    templates.name_ar = u'قوالب'
+    templates.name_en = 'Templates'
+    templates.save()
+
+    # create licenses
+    CC0 = License()
+    CC0.name = 'Public Domain'
+    CC0.link = 'http://creativecommons.org/about/cc0'
+    CC0.save()
+
+    CC = License()
+    CC.name = 'Creative Commons BY'
+    CC.link = 'http://creativecommons.org/licenses/by/4.0/deed.en_US'
+    CC.save()
+
+    CC2 = License()
+    CC2.name = 'Creative Commons BY SA'
+    CC2.link = 'http://creativecommons.org/licenses/by-sa/4.0/deed.en_US'
+    CC2.save()
+
+    MIT = License()
+    MIT.name = 'MIT'
+    MIT.link = 'http://opensource.org/licenses/MIT'
+    MIT.save()
+
+    BSD = License()
+    BSD.name = 'BSD'
+    BSD.link = 'http://opensource.org/licenses/BSD-3-Clause'
+    BSD.save()
+
+    WAQF = License()
+    WAQF.name = 'WAQF'
+    WAQF.link = 'http://ojuba.org/wiki/waqf/license'
+    WAQF.save()
+
+    Mozilla = License()
+    Mozilla.name = 'Mozilla Public License (MPL)'
+    Mozilla.link = 'http://www.mozilla.org/MPL/2.0/'
+    Mozilla.save()
+
+    Apache = License()
+    Apache.name = 'Apache'
+    Apache.link = 'http://www.apache.org/licenses/LICENSE-2.0'
+    Apache.save()
+
+    GPL = License()
+    GPL.name = 'GPL'
+    GPL.link = 'https://www.gnu.org/copyleft/gpl.html'
+    GPL.save()
+
+    LGPL = License()
+    LGPL.name = 'LGPL'
+    LGPL.link = 'http://www.gnu.org/licenses/lgpl-3.0-standalone.html'
+    LGPL.save()
+
+    AGPL = License()
+    AGPL.name = 'AGPL'
+    AGPL.link = 'http://www.gnu.org/licenses/agpl-3.0-standalone.html'
+    AGPL.save()
+
+
+@manager.command
 def drop_database():
     """
     DANGEROUS: DROP THE DATABASE.

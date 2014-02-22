@@ -1,10 +1,10 @@
 from flask import (Blueprint, request, render_template, flash,
                    Response, stream_with_context, abort, send_file,
-                   current_app as app, redirect, url_for)
+                   current_app as app, redirect, url_for, g)
 from werkzeug import secure_filename
 from flask.views import MethodView
 from users.models import User
-from models import Item, Title
+from models import Item, Title, Category, License
 from flask.ext.login import login_required, current_user
 from forms import AddItemForm, EditGithubItemForm, EditItemForm
 from utils import allowed_thumbnails, allowed_file, make_dir
@@ -56,6 +56,11 @@ class AddView(MethodView):
 
     def get(self):
         form = AddItemForm()
+
+        categories = Category.objects.all()
+        licenses = License.objects.all()
+        form.set_categories(categories, g.lang)
+        form.set_licenses(licenses)
         return render_template('items/add_item.html', form=form)
 
     def post(self):
@@ -63,8 +68,12 @@ class AddView(MethodView):
         form = AddItemForm()
         item = Item()
 
-        if form.validate_on_submit():
+        categories = Category.objects.all()
+        licenses = License.objects.all()
+        form.set_categories(categories, g.lang)
+        form.set_licenses(licenses)
 
+        if form.validate_on_submit():
             # first, the user has to share something !
             if not form.github.data and not form.files.data:
                 flash('Neither a repo URL nor files has been shared, come on!',
@@ -100,6 +109,7 @@ class AddView(MethodView):
 
             item.description = form.description.data
             item.tags = form.tags.data.strip().split(',')
+            item.category = form.category.data
 
             item.submitter = User.objects.get(id=current_user.id)
 
@@ -120,6 +130,8 @@ class AddView(MethodView):
                 # no need to process any uploaded files
                 flash('Item submitted successfully', category='success')
                 return render_template('items/add_item.html', form=form)
+            else:
+                item.license = form.license.data
 
         else:
             flash('upload unsuccessful', category='error')
@@ -148,7 +160,6 @@ class EditView(MethodView):
 
     def get(self, item_id):
         item = Item.objects.get_or_404(item_id=item_id)
-
         # only admins or the item submitter can edit the item
         if item.submitter.id != current_user.id:
             if not current_user.is_admin:
@@ -159,7 +170,16 @@ class EditView(MethodView):
             form = EditGithubItemForm()
         else:
             form = EditItemForm()
-            form.description.data = item.description
+            form.description.default = item.description
+
+            licenses = License.objects.all()
+            form.set_licenses(licenses)
+            form.license.default = str(item.license.license_id)
+
+        categories = Category.objects.all()
+        form.set_categories(categories, g.lang)
+        form.category.default = str(item.category.category_id)
+        form.process()
 
         return render_template('items/edit_item.html', form=form, item=item)
 
@@ -176,9 +196,13 @@ class EditView(MethodView):
             form = EditGithubItemForm()
         else:
             form = EditItemForm()
+            licenses = License.objects.all()
+            form.set_licenses(licenses)
+
+        categories = Category.objects.all()
+        form.set_categories(categories, g.lang)
 
         if form.validate_on_submit():
-
             for title in item.titles:  # ugly, I'll make it shorter, later...
                 if title.lang == 'ar':
                     title.title = form.ar_title.data.strip()
@@ -188,6 +212,8 @@ class EditView(MethodView):
                     title.title = form.fr_title.data.strip()
 
             item.tags = form.tags.data.strip().split(',')
+            item.category = Category.objects.get(category_id=
+                                                 int(form.category.data))
 
             if form.thumbnail.data:  # if the user has uploaded new thumbnail
                 # remove the old one
@@ -208,6 +234,8 @@ class EditView(MethodView):
                 item.blog_post = form.blog_post.data
             if not item.github:
                 item.description = form.description.data
+                item.license = License.objects.get(license_id=
+                                                   int(form.license.data))
             else:
                 item.github = form.github.data
                 item.save()

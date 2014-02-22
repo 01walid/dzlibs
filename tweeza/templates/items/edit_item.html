@@ -130,27 +130,32 @@
                                 {%- endif %}
                             </div>
                         </div>
-                    </div>  
-                    {% if not item.github %}
-                        <div class="small-6 columns">
+                        {% if not item.github %}
                             {{ form.description.label}}
-                            {{ form.description(rows=6, placeholder=('You do not need to provide any description if your remote repository has a README.[md/rst] file (recommended).'), data=item.description) }}
-                        </div>
-                    {% endif %}
-                </div>
-                <hr>
-                <div class="row">
+                            {{ form.description(rows=6, placeholder=('Item description here')) }}
+                        {% endif %}
+                    </div>  
                     <div class="small-6 columns">
-                        {{ form.blog_post.label }}
-                        {{ form.blog_post(placeholder=_("If you blogged about this item, you can share your blog post here!"), value=item.blog_post or '' ) }}
-                    </div>
-                    <div class="small-6 columns">
-                        {{ form.tags.label }}
-                        {{ form.tags(class_='tags') }}
-                    </div>
-                </div>
-                
+                            {{ form.tags.label }}
+                            {{ form.tags(class_='tags') }}
+                            
+                            {{ form.category.label}}
+                            {{ form.category() }}
 
+                            {% if form.category.errors -%}
+                                {% for error in form.category.errors -%}
+                                    <span class="help-block error">{{ error }}</span>
+                                {%- endfor %}
+                            {%- endif %}
+
+                            {{ form.blog_post.label }}
+                            {{ form.blog_post(placeholder=_("If you blogged about this item, you can share your blog post here!"), value=item.blog_post or '') }}
+                        {% if not item.github %}
+                                {{ form.license.label }}
+                                {{ form.license() }}
+                        {% endif %}
+                    </div>
+                </div>
             </div>
             <hr>
             <div class="row">{{ form.submit(class_='button expand') }}</div>

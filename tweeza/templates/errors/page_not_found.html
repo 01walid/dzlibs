@@ -12,14 +12,14 @@
     </div>
 
    
-    <form>
+    <form method="GET" action="{{ url_for('frontend.search_page') }}" onsubmit="return false;">
         <div class="row">
             <div class="row collapse">
                 <div class="small-10 columns">
-                    <input type="text" name="search" placeholder="{{ _('search for an item here...') }}">
+                    <input type="search" name='q' value="" placeholder="{{ _('search for an item here...') }}">
                 </div>
                 <div class="small-2 columns">
-                    <a href="#" class="button postfix">{{ _("Go") }}</a>
+                    <input type="submit" class="button postfix" value="{{ _("Go") }}" onclick="window.location.href=this.form.action + this.form.q.value;"></input>
                 </div>
             </div>
         </div>

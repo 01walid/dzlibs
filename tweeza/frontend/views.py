@@ -190,3 +190,20 @@ def tag(tag, page=1):  # tag 3a men tag :)
     if len(items.items) == 0:
         return abort(404)
     return render_template('items/items_list.html', items=items)
+
+
+@frontend.route('/search/')
+def search_page():
+    return render_template('errors/page_not_found.html')
+
+
+@frontend.route('/search/<string>/<page>')
+@frontend.route('/search/<string>')
+@cache.cached(60)
+def search(string, page=1):
+
+    items = Pagination(Item.objects(titles__title__icontains=string),
+                       1, 12)
+    if len(items.items) == 0:
+        return abort(404)
+    return render_template('items/items_list.html', items=items)

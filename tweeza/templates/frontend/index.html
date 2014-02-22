@@ -27,6 +27,17 @@
     </div>
   </div>
 </div>
+    <div class="row">
+        <dl class="sub-nav">
+            <dt>{{ _('CATEGORY') }}:</dt>
+            <dd class="active"><a href="#">All</a></dd>
+            <dd><a href="#">Assets</a></dd>
+            <dd><a href="#">Libraries</a></dd>
+            <dd><a href="#">Data</a></dd>
+            <dd><a href="#">Template files</a></dd>
+        </dl>
+    </div>
+
     {% block flash_message %}
         {% with messages = get_flashed_messages(with_categories=True) %}
             {% if messages %}

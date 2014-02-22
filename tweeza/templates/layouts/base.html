@@ -59,6 +59,20 @@
                             <li><a href="#">French</a></li>
                         </ul>
                     </li>
+                    <li class="has-form">
+                        <div class="row collapse">
+                            <form method="GET" action="{{ url_for('frontend.search_page') }}" onsubmit="return false;">
+                                <div class="row collapse">
+                                    <div class="small-10 columns">
+                                        <input type="search" name='q' value="" placeholder="{{ _('search for an item here...') }}" class="search-input">
+                                    </div>
+                                    <div class="small-2 columns">
+                                        <input type="submit" class="show-for-touch button expand warning" value="{{ _("Go") }}" onclick="window.location.href=this.form.action + this.form.q.value;"></input>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </li>
                 </ul>
                 <ul class="right">
                     <li><a href="{{ url_for('items.index') }}">{{ _('Explore items') }}</a></li>

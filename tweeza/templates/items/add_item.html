@@ -47,7 +47,7 @@
                 <div class="medium-9 columns">
                     <dl class="accordion" data-accordion> 
                         <dd> 
-                            <a href="#panel1"><i class="fi-link"></i> {{ _("From a remote repository (we only support Github for now)") }}</a> 
+                            <a href="#panel1"><i class="fi-link"></i> {{ _("From a remote repository, recommanded! (we only support Github for now)") }}</a> 
                             <div id="panel1" class="content"> 
                                 {{ form.github.label }}
                                 {{ form.github(placeholder=_("Past your item's repository URL here")) }}
@@ -82,63 +82,69 @@
                     <div class="small-6 columns">                   
 
                         {{ form.csrf_token }}
-                        
-                        <dl class="tabs" data-tab>
-                            <dd class="active"><a href="#panel1a">En</a></dd>
-                            <dd><a href="#panel2a">Ar</a></dd>
-                            <dd><a href="#panel3a">Fr</a></dd>
-                        </dl>
+                        <div class="row">
+                            <dl class="tabs" data-tab>
+                                <dd class="active"><a href="#panel1a">En</a></dd>
+                                <dd><a href="#panel2a">Ar</a></dd>
+                                <dd><a href="#panel3a">Fr</a></dd>
+                            </dl>
 
-                        <div class="small-12 tabs-content">
-                            <div class="small-12 content active" id="panel1a">
-                                {{ form.en_title.label }}
-                                {{ form.en_title(placeholder=_('Item title')) }}
+                            <div class="small-12 tabs-content">
+                                <div class="small-12 content active" id="panel1a">
+                                    {{ form.en_title.label }}
+                                    {{ form.en_title(placeholder=_('Item title')) }}
 
-                                {% if form.en_title.errors -%}
-                                    {% for error in form.en_title.errors -%}
-                                    <span class="help-block error">{{ error }}</span>
-                                    {%- endfor %}
-                                {%- endif %}
+                                    {% if form.en_title.errors -%}
+                                        {% for error in form.en_title.errors -%}
+                                        <span class="help-block error">{{ error }}</span>
+                                        {%- endfor %}
+                                    {%- endif %}
+                                </div>
+                                <div class="small-12 content" id="panel2a">
+                                    {{ form.ar_title.label }}
+                                    {{ form.ar_title(placeholder=_('Item title')) }}
+
+                                    {% if form.ar_title.errors -%}
+                                        {% for error in form.ar_title.errors -%}
+                                        <span class="help-block error">{{ error }}</span>
+                                        {%- endfor %}
+                                    {%- endif %}
+                                </div>
+                                <div class="small-12 content" id="panel3a">
+                                    {{ form.fr_title.label }}
+                                    {{ form.fr_title(placeholder=_('Item title')) }}
+
+                                    {% if form.fr_title.errors -%}
+                                        {% for error in form.fr_title.errors -%}
+                                        <span class="help-block error">{{ error }}</span>
+                                        {%- endfor %}
+                                    {%- endif %}
+                                </div>
                             </div>
-                            <div class="small-12 content" id="panel2a">
-                                {{ form.ar_title.label }}
-                                {{ form.ar_title(placeholder=_('Item title')) }}
+                        </div>
 
-                                {% if form.ar_title.errors -%}
-                                    {% for error in form.ar_title.errors -%}
-                                    <span class="help-block error">{{ error }}</span>
-                                    {%- endfor %}
-                                {%- endif %}
-                            </div>
-                            <div class="small-12 content" id="panel3a">
-                                {{ form.fr_title.label }}
-                                {{ form.fr_title(placeholder=_('Item title')) }}
-
-                                {% if form.fr_title.errors -%}
-                                    {% for error in form.fr_title.errors -%}
-                                    <span class="help-block error">{{ error }}</span>
-                                    {%- endfor %}
-                                {%- endif %}
-                            </div>
+                        <div class="row">
+                            {{ form.description.label}}
+                            {{ form.description(rows=6, placeholder=('Do not provide any description if your item is a remote repository. The README.[md/rst] file will be pulled automatically.')) }}
                         </div>
                     </div>  
                     <div class="small-6 columns">
-                        {{ form.description.label}}
-                        {{ form.description(rows=6, placeholder=('You do not need to provide any description if your remote repository has a README.[md/rst] file (recommended).')) }}
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="small-6 columns">
-                        {{ form.blog_post.label }}
-                        {{ form.blog_post(placeholder=_("If you blogged about this item, you can share your blog post here!")) }}
-                    </div>
-                    <div class="small-6 columns">
+                        
                         {{ form.tags.label }}
                         {{ form.tags(class_='tags') }}
+
+                        {{ form.category.label}}
+                        {{ form.category }}
+
+                        {{ form.blog_post.label }}
+                        {{ form.blog_post(placeholder=_("If you blogged about this item, you can share your blog post here!")) }}
+
+                        {{ form.license.label }} 
+                        {{ form.license() }}
+                        <h6 class="subheader">{{ _('Ignore the license if your item is a repository URL, LICENSE file will be mentioned instead.')}}</h6>
+                    
                     </div>
                 </div>
-                
 
             </div>
             <hr>
