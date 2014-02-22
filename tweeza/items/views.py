@@ -64,6 +64,23 @@ class AddView(MethodView):
         item = Item()
 
         if form.validate_on_submit():
+
+            # first, the user has to share something !
+            if not form.github.data and not form.files.data:
+                flash('Neither a repo URL nor files has been shared, come on!',
+                      category='alert')
+                return render_template('items/add_item.html', form=form)
+
+            # give that something at least one title
+            if not form.ar_title.data and not form.fr_title.data and \
+               not form.en_title.data:
+
+                flash('You need to give this item at least one title, \
+                       just pick one language and name it!',
+                      category='alert')
+                return render_template('items/add_item.html', form=form)
+
+            # now we can proceed
             ar_title = Title()
             fr_title = Title()
             en_title = Title()
