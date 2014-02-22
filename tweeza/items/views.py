@@ -82,7 +82,7 @@ class AddView(MethodView):
             item.titles.append(en_title)
 
             item.description = form.description.data
-            item.tags = form.tags.data.split(',')
+            item.tags = form.tags.data.strip().split(',')
 
             item.submitter = User.objects.get(id=current_user.id)
 
@@ -170,7 +170,7 @@ class EditView(MethodView):
                 else:
                     title.title = form.fr_title.data.strip()
 
-            item.tags = form.tags.data.split(',')
+            item.tags = form.tags.data.strip().split(',')
             if form.blog_post.data.strip():
                 item.blog_post = form.blog_post.data
             if not item.github:

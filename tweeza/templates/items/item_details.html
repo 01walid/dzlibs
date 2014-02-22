@@ -14,10 +14,12 @@
 
                 <ul class="no-bullet inline-list tags">
                     {% for tag in item.tags %}
-                        <li>{% if loop.first %} <strong> {{ _('Tags') }}:</strong> {% endif %}</li>
-                        <li><span>
-                            <a href="{{ url_for('frontend.tag', tag=tag, page=1) }}" class="button tiny secondary"><i class="fi-price-tag"></i> {{ tag }}</a>
-                        </span></li>
+                        {% if tag %}
+                            <li>{% if loop.first %} <strong> {{ _('Tags') }}:</strong> {% endif %}</li>
+                            <li><span>
+                                <a href="{{ url_for('frontend.tag', tag=tag, page=1) }}" class="button tiny secondary"><i class="fi-price-tag"></i> {{ tag }}</a>
+                            </span></li>
+                        {% endif %}
                     {% endfor %}
                 </ul>
                 <ul class="no-bullet inline-list">
