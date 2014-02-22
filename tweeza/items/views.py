@@ -1,6 +1,6 @@
 from flask import (Blueprint, request, render_template, flash,
                    Response, stream_with_context, abort, send_file,
-                   current_app as app)
+                   current_app as app, redirect, url_for)
 from werkzeug import secure_filename
 from flask.views import MethodView
 from users.models import User
@@ -171,6 +171,22 @@ class EditView(MethodView):
                     title.title = form.fr_title.data.strip()
 
             item.tags = form.tags.data.strip().split(',')
+
+            if form.thumbnail.data:  # if the user has uploaded new thumbnail
+                # remove the old one
+                item.thumbnail.delete()
+                # replace it with the new one
+                thumbnail = request.files['thumbnail']
+                thumbnail_name = secure_filename(thumbnail.filename)
+
+                if thumbnail and allowed_thumbnails(thumbnail_name):
+                    ext = thumbnail.mimetype.split('/')[-1]
+                    # use the 'thumbnail' name for all thumbnails
+                    filename = '.'.join(["thumbnail", ext])
+                    item.thumbnail.put(thumbnail.stream,
+                                       content_type=thumbnail.mimetype,
+                                       filename=filename)
+
             if form.blog_post.data.strip():
                 item.blog_post = form.blog_post.data
             if not item.github:
@@ -247,6 +263,28 @@ def serve_file(item_id, filename):
                             headers={"Content-Disposition":
                                      "attachment;filename=%s" % (filename)})
     return abort(404)
+
+
+@items.route('/item/<int:item_id>/delete', methods=['POST'])
+@login_required
+def delete_item(item_id):
+
+    item = Item.objects.get_or_404(item_id=item_id)
+
+    if item.submitter.id != current_user.id:
+        if not current_user.is_admin:
+            abort(403)
+
+    # delete physical files
+    item.thumbnail.delete()
+    for file in item.files:
+        file.delete()
+
+    # delete the item itself (the document)
+    item.delete()
+    flash('Item deleted successfully', category='success')
+    return redirect(url_for('frontend.index'))
+
 
 # Register the urls
 items.add_url_rule('/items/', view_func=ListView.as_view('index'))

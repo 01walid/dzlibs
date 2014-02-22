@@ -52,13 +52,13 @@
                         <dd> 
                             <a href="#panel1">
                             {% if item.github %}
-                                <i class="fi-link"></i> {{ _("From a remote repository (we only support Github for now)") }}</a> 
+                                <i class="fi-link"></i> {{ _("Repository URL") }}</a> 
                                 <div id="panel1" class="active content"> 
                                     {{ form.github.label }}
                                     {{ form.github(placeholder=_("Past your item's repository URL here"), value=item.github) }}
                                 </div> 
                             {% else %}
-                                <i class="fi-upload"></i> {{ _("From my computer") }}</a> 
+                                <i class="fi-upload"></i> {{ _("Item's files (leave it blank to keep the old files)") }}</a> 
                                 <div id="panel" class="active content"> 
                                     {{ form.files(multiple=True, class_='button secondary') }}
                                     <div class="drag"></div>

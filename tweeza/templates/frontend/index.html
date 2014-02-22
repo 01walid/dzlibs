@@ -27,7 +27,20 @@
     </div>
   </div>
 </div>
-
+    {% block flash_message %}
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+            <div class="row">
+                {% for category, msg in messages %}
+                    <div data-alert class="alert-box {{ category }}">
+                        {{ msg }}
+                        <a href="#" class="close">&times;</a>
+                    </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        {% endwith %}
+    {% endblock %}
     <div class="row grid">
         {% for item in items %}
         <div class="item">        

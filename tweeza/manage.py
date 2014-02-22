@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """ Docstrings. """
 
-from flask.ext.script import Manager, Server
+from flask.ext.script import Manager, Server, prompt_bool
 from app import create_app
 
 
@@ -66,6 +66,20 @@ def delete_users():
     """
     from users.models import User
     User.objects().delete()
+
+
+@manager.command
+def drop_database():
+    """
+    DANGEROUS: DROP THE DATABASE.
+
+    It assumes the db name is 'dzlibs', change it otherwise
+    """
+    from mongoengine import connect
+
+    if prompt_bool("Are you sure you want to lose all your data"):
+        db = connect('dzlibs')
+        db.drop_database('dzlibs')
 
 if __name__ == '__main__':
     manager.run()
