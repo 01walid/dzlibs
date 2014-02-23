@@ -8,7 +8,7 @@ before_install:
     - sudo apt-get install mongodb-10gen
     - sudo service mongodb start
 install:
-    - install twill --allow-external twill --allow-unverified twill
+    - pip install twill --allow-external twill --allow-unverified twill
     - pip install -r requirements.txt --use-mirrors
 script: nosetests
 notifications:
