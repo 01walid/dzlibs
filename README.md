@@ -1,4 +1,4 @@
-[DzLibs](http://dzlibs.io/) Project
+[DzLibs](http://dzlibs.io/) Project [![Build Status](https://travis-ci.org/01walid/dzlibs.png?branch=master)](https://travis-ci.org/01walid/dzlibs)
 ===========================
 
 A community-driven Algerian index of reusable assets and libraries. A web app and a set of RESTful APIs to provide a platform for Algerian developers and designers to share reusable resources (Classes, Libraries, Vector files..etc) and easily access them. 
@@ -41,6 +41,8 @@ $ source venv/bin/activate
 $ pip install -r requirements.txt
 # after downloading launch the project by running:
 $ cd tweeza
+# setup initial categories and licenses
+$ python manage.py setup
 $ python manage.py runserver
 ```
 
@@ -57,15 +59,19 @@ Exit by `<CTRL> + <C>`.
 
 Exit the virtual Python environment, type:`deactivate`.
 
+Check the config file in `instance/example.cfg` modify it to your custom environment, rename it to `config.cfg` or `production.cfg`.
+
 # Technical information
 
 * Obviously, the project relies on Python, actually it's a Python2 project, however the code is forward-compatible with python3 for easier future migration.
 * We use [Flask](http://flask.pocoo.org/), a micro -but scalable- framework for Python based on Werkzeug, Jinja 2, extensively documented, very Pythonic and has no design obligations with easier learning curve.
 * [MongoDB](http://www.mongodb.org) a schema-less, document-oriented NoSQL database.
+* GridFs to store uploaded files instead of filesystem storage.
+* [MongoEngine](http://mongoengine.org/), an ORM-like for MongoDB.
 * [Bcrypt](http://en.wikipedia.org/wiki/Bcrypt) for password hashing.
 * SASS and Compass for CSS styling, we're using Foundation Zurb at  the moment.
-* [MongoEngine](http://mongoengine.org/), an ORM-like for MongoDB.
 * Bower for grabbing and managing Javascript libraries.
+* Optionally, [Redis](http://redis.io/) for caching.
 
 # The project structure
 
@@ -93,9 +99,8 @@ Exit the virtual Python environment, type:`deactivate`.
 │   ├── templates # HTML templates
 │   ├── tests # the test suite for Tweeza
 │   ├── translations # generated and compiled translations
-│   ├── uploads # where the uploaded items reside
 │   ├── utils.py # useful functions and/or classes goes here
-│   ├── manage.py
+│   ├── manage.py # some useful automated scripts for the app
 .   .
 .
 ```
