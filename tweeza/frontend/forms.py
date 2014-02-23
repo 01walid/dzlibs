@@ -8,7 +8,7 @@ from wtforms import (ValidationError, HiddenField, BooleanField, TextField,
 from wtforms.validators import Required, Length, EqualTo, Email
 from flask.ext.wtf.html5 import EmailField
 
-from users import User
+from users.models import User
 from utils import (PASSWORD_LEN_MIN, PASSWORD_LEN_MAX,
                    USERNAME_LEN_MIN, USERNAME_LEN_MAX)
 

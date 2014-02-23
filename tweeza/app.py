@@ -6,7 +6,8 @@ from flask import Flask, request, g, render_template
 # Bluprints:
 from frontend.views import frontend
 from dashboard.views import dashboard
-from users import users, User
+from users.models import User
+from users.views import users
 from items.views import items
 # from flask.ext.security import Security
 from utils import current_year
@@ -15,6 +16,8 @@ from extensions import (db, mail, babel, login_manager, bcrypt,
 from flask.ext.babel import lazy_gettext as _
 from flask.ext.mongoengine import MongoEngineSessionInterface
 
+import sys
+sys.path = [os.path.abspath(os.path.dirname(__file__))] + sys.path
 
 # For import *
 __all__ = ['create_app']

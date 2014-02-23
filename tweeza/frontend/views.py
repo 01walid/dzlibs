@@ -2,7 +2,7 @@ from flask import (Blueprint, request, redirect, session, url_for,
                    render_template, flash, current_app as app, abort)
 from flask.ext.login import (login_required, login_user, current_user,
                              logout_user)
-from users import User
+from users.models import User
 from flask.ext.babel import gettext as _
 from forms import LoginForm, SignupForm, CreateProfileForm
 from items.models import Item
