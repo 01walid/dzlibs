@@ -6,10 +6,15 @@
 {% block container %}
     <div class="push"></div>
     {{ render_categories_listing(categories, current_category) }}
-
-    {{ render_items_listing(items.items) }}
-
-    {{ render_pagination(items, 'frontend.category', current_category.name_en) }}
+    <div class="row">
+        {% if not items.items %}
+            <h1 class="subheader">{{ _('No items shared in this category, yet.')}}</h1>
+        {% else %}
+            {{ render_items_listing(items.items) }}
+            {{ render_pagination(items, 'frontend.category', current_category.name_en) }}
+        {%endif%}
+    </div>
+    
 {% endblock %}
 
 {% block js_btm %}

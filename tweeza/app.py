@@ -110,7 +110,7 @@ def configure_extensions(app):
 
         """
         if not hasattr(g, 'lang'):
-            g.lang = 'fr'
+            g.lang = 'en'
         accept_languages = app.config.get('ACCEPT_LANGUAGES')
         return g.lang or request.accept_languages.best_match(accept_languages)
 
@@ -137,7 +137,6 @@ def configure_template_filters(app):
     @app.template_filter('prettify')
     def prettify(datetime):
         import humanize
-        humanize.activate(g.lang)
         return humanize.naturaltime(datetime)
 
     @app.template_filter('what_title')
@@ -210,7 +209,7 @@ def configure_hook(app):
     def add_language_code(endpoint, values):
 
         if hasattr(g, 'lang') and not g.lang:
-            g.lang = 'fr'
+            g.lang = 'en'
             values.setdefault('lang', g.lang)
 
     @app.url_value_preprocessor
@@ -218,7 +217,7 @@ def configure_hook(app):
         if values:
             g.lang = values.pop('lang', None)
         if hasattr(g, 'lang') and not g.lang:
-            g.lang = 'fr'
+            g.lang = 'en'
 
     @app.context_processor
     def utility_processor():

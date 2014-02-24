@@ -3,10 +3,12 @@ from flask import (Blueprint, request, redirect, url_for, abort,
 from flask.ext.login import (login_required, login_user, current_user,
                              logout_user)
 from users.models import User
+from frontend.forms import ContactForm
 from flask.ext.babel import gettext as _
 from items.models import Item, Category
 from flask.ext.mongoengine import Pagination
-from extensions import cache
+from flask_mail import Message
+from extensions import cache, mail
 
 frontend = Blueprint('frontend', __name__)
 
@@ -137,8 +139,6 @@ def category(param, page=1):
     category = categories.get_or_404(name_en__iexact=param)
 
     items = Pagination(Item.objects(category=category), page, 12)
-    if len(items.items) == 0:
-        return abort(404)
 
     return render_template('frontend/category_listing.html',
                            items=items,
@@ -160,9 +160,35 @@ def user_items(param, page=1):
                            user=user)
 
 
-@frontend.route('/contact/')
+@frontend.route('/contact/', methods=['GET', 'POST'])
 def contact():
-    return render_template('frontend/contact.html')
+    form = ContactForm()
+
+    if request.method == 'POST':
+
+        if form.validate_on_submit():
+
+            name = form.name.data.strip()
+            email = form.email.data.strip()
+            subject = form.subject.data.strip()
+            message = form.message.data.strip()
+
+            msg = Message(subject, sender=email,
+                          recipients=app.config['ADMINS'])
+            msg.body = """
+            From: %s <%s>
+            Message:
+            %s
+            """ % (name, email, message)
+            mail.send(msg)
+
+            flash(_('Message sent successfully'), category='success')
+            return render_template('frontend/contact.html', form=form)
+        else:
+            flash(_('Error happened, see below'), category='alert')
+            return render_template('frontend/contact.html', form=form)
+    else:
+        return render_template('frontend/contact.html', form=form)
 
 
 @frontend.route('/search/')
@@ -178,6 +204,11 @@ def search(param, page=1):
     items = Pagination(Item.objects(titles__title__icontains=param),
                        1, 12)
     return render_template('frontend/search_result.html', items=items)
+
+
+@frontend.route('/', defaults={'path': ''}, subdomain='api')
+def api():
+    return url_for('frontend.api')
 
 
 # just for fun

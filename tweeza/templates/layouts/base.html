@@ -27,7 +27,6 @@
 
     {% block js_top %}
         <script src="{{ url_for('static', filename='vendors/jquery/jquery.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='vendors/modernizr/modernizr.js') }}"></script>
         <script src="{{ url_for('static', filename='vendors/foundation/js/vendor/fastclick.js') }}"></script>
     {% endblock %}
 
@@ -56,7 +55,7 @@
             <section class="top-bar-section"><!-- Right Nav Section -->
 
                 <ul class="left">
-                    <li><a href="#">{{ _('Contact') }}</a></li>
+                    <li><a href="{{ url_for('frontend.contact') }}">{{ _('Contact') }}</a></li>
                     <li><a href="{{ url_for('frontend.about') }}">{{ _('About') }}</a></li>
                     <li class="has-dropdown">
                         <a href="#">{{ _('Language') }}</a>

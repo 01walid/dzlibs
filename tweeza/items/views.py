@@ -111,7 +111,8 @@ class AddView(MethodView):
 
             item.description = form.description.data
             item.tags = form.tags.data.strip().split(',')
-            item.category = form.category.data
+            item.category = Category.objects.get(category_id=
+                                                 int(form.category.data))
 
             item.submitter = User.objects.get(id=current_user.id)
 
@@ -131,9 +132,10 @@ class AddView(MethodView):
                 item.save()
                 # no need to process any uploaded files
                 flash('Item submitted successfully', category='success')
-                return render_template('items/add_item.html', form=form)
+                return redirect(url_for('items.detail', item_id=item.item_id))
             else:
-                item.license = form.license.data
+                item.license = License.objects.get(license_id=
+                                                   int(form.license.data))
 
         else:
             flash('upload unsuccessful', category='error')
@@ -155,7 +157,7 @@ class AddView(MethodView):
         # Save the thing
         item.save()
         flash('Item uploaded successfully', category='success')
-        return render_template('items/add_item.html', form=form)
+        return redirect(url_for('items.detail', item_id=item.item_id))
 
 
 class EditView(MethodView):

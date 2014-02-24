@@ -20,9 +20,9 @@
 
       <div class="row">
         <p class="text-center">
-            <a href="#" class="button secondary">{{ _("api") }}</a>
+            <a href="{{ url_for('frontend.api') }}" class="button secondary">{{ _("api") }}</a>
             {{ _('&amp;') }}
-            <a href="#" class="button secondary">{{ _("tweeza") }}</a>
+            <a href="#" data-reveal-id="tweezaModal" class="button secondary" data-reveal>{{ _("tweeza") }}</a>
         </p>
       </div>
     </div>
@@ -53,6 +53,16 @@
             <a href="{{ url_for('items.paginate', page=1) }}" class="button secondary expand">{{ _('Explore more') }}</a>
         </div>
     {% endif %}
+
+
+    <div id="tweezaModal" class="reveal-modal small" data-reveal>
+        <h4>{{ _("Well, you're already in the <strong>Tweeza</strong> part :)") }}</h4>
+        <p class="lead">{{ _("So, let's define sharing items here, as <code>tweezing</code>, the remarkable Algerian tradition our ancestors did <i class='fi-heart'></i> So why not, we, developers/designers, do the same? online!") }}</p> 
+        <p>{{ _("Confused? you may check the") }} <a href="{{ url_for('frontend.about') }}">{{ _('about page') }}</a> {{ _("then...") }}</p>
+        <a class="close-reveal-modal">&#215;</a>
+        <a class="button secondary expand" onclick="$('#tweezaModal').foundation('reveal', 'close');">{{ _("Cool!") }}</a>
+    </div>
+
 
 {% endblock %}
 
