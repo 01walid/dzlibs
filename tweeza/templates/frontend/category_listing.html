@@ -1,0 +1,18 @@
+{% from "macros/_misc.html" import render_pagination, render_categories_listing, render_items_listing %}
+{% extends 'layouts/base.html' %}
+
+{% set page_title = _("Categories") %}
+
+{% block container %}
+    <div class="push"></div>
+    {{ render_categories_listing(categories, current_category) }}
+
+    {{ render_items_listing(items.items) }}
+
+    {{ render_pagination(items, 'frontend.category', current_category.name_en) }}
+{% endblock %}
+
+{% block js_btm %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='vendors/underscore/underscore-min.js') }}"></script>
+{% endblock %}

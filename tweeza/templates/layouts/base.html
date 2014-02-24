@@ -1,3 +1,9 @@
+<!--
+    Looking for the source code ?
+    here's the good news, the whole website source code
+    is available here: https://github.com/01walid/dzlibs
+-->
+
 <!DOCTYPE html>
 <head class="no-js" lang="{{ g.lang }}"{% if g.lang == 'ar' %} dir="rtl"{% endif %}>
     <meta charset="utf-8">
@@ -41,7 +47,7 @@
             <ul class="title-area">
                 <li class="name"><!-- Title Area -->
                 <h1>
-                    <a href="{{ url_for('frontend.index') }}">DZ <strong>Libs</strong> <small>(preview)</small></a>
+                    <a href="{{ url_for('frontend.index') }}">DZ <strong>Libs</strong> <small>(beta)</small></a>
                 </h1>
                 </li>
                 <li class="toggle-topbar"><a href="#"><i class="fi-list large"></i></a></li>
@@ -55,8 +61,8 @@
                     <li class="has-dropdown">
                         <a href="#">{{ _('Language') }}</a>
                         <ul class="dropdown">
-                            <li><a href="#">العربية</a></li>
-                            <li><a href="#">French</a></li>
+                            <li><a href="#">العربية (قريبا) </a></li>
+                            <li><a href="#">Français (bientot)</a></li>
                         </ul>
                     </li>
                     <li class="has-form">
@@ -82,7 +88,7 @@
                         <li class="has-dropdown">
                             <a href="#"><img src="{{ current_user.email | gravatar }}"> {{ current_user.name }}</a>
                             <ul class="dropdown">
-                                <li><a href="#"><i class="fi-list-thumbnails"></i> {{ _('My items') }}</a></li>
+                                <li><a href="{{ url_for('frontend.user_items', param=current_user.user_id) }}"><i class="fi-list-thumbnails"></i> {{ _('My items') }}</a></li>
                                 <li><a href="{{ url_for('users.index') }}"><i class="fi-torso"></i> {{ _('Profile') }}</a></li>
                                 <li class="active"><a href="{{ url_for('frontend.logout') }}" class=""><i class="fi-arrow-left"></i> {{ _('Logout') }}</a></li>
                             </ul>
@@ -94,45 +100,51 @@
                 </ul>
             </section>
         </nav> 
+    
     {% endblock %}
+        
+    <div class="wrapper">
 
         {% block container %}
-                {% block flash_message %}
-                    {% with messages = get_flashed_messages(with_categories=True) %}
-                        {% if messages %}
-                        <div class="row">
-                            {% for category, msg in messages %}
-                                <div data-alert class="alert-box {{ category }}">
-                                    {{ msg }}
-                                    <a href="#" class="close">&times;</a>
-                                </div>
-                            {% endfor %}
-                        </div>
-                        {% endif %}
-                    {% endwith %}
-                {% endblock %}
-            {% block body %}
-
+                    
+            {% block flash_message %}
+                {% with messages = get_flashed_messages(with_categories=True) %}
+                    {% if messages %}
+                    <div class="row">
+                        {% for category, msg in messages %}
+                            <div data-alert class="alert-box {{ category }}">
+                                {{ msg }}
+                                <a href="#" class="close">&times;</a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                {% endwith %}
             {% endblock %}
-    
-        {% endblock %}
 
-    <div class="footer-bottom">
+            {% block body %}
+            {% endblock %}
+        {% endblock %} 
+        
+        <div class="push-footer"></div>
+    </div>  
+
+    <footer>
         <div class="row">
             <div class="medium-4 medium-4 push-8 columns">
                 <ul class="home-social inline-list right">
-                    <li><a href="#"><i class="fi-social-twitter"></i></a></li>
-                    <li><a href="#"><i class="fi-social-facebook"></i></a></li>
-                    <li><a href="#"><i class="fi-mail"></i></a></li>
+                    <li><a href="https://twitter.com/dzlibs"><i class="fi-social-twitter"></i></a></li>
+                    <li><a href="https://www.facebook.com/dzlibs"><i class="fi-social-facebook"></i></a></li>
+                    <li><a href="https://github.com/01walid/dzlibs"><i class="fi-social-github"></i></a></li>
                 </ul>
             </div>
             <div class="medium-8 medium-8 pull-4 columns">
                 <p class="copyright">
-                &copy; {{ current_year() }} {{ _("DzLibs. Copyleft. email: 01walid@gmail.com") }}
+                {{ current_year() }} - {{ _("DzLibs project. Under Mozilla Public license v2. Shared items have their OWN licenses. this is a community project. <a href='https://github.com/01walid/dzlibs'>Source code available here</a>.") }}
                 </p>
             </div>          
         </div>
-    </div>
+    </footer>   
 
     {% block js_btm %}
         <script src="{{ url_for('static', filename='vendors/foundation/js/foundation.min.js') }}"></script>

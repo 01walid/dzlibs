@@ -1,42 +1,65 @@
-{% macro render_user_table(users, class='') %}
-<table class='{{ class }}'>
-    <thead>
-        <tr>
-            <td>#</td>
-            <td>Username</td>
-            <td>Email</td>
-        </tr>
-    </thead>
-    <tbody>
-        {% for user in users %}
-        <tr>
-            <td>{{ loop.index }}</td>
-            <td><a href="{{ url_for('user.profile', name=user.name) }}">{{ user.name }}</a></td>
-            <td>{{ user.email }}</td>
-        </tr>
+{% macro render_items_listing(items) %}
+    <div class="row grid">
+        {% for item in items %}
+        <div class="item">        
+                <div class="item-info" style="background-image: url({{ item.get_thumbnail() }});">
+                <a href="{{ url_for('items.detail', item_id=item.item_id) }}">
+                <hgroup>
+                    <h5>{{ item.titles | what_title}}</h5>
+                    <h6 class="subheader">{{ item.submitted_at | prettify }} <em>{{_("in") }} </em>{{ item.category.get_name(g.lang) }}</h6>
+                </hgroup>
+                </a>
+            </div>
+            <a class="submitter" href="{{ url_for('users.user_profile', id=item.submitter.user_id) }}">
+                <img src="{{ item.submitter.email | gravatar(size=30) }}"> {{ item.submitter }}
+            </a>
+        </div>
         {% endfor %}
-    </tbody>
-</table>
+    </div>
+
 {% endmacro %}
 
-{% macro render_pagination(pagination, endpoint) %}
-    {% if pagination.pages > 1 %}
-        <div class='pagination'>
-            <ul>
-                <li class="prev {% if not pagination.has_prev %}disabled{% endif %}"><a href="{{ url_for(endpoint, page=pagination.page-1) }}">&larr; Previous</a></li>
-                {% for page in pagination.iter_pages() %}
-                    {% if page %}
-                        <li class='{% if page == pagination.page %}active{% endif %}'>
-                            <a href='{{ url_for(endpoint, page=page) }}'>{{ page }}</a>
-                        </li>
-                    {% else %}
-                        <li>
-                            <a href='#'>...</a>
-                        </li>
-                    {% endif %}
+
+{% macro render_categories_listing(categories, current_category=None) %}
+    <div class="row">
+        <dl class="sub-nav small-12 columns">
+            <dt>{{ _('CATEGORY') }}:</dt>
+                <dd class="{% if not current_category %}active{% endif %}"><a href="{{ url_for('items.index') }}">{{ _('All') }}</a></dd>
+                {% for category in categories %}
+                    <dd class='{{ "active" if category == current_category }}'><a href="{{ url_for('frontend.category', param=category.name_en)}}">{{ category.get_name(g.lang) }}</a></dd>
                 {% endfor %}
-                <li class="next {% if not pagination.has_next %}disabled{% endif %}"><a href="{{ url_for(endpoint, page=pagination.page+1) }}">Next &rarr;</a></li>
-            </ul>
+        </dl>
+    </div>
+{% endmacro %}
+
+{% macro render_pagination(pagination, endpoint, what=None) %}
+
+    {% if pagination.pages > 1 %}
+        <div class="row">
+            <div class="pagination-centered">
+                <ul class="pagination">
+                    {% if pagination.has_prev %}
+                        <li class="{% if not pagination.has_prev %}arrow unavailable{% endif %}"><a href="{{ url_for(endpoint, param=what, page=pagination.page-1) }}">&laquo;</a></li>
+                    {% else %}
+                        <li class="arrow unavailable"><a href="">&laquo;</a></li>
+                    {% endif %}
+                    
+                    {% for page in pagination.iter_pages() %}
+                        {% if page %}
+                            <li class='{% if page == pagination.page %}current{% endif %}'>
+                                <a href='{{ url_for(endpoint, param=what, page=page) }}'>{{ page }}</a>
+                            </li>
+                        {% else %}
+                            <li class="unavailable"><a href="">&hellip;</a></li></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if pagination.has_next %}
+                        <li class="next {% if not pagination.has_next %}arrow{% endif %}"><a href="{{ url_for(endpoint, param=what, page=pagination.page+1) }}">&raquo;</a></li>
+                    {% else %}
+                        <li class="arrow unavailable"><a href="">&raquo;</a></li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
     {% endif %}
 {% endmacro %}

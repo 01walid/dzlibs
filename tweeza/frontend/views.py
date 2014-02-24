@@ -1,11 +1,10 @@
-from flask import (Blueprint, request, redirect, session, url_for,
-                   render_template, flash, current_app as app, abort)
+from flask import (Blueprint, request, redirect, url_for, abort,
+                   render_template, flash, current_app as app)
 from flask.ext.login import (login_required, login_user, current_user,
                              logout_user)
 from users.models import User
 from flask.ext.babel import gettext as _
-from forms import LoginForm, SignupForm, CreateProfileForm
-from items.models import Item
+from items.models import Item, Category
 from flask.ext.mongoengine import Pagination
 from extensions import cache
 
@@ -18,7 +17,9 @@ github = None  # Global object
 @cache.cached(60)
 def index():
     items = Item.objects[:12]
-    return render_template('frontend/index.html', items=items)
+    categories = Category.objects.all()
+    return render_template('frontend/index.html', items=items,
+                           categories=categories)
 
 
 @frontend.route("/about/")
@@ -57,7 +58,7 @@ def callback():
     """
 
     if not 'code' in request.args:
-        flash('You did not authorize the request')
+        flash('You did not authorize the request', category='alert')
         return redirect(url_for('frontend.login'))
 
     # make a request for the access token credentials using code
@@ -79,77 +80,32 @@ def callback():
 
     if user:
         login_user(user)
-        flash('Logged in as ' + githuber['name'])
-        return redirect(url_for('users.index'))
+        flash('Logged in as ' + githuber['name'], category='success')
+        return redirect(url_for('frontend.index'))
     else:
-        session['github_id'] = githuber['id']
-        session['name'] = githuber['name']
-        session['email'] = githuber['email']
-        session['location'] = githuber['location']
-        session['github_username'] = githuber['login']
-        session['oauth_token'] = auth.access_token
-
-        form = CreateProfileForm(email=githuber['email'])
-        return render_template('frontend/create_profile.html',
-                               form=form)
-        # return redirect(url_for('frontend.create_profile'))
-
-
-@frontend.route('/create_profile', methods=['POST'])
-def create_profile():
-    if current_user.is_authenticated():
-        return redirect(url_for('users.index'))
-
-    form = CreateProfileForm()
-
-    if form.validate_on_submit():
         user = User()
-        user.email = form.email.data.strip()
-        user.password = form.password.data
-        user.github_id = session['github_id']
-        user.name = session['name']
-        user.github_username = session['github_username']
-        user.oauth_token = session['oauth_token']
-        user.location = session['location']
+        user.email = githuber['email']
+        user.github_id = githuber['id']
+        user.name = githuber['name']
+        user.github_username = githuber['login']
+        user.oauth_token = auth.access_token
+        user.location = githuber['location']
         user.save()
 
         if login_user(user):
-            flash(_("Logged in"), 'success')
+            flash(_("Logged in as %s, now get a shiny profile :)" % user.name),
+                  category='success')
 
-        return redirect(url_for('users.index'))
-
-    return render_template('frontend/create_profile.html',
-                           form=form)
+        return redirect(url_for('users.edit'))
 
 
 @frontend.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated():
-        return redirect(url_for('users.index'))
+        flash('Already Logged in as %s' % current_user, category='success')
+        return redirect(url_for('frontend.index'))
 
-    next = request.args.get('next', None)
-
-    loginForm = LoginForm(login=request.args.get('login', None),
-                          next=next)
-
-    signupForm = SignupForm(next=next)
-
-    if loginForm.validate_on_submit():
-        user = User.objects.get(email=loginForm.email.data.strip())
-        if user:
-            if user.check_password(loginForm.password.data):
-                remember = loginForm.remember.data
-                if login_user(user, remember=remember):
-                    flash(_("Logged in"), 'success')
-                return redirect(loginForm.next.data or url_for('users.index'))
-            else:
-                flash(_('Sorry, invalid password'), 'error')
-        else:
-            flash(_("Sorry, incorrect email!"), 'error')
-
-    return render_template('frontend/login.html',
-                           loginForm=loginForm,
-                           signupForm=signupForm)
+    return render_template('frontend/login.html')
 
 
 @frontend.route('/logout')
@@ -160,50 +116,72 @@ def logout():
     return redirect(url_for('frontend.index'))
 
 
-@frontend.route('/signup', methods=['POST'])
-def signup():
-    if current_user.is_authenticated():
-        return redirect(url_for('user.index'))
+# for anything that have pagination, don't change <param> to something else
+# we use this generic name to generate pagination
 
-    loginForm = LoginForm()
-    form = SignupForm(next=request.args.get('next'))
-
-    if form.validate_on_submit():
-        user = User()
-        user.email = form.email.data.strip()
-        user.name = form.name.data.strip()
-        user.password = form.password.data
-        user.save()
-
-        if login_user(user):
-            return redirect(form.next.data or url_for('users.index'))
-
-    return render_template('frontend/login.html',
-                           loginForm=loginForm,
-                           signupForm=form)
-
-
-@frontend.route('/tag/<tag>/<int:page>')
+@frontend.route('/tag/<param>/<int:page>/')
+@frontend.route('/tag/<param>/')
 @cache.cached(60)
-def tag(tag, page=1):  # tag 3a men tag :)
-    items = Pagination(Item.objects(tags=tag), page, 12)
+def tag(param, page=1):
+    items = Pagination(Item.objects(tags=param), page, 12)
     if len(items.items) == 0:
         return abort(404)
-    return render_template('items/items_list.html', items=items)
+    return render_template('frontend/tag.html', tag=param, items=items)
+
+
+@frontend.route('/category/<param>/<int:page>/')
+@frontend.route('/category/<param>/')
+@cache.cached(60)
+def category(param, page=1):
+    categories = Category.objects.all()
+    category = categories.get_or_404(name_en__iexact=param)
+
+    items = Pagination(Item.objects(category=category), page, 12)
+    if len(items.items) == 0:
+        return abort(404)
+
+    return render_template('frontend/category_listing.html',
+                           items=items,
+                           current_category=category,
+                           categories=categories)
+
+
+@frontend.route('/user/<int:param>/items/')
+@frontend.route('/user/<int:param>/items/<int:page>')
+def user_items(param, page=1):
+    user = User.objects.get_or_404(user_id=param)
+    items = Pagination(Item.objects(submitter=user), page, 12)
+
+    if len(items.items) == 0:
+        return abort(404)
+
+    return render_template('frontend/user_items.html',
+                           items=items,
+                           user=user)
+
+
+@frontend.route('/contact/')
+def contact():
+    return render_template('frontend/contact.html')
 
 
 @frontend.route('/search/')
 def search_page():
-    return render_template('errors/page_not_found.html')
+    return render_template('frontend/search_result.html', items=None)
 
 
-@frontend.route('/search/<string>/<page>')
-@frontend.route('/search/<string>')
+@frontend.route('/search/<param>/<page>')
+@frontend.route('/search/<param>')
 @cache.cached(60)
-def search(string, page=1):
+def search(param, page=1):
 
-    items = Pagination(Item.objects(titles__title__icontains=string),
+    items = Pagination(Item.objects(titles__title__icontains=param),
                        1, 12)
-    if len(items.items) == 0:
-        return abort(404)
-    return render_template('items/items_list.html', items=items)
+    return render_template('frontend/search_result.html', items=items)
+
+
+# just for fun
+@frontend.route("/404/")
+@cache.cached(3000)
+def _404():
+    return abort(404)

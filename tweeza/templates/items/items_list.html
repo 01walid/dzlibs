@@ -1,3 +1,5 @@
+{% from "macros/_misc.html" import render_items_listing, render_pagination, render_categories_listing %}
+
 {% extends 'layouts/base.html' %}
 
 {% set page_title = _("Explore items") %}
@@ -7,25 +9,11 @@
     	<h2>{{ _('Items list') }}</h2>
     	<hr>
 
-		<div class="grid">
-		{% for item in items.items %}
-		<div class="item">
-	        <div class="item-info" style="background-image: url( {{ item.get_thumbnail() }});">
-		        <a href="{{ url_for('items.detail', item_id=item.item_id) }}">
-		        <hgroup>
-			        <h5>{{ item.titles | what_title }}</h5>
-	   		        <h6 class="subheader">{{ item.submitted_at | prettify }} <em>{{ _('in') }}</em> Category</h6>
-	   		    </hgroup>
+		{{ render_categories_listing(categories, current_category) }}
 
-		        	<!--<h5>{{ item.thumbnail_path }}</h5> -->
-	        	</a>
-	        </div>
-	        <a class="submitter" href="">
-	        	<img src="{{ item.submitter.email | gravatar(size=30) }}"> {{ item.submitter }}
-	        </a>
-	    </div>
-	    {% endfor %}
-		</div>
+		    {{ render_items_listing(items.items) }}
+
+		{{ render_pagination(items, 'items.paginate') }}
 	</div>
 
 {% endblock %}

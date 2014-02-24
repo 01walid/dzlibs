@@ -1,0 +1,24 @@
+{% from "macros/_misc.html" import render_pagination, render_items_listing %}
+
+{% extends 'layouts/base.html' %}
+
+{% set page_title = _("User items") %}
+
+{% block container %}
+    <div class="row">
+        <h2>{{ _('Items shared by') }}: {{ user.name }}</h2>
+        <hr>
+
+           {{ render_items_listing(items.items) }}
+
+    </div>
+    
+    {{ render_pagination(items, 'frontend.user_items', user.user_id) }}
+
+{% endblock %}
+
+{% block js_btm %}
+    {{ super() }}
+
+    <script src="{{ url_for('static', filename='vendors/underscore/underscore-min.js') }}"></script>
+{% endblock %}

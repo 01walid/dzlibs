@@ -19,7 +19,7 @@
 
             <li><h2><i class="fi-marker"></i> {{ _('Location') }}: {{ user.location or '' }}</h2></li>
 
-            <li><h2>{{ _('Bio') }}:</h2></li>
+            <li><h2><i class="fi-info"></i> {{ _('Bio') }}:</h2></li>
             <li>
                 <div class="panel secondary">
                     {{ user.bio or _('No bio for this user') }}
@@ -38,10 +38,14 @@
                 <h3 class="subheader">{{ _('Joined') }}:</h3>
                 <h4 class="subheader">{{ user.created_at | prettify }}</h4>
                 <hr>
-                <h3 class="subheader">{{ _('Tweezed') }}: {{ items_count }} {{ _('items!') }}</h3>
+                <h3 class="subheader"><a title="{{ _('See items shared by this user!') }}" href="{{ url_for('frontend.user_items', param=user.user_id) }}">{{ _('Tweezed') }}: {{ items_count }} {{ _('items!') }}</a></h3>
                 <hr>
                 {% if user.hireable %}
                     <p><span class="label success round">{{ _("This guy is free to hire!") }}</span></p>
+                {% endif %}
+
+                {% if current_user.id == user.id or current_user.is_admin %}
+                    <h2><a href="{{ url_for('users.edit') }}" class="button expand success">{{ _('Edit profile') }}</a></h2>
                 {% endif %}
             </div>
     </div>

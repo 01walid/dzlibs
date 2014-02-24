@@ -21,8 +21,10 @@ class ListView(MethodView):
     decorators = [cache.cached(60)]
 
     def get(self, page=1):
-        items = Item.objects.paginate(page=page, per_page=5)
-        return render_template('items/items_list.html', items=items)
+        items = Item.objects.paginate(page=page, per_page=12)
+        categories = Category.objects.all()
+        return render_template('items/items_list.html',
+                               items=items, categories=categories)
 
 
 class DetailView(MethodView):

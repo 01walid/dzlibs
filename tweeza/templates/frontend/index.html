@@ -1,3 +1,4 @@
+{% from "macros/_misc.html" import render_categories_listing, render_items_listing %}
 {% extends 'layouts/base.html' %}
 
 {% set page_title = _("Home") %}
@@ -13,30 +14,22 @@
         <h2 class="logo-typography"><a href="{{ url_for('frontend.index') }}">Dz Libs</a></h2>
         <h4 class="slogan subheader">{{ _("The Algerian index of reusable assets and libraries") }}</h4>
 
-        <p>That is made  of two parts:</p>
+        <p>{{ _('That is made  of two parts') }}:</p>
         <div class="show-for-small clear"></div>
       </div>
 
       <div class="row">
         <p class="text-center">
             <a href="#" class="button secondary">{{ _("api") }}</a>
-            &amp;
+            {{ _('&amp;') }}
             <a href="#" class="button secondary">{{ _("tweeza") }}</a>
         </p>
       </div>
     </div>
   </div>
 </div>
-    <div class="row">
-        <dl class="sub-nav">
-            <dt>{{ _('CATEGORY') }}:</dt>
-            <dd class="active"><a href="#">All</a></dd>
-            <dd><a href="#">Assets</a></dd>
-            <dd><a href="#">Libraries</a></dd>
-            <dd><a href="#">Data</a></dd>
-            <dd><a href="#">Template files</a></dd>
-        </dl>
-    </div>
+
+    {{ render_categories_listing(categories) }}
 
     {% block flash_message %}
         {% with messages = get_flashed_messages(with_categories=True) %}
@@ -52,25 +45,14 @@
             {% endif %}
         {% endwith %}
     {% endblock %}
-    <div class="row grid">
-        {% for item in items %}
-        <div class="item">        
-                <div class="item-info" style="background-image: url({{ item.get_thumbnail() }});">
-                <a href="{{ url_for('items.detail', item_id=item.item_id) }}">
-                <hgroup>
-                    <h5>{{ item.titles | what_title}}</h5>
-                    <h6 class="subheader">{{ item.submitted_at | prettify }} <em>{{_("in") }}</em> Category</h6>
-                </hgroup>
 
-                    <!--<h5>{{ item.thumbnail_path }}</h5> -->
-                </a>
-            </div>
-            <a class="submitter" href="{{ url_for('users.user_profile', id=item.submitter.user_id) }}">
-                <img src="{{ item.submitter.email | gravatar(size=30) }}"> {{ item.submitter }}
-            </a>
+    {{ render_items_listing(items) }}
+
+    {% if items.count() > 12 %}
+        <div class="row">
+            <a href="{{ url_for('items.paginate', page=1) }}" class="button secondary expand">{{ _('Explore more') }}</a>
         </div>
-        {% endfor %}
-        </div>
+    {% endif %}
 
 {% endblock %}
 

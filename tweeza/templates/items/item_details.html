@@ -17,14 +17,14 @@
                         {% if tag %}
                             <li>{% if loop.first %} <strong> {{ _('Tags') }}:</strong> {% endif %}</li>
                             <li><span>
-                                <a href="{{ url_for('frontend.tag', tag=tag, page=1) }}" class="button tiny secondary"><i class="fi-price-tag"></i> {{ tag }}</a>
+                                <a href="{{ url_for('frontend.tag', param=tag, page=1) }}" class="button tiny secondary"><i class="fi-price-tag"></i> {{ tag }}</a>
                             </span></li>
                         {% endif %}
                     {% endfor %}
                 </ul>
                 <ul class="no-bullet inline-list">
                     <li><strong>{{ _("Category: ") }}</strong></li>
-                    <li>{{ item.category }}</li>
+                    <li>{{ item.category.get_name(g.lang) }}</li>
                 </ul>
                 <h3 class="subheader">
                 {{ _("Item description") }}

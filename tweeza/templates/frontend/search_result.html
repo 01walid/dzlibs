@@ -1,0 +1,26 @@
+{% from "macros/_misc.html" import render_items_listing, render_pagination %}
+
+{% extends 'layouts/base.html' %}
+
+{% set page_title = _("Search") %}
+
+{% block container %}
+    <div class="row">
+        <h2>{{ _('Search result') }}</h2>
+        <hr>
+        
+        {% if not items.items %}
+            <h1 class="subheader">{{ _('No results :(')}}</h1>
+        {% else %}
+            {{ render_items_listing(items.items) }}
+            {{ render_pagination(items, 'items.paginate') }}
+        {%endif%}
+    </div>
+
+{% endblock %}
+
+{% block js_btm %}
+    {{ super() }}
+
+    <script src="{{ url_for('static', filename='vendors/underscore/underscore-min.js') }}"></script>
+{% endblock %}

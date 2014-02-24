@@ -1,0 +1,104 @@
+{% from "macros/_form.html" import render_form %}
+{% extends 'layouts/base.html' %}
+
+{% block body %}
+
+<div class="row">
+    <h1>{{ _('Edit profile') }}</h1>
+    <hr>
+
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.csrf_token }}
+        <div class="row">
+            <div class="small-2 columns">
+                <h3><i class="fi-torso"></i> {{ form.name.label(class_="right inline") }}</h3>
+            </div>
+            <div class="small-8 columns left">
+                {{ form.name(value=current_user.name) }}
+
+                {% if form.name.errors -%}
+                    {% for error in form.name.errors -%}
+                        <span class="help-block error">{{ error }}</span>
+                    {%- endfor %}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="small-2 columns">
+                <h3><i class="fi-mail"></i> {{ form.email.label(class_="right inline") }}</h3>
+            </div>
+            <div class="small-8 columns left">
+                {{ form.email(value=current_user.email or '', placeholder=_("For future contact or notifications")) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="small-2 columns">
+                <h3><i class="fi-link"></i> {{ form.website.label(class_="right inline") }}</h3>
+            </div>
+            <div class="small-8 columns left">
+                {{ form.website(value=current_user.website or '', placeholder=_("Your awesome website or blog here")) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="small-2 columns">
+                <h3><i class="fi-social-twitter"></i> {{ form.twitter.label(class_="right inline") }}</h3>
+            </div>
+            <div class="small-8 columns left">
+                <div class="row collapse">
+                    <div class="small-3 columns">
+                        <span class="prefix">https://twitter.com/</span>
+                    </div>
+                    <div class="small-9 columns">
+                        {{ form.twitter(value=current_user.twitter_username or '',
+                        placeholder=_("Twitter username here (without the '@' sign)")) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="small-2 columns">
+                <h3><i class="fi-social-facebook"></i> {{ form.facebook.label(class_="right inline") }}</h3>
+            </div>
+            <div class="small-8 columns left">
+                {{ form.facebook(value=current_user.facebook_username or '',
+                placeholder=_("I know, getting your Facebook username is just too much work, so just past the URL here :) ")) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="small-2 columns">
+                <h3><i class="fi-marker"></i> {{ form.location.label(class_="right inline") }}</h3>
+            </div>
+            <div class="small-8 columns left">
+                {{ form.location(value=current_user.location or '') }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="small-2 columns">
+                <h3><i class="fi-torso-business"></i> {{ form.hireable.label(class_="right inline") }}</h3>
+            </div>
+            <div class="small-8 columns left">
+                {{ form.hireable() }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="small-2 columns">
+                <h3><i class="fi-info"></i> {{ form.bio.label(class_="right inline") }}</h3>
+            </div>
+            <div class="small-8 columns left">
+                {{ form.bio(placeholder=(_('Be honest'))) }}
+            </div>
+        </div>
+        
+        <hr>
+        
+        {{ form.submit(class_="button expand") }}
+    </form>
+</div>
+{% endblock %}

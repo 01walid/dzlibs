@@ -7,36 +7,24 @@
 {% block body %}
 
 <div class="row">
-    <!-- <div class="small-10 medium-6 large-4 columns small-centered"> -->
+
+    <div class="push"></div>
 
     <div class="row text-center">
-        <h1 class="subheader">Or</h1>
-        <a href="{{ url_for('frontend.oauth_github') }}" class="button secondary small">
+        <h1 class="subheader">{{ _('Login with github') }}</h1>
+        <h2>
+            <a href="{{ url_for('frontend.oauth_github') }}" class="button secondary large">
             <i class="fi-social-github large"></i>
-            {{ _("Sign in/up with Github") }}
-        </a>
-    </div>
-<div class="small-10 columns small-centered">
-    <div class="small-4 columns">
-        <div class="row">
-            <h2>{{ _("Sign in") }}</h2>
-            {{ render_form(url_for('frontend.login'), loginForm)}}
-        </div>
-    </div>
-    
-    <div class="small-3 columns text-center">
-        <img src="{{ '01walid@gmail.com'|gravatar }}" class="round">
+                {{ _("Sign in/up with Github") }}
+            </a>
+        </h2>
+        <h2 class="subheader">Other Logging options</h2>
+        <h5 class="subheader">Other Logging options will -maybe- available later.</h5>
+        <h5 class="subheader">However, we highly recommend logging with Github, as we wont be storing any password of yours and is developer-oriented.</h5>
+        <h5 class="subheader">if you do not have a Github account, you can register for a new one <a href="https://github.com/join">here</a>.</h5>
     </div>
 
-    <div class="small-5 columns">
-        <div class="row">
-            <h2>
-                {{ _("Register") }}<small>. {{ _("If don't have an account") }}</small>
-            </h2>        
-            {{ render_form(url_for('frontend.signup'), signupForm)}}
-        </div>
-    </div>
-</div>
+
 </div>
 {% endblock %}
 
