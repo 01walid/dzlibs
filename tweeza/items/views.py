@@ -283,21 +283,11 @@ class EditView(MethodView):
 
 @items.route('/thumbnails/<int:item_id>/<filename>')
 def serve_thumbnail(item_id, filename):
-    tmp_path = tempfile.gettempdir()
-    path = os.path.join(tmp_path, 'dzlibs', str(item_id), filename)
-    if os.path.isfile(path):
-        return send_file(path)
-
-    # else
     item = Item.objects.get(item_id=item_id)
+
     if filename == item.thumbnail.filename:
-        dzlibs_path = os.path.join(tmp_path, 'dzlibs')
-        make_dir(dzlibs_path)
-        make_dir(os.path.join(dzlibs_path, str(item_id)))
-        f = open(path, 'wb')
-        f.write(item.thumbnail.read())
-        f.close
-        return send_file(path)
+        return send_file(item.thumbnail.thumbnail,
+                         mimetype=item.thumbnail.content_type)
 
     return abort(404)
 

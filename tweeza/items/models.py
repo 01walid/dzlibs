@@ -74,7 +74,7 @@ class Item(db.Document):
 
     description = db.StringField()
 
-    thumbnail = db.ImageField(thumbnail_size=(230, 230, True))
+    thumbnail = db.ImageField(thumbnail_size=(230, 330, True))
 
     license = db.ReferenceField(License)
 
