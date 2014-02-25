@@ -90,7 +90,7 @@ def callback():
         user.email = githuber['email'] if 'email' in githuber else None
         location = githuber['location'] if 'location' in githuber else None
         user.location = location
-        name = githuber['name'] if 'name' in githuber else _('Anoymous user')
+        name = githuber['name'] if 'name' in githuber else githuber['login']
         user.name = name
 
         # required information
