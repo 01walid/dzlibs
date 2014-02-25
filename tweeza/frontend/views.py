@@ -86,12 +86,15 @@ def callback():
         return redirect(url_for('frontend.index'))
     else:
         user = User()
-        user.email = githuber['email'] or None
+        if githuber['email']:
+            user.email = githuber['email']
+
         user.github_id = githuber['id']
         user.name = githuber['name']
         user.github_username = githuber['login']
         user.oauth_token = auth.access_token
-        user.location = githuber['location']
+        if githuber['location']:
+            user.location = githuber['location']
         user.save()
 
         if login_user(user):
