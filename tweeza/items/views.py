@@ -251,27 +251,28 @@ class EditView(MethodView):
             return render_template('items/edit_item.html', form=form,
                                    item=item)
 
-        if form.files.data:  # if the user is uploading new files
+        # now, replace them with the new ones
+        uploaded_files = request.files.getlist("files")
+        new_files = []
+        for file in uploaded_files:
+            # Make the filename safe, remove unsupported chars
+            filename = secure_filename(file.filename)
+            # Check if the file is one of the allowed types/extensions
+            if file and allowed_file(filename):
+                # put the file in the ListField.
+                # see https://gist.github.com/tfausak/1299339
+                file_ = GridFSProxy()
+                file_.put(file.stream,
+                          content_type=file.mimetype,
+                          filename=filename)
+                new_files.append(file_)
+        if len(new_files) > 0:
             # delete old files first
             for file in item.files:
                 file.delete()
-
-            # now, replace them with the new ones
-            uploaded_files = request.files.getlist("files")
-            new_files = []
-            for file in uploaded_files:
-                # Make the filename safe, remove unsupported chars
-                filename = secure_filename(file.filename)
-                # Check if the file is one of the allowed types/extensions
-                if file and allowed_file(filename):
-                    # put the file in the ListField.
-                    # see https://gist.github.com/tfausak/1299339
-                    file_ = GridFSProxy()
-                    file_.put(file.stream,
-                              content_type=file.mimetype,
-                              filename=filename)
-                    new_files.append(file_)
+            # push the new one
             item.files = new_files
+
         # Save the thing
         item.save()
         flash('Item updated successfully', category='success')
