@@ -87,7 +87,11 @@ def callback():
     else:
         user = User()
         # mandatory information
-        user.email = githuber['email'] if 'email' in githuber else ''
+	email = githuber['email']
+	if not email:
+	    email = ''
+
+        user.email = email
         location = githuber['location'] if 'location' in githuber else ''
         user.location = location
         name = githuber['login']
