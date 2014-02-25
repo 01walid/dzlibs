@@ -74,7 +74,7 @@ def callback():
 
     # the "me" response
     githuber = auth.get('user').json()
-    # return jsonify(githuber)
+    user = None
     try:
         user = User.objects.get(github_id=githuber['id'])
     except User.DoesNotExist:
@@ -86,7 +86,7 @@ def callback():
         return redirect(url_for('frontend.index'))
     else:
         user = User()
-        user.email = githuber['email']
+        user.email = githuber['email'] or None
         user.github_id = githuber['id']
         user.name = githuber['name']
         user.github_username = githuber['login']

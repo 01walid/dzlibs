@@ -7,12 +7,10 @@ from users.models import User
 from models import Item, Title, Category, License
 from flask.ext.login import login_required, current_user
 from forms import AddItemForm, EditGithubItemForm, EditItemForm
-from utils import allowed_thumbnails, allowed_file, make_dir
+from utils import allowed_thumbnails, allowed_file
 from mongoengine.fields import GridFSProxy
 from extensions import cache
 import requests
-import os
-import tempfile
 
 items = Blueprint('items', __name__)
 
