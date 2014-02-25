@@ -8021,7 +8021,7 @@ textarea {
 }
 
 .short-header {
-  background: url("../images/subheader-background.jpg") no-repeat scroll 50% 50% #fa9e00;
+  background: url("../images/pattern.png") repeat scroll 50% 80% #fa8200;
   /* background: none repeat scroll 0% 0% rgb(175, 201, 8);*/
   margin-bottom: 40px;
 }
@@ -8038,7 +8038,8 @@ textarea {
 }
 
 .slogan {
-  font-weight: bold;
+  font-weight: 400;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 }
 
 footer {
