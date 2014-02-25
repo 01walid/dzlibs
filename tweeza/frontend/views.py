@@ -203,6 +203,9 @@ def contact():
 
 @frontend.route('/search/')
 def search_page():
+    query = request.args.get('q')
+    if query:
+        return redirect(url_for('frontend.search', param=query))
     return render_template('frontend/search_result.html', items=None)
 
 
@@ -210,7 +213,6 @@ def search_page():
 @frontend.route('/search/<param>')
 @cache.cached(60)
 def search(param, page=1):
-
     items = Pagination(Item.objects(titles__title__icontains=param),
                        1, 12)
     return render_template('frontend/search_result.html', items=items)
