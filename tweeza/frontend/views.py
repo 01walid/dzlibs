@@ -82,15 +82,18 @@ def callback():
 
     if user:
         login_user(user)
-        flash('Logged in as ' + githuber['name'], category='success')
+        flash(_('Logged in as ') + user.name, category='success')
         return redirect(url_for('frontend.index'))
     else:
         user = User()
         # mandatory information
-        user.email = githuber['email'] if 'email' in githuber else None
-        location = githuber['location'] if 'location' in githuber else None
+        user.email = githuber['email'] if 'email' in githuber else ''
+        location = githuber['location'] if 'location' in githuber else ''
         user.location = location
-        name = githuber['name'] if 'name' in githuber else githuber['login']
+        name = githuber['login']
+        if 'name' in githuber:
+            if githuber['name']:
+                name = githuber['name']
         user.name = name
 
         # required information
@@ -101,7 +104,8 @@ def callback():
         user.save()
 
         if login_user(user):
-            flash(_("Logged in as %s, now get a shiny profile :)" % user.name),
+            flash(_("Logged in as ") + user.name +
+                  _(" now get a shiny profile :)"),
                   category='success')
 
         return redirect(url_for('users.edit'))
