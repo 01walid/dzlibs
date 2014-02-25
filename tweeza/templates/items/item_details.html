@@ -54,18 +54,23 @@
                             <li><h5 class="subheader">{{ item.submitted_at | prettify }}</h5></li>
                         </ul>                     
                         <ul class="no-bullet inline-list user-socials">
-                            <li><a href=""><i class="fi-social-github"></i></a></li>
-                            <li><a href=""><i class="fi-social-twitter"></i></a></li>
-                            <li><a href=""><i class="fi-social-facebook"></i></a></li>
+                            <li><a href="{{ item.submitter.getGithub() }}"><i class="fi-social-github"></i></a></li>
+                            {% if item.submitter.twitter_username %}
+                                <li><a href="{{ item.submitter.getTwitter() }}"><i class="fi-social-twitter"></i></a></li>
+                            {% endif %}
+
+                            {% if item.submitter.facebook_username %}
+                                <li><a href="{{ item.submitter.getFacebook() }}"><i class="fi-social-facebook"></i></a></li>
+                            {% endif %}
                         </ul>
                         {% if item.submitter.website %}
                             <ul class="no-bullet">
-                                <li><strong>{{ _("Website") }}: </strong><a href="">{{ item.submitter.website }}</a></li>
+                                <li><strong>{{ _("Website") }}: </strong><a href="{{ item.submitter.website }}">{{ item.submitter.website }}</a></li>
                             </ul>
                         {% endif %}
                         {% if item.submitter.hireable %}
                             <p class="text-center">
-                            <span class="label success round">{{ _("This guy is free to hire!") }}</span></p>
+                            <span class="label success radius">{{ _("This guy is free to hire!") }}</span></p>
                         {% endif %}
                     </div>
                     <div class="small-3 columns">
@@ -76,16 +81,33 @@
                         </div>
                     </div>
                 </div>
+                <ul class="no-bullet">
+                    {% if item.blog_post %}
+                        <li>
+                            <span class="label secondary radius"><strong>{{ _('Heads up!') }}</strong> <a href="{{ item.blog_post}}" target="_blank">{{ _('This item has a blog post!') }}</a></span>
+                        </li>
+                    {% endif %}
+
+                    {% if item.has_api %}
+                        <li>
+                            <span class="label secondary radius"><strong>{{ _('Cool!') }}</strong> <a href="{{ item.api_url }}" target="_blank">{{ _('This item has api!') }}</a></span>
+                        </li>
+                    {% endif %}
+                </ul>
 
                 {% if item.github %}
                     <h3 class="items_details_title"><i class="fi-info"></i> {{ _("Item information") }}:</h3>
                     <ul class="no-bullet">
                         <li><a href="{{ item.github }}" target="_blank" class="button secondary expand"><i class="fi-social-github"></i> {{ _("Item repository on Github") }}</a></li>
+
+                        <h6><strong>{{ _('License') }}:</strong> {{ _("see the license file in the repository or read it in the README file (if it's there!)") }}</h6>
+
                         <li><strong>{{ _("Clone it: ") }}</strong></li>
                         <li><input type="text" value="{{ clone_string }}" readonly></li>
                         <li><a href="{{ zip_link }}" class="button expand"><i class="fi-download"></i> {{ _("Download") }}</a></li>
                     </ul>
                 {% else %}
+                    <h5 class="items_details_title">{{ _('License') }}: <a href="{{ item.license.link }}" target="_blank">{{ item.license.name }}</a></h5>
                     <h3 class="items_details_title"><i class="fi-folder"></i> {{ _("Item files") }}:</h3>
                     <hr>
                     <ul class="no-bullet">

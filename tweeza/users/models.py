@@ -13,7 +13,7 @@ class User(db.Document):
 
     is_admin = db.BooleanField(default=False)
 
-    email = db.EmailField(unique=True)
+    email = db.StringField()
 
     name = db.StringField(max_length=50)
 

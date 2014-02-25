@@ -28,7 +28,7 @@
                 <h3><i class="fi-mail"></i> {{ form.email.label(class_="right inline") }}</h3>
             </div>
             <div class="small-8 columns left">
-                {{ form.email(value=current_user.email or '', placeholder=_("For future contact or notifications")) }}
+                {{ form.email(value=current_user.email or '', placeholder=_("Won't be published, just for future contact or notifications")) }}
             </div>
         </div>
 
