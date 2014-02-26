@@ -34,7 +34,12 @@ class Category(db.DynamicDocument):
 
     def get_name(self, lang):
         # make this better, latter
-        return eval('self.name_%s' % lang) or 'Unknown'
+        if lang == 'en':
+            return self.name_en
+        elif lang == 'ar':
+            return self.name_ar
+        else:
+            return self.name_fr
 
 
 class License(db.DynamicDocument):

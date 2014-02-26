@@ -11,8 +11,17 @@ from datetime import datetime
 
 ALLOWED_THUMBNAILS = set(['png', 'jpg', 'jpeg', 'gif'])
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'zip',
-                          'doc', 'docx', 'php', 'gzip', 'rar', 'java',
-                          'python'])
+                          'doc', 'docx', 'php', 'gzip', 'rar', 'java', 'h',
+                          'py', 'db', 'latex', 'tex', 'sty', 'c', 'cpp', 'rb',
+                          'tar.gz', 'csharp', 'md', 'rst', 'cs', 'vb', 'js',
+                          'css', 'sass', 'scss', 'less', 'xml', 'xsd', 'html',
+                          'xhtml', 'htm', 'dll', 'ico', 'resx', 'bmp', 'svg',
+                          'psd', 'ai', '7z', 'jar', 'tar', 'go', 'ttf', 'tiff',
+                          'dot', 'dotx', 'docm', 'dotm', 'json', 'xls', 'xlsm',
+                          'xlt', 'xlsx', 'xltx', 'ppt', 'pot', 'pps', 'pptx',
+                          'pptm', 'potx', 'ppsx', 'ppsm', 'database', 'ACCDB',
+                          'ACCDE', 'ACCDT', 'ACCDR'
+                          ])
 # Form validation
 
 USERNAME_LEN_MIN = 4
