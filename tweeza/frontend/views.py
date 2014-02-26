@@ -167,9 +167,6 @@ def user_items(param, page=1):
     user = User.objects.get_or_404(user_id=param)
     items = Pagination(Item.objects(submitter=user), page, 12)
 
-    if len(items.items) == 0:
-        return abort(404)
-
     return render_template('frontend/user_items.html',
                            items=items,
                            user=user)
