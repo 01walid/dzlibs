@@ -88,8 +88,10 @@ def callback():
         user = User()
 
         # mandatory information
-        email = githuber['email']
-        if not email:
+	email = ''
+        try:
+            email = githuber['email']
+        except KeyError:
             email = ''
 
         user.email = email

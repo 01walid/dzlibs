@@ -16,7 +16,6 @@ items = Blueprint('items', __name__)
 
 
 class ListView(MethodView):
-    decorators = [cache.cached(60)]
 
     def get(self, page=1):
         items = Item.objects.paginate(page=page, per_page=12)

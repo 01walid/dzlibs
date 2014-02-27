@@ -6,7 +6,7 @@
                 <a href="{{ url_for('items.detail', item_id=item.item_id) }}">
                 <hgroup>
                     <h5>{{ item.titles | what_title}}</h5>
-                    <h6 class="subheader">{{ item.submitted_at | prettify }} <em>{{_("in") }} </em>{{ item.category.get_name(g.lang) }}</h6>
+                    <h6 class="subheader">{{ item.submitted_at | prettify }} <em>{{_("in") }} </em>{{ item.category.name_en }}</h6>
                 </hgroup>
                 </a>
             </div>
