@@ -48,11 +48,10 @@
 
     {{ render_items_listing(items) }}
 
-    {% if items.count() > 12 %}
-        <div class="row">
-            <a href="{{ url_for('items.paginate', page=1) }}" class="button secondary expand">{{ _('Explore more') }}</a>
-        </div>
-    {% endif %}
+
+    <div class="row">
+        <a href="{{ url_for('items.paginate', page=1) }}" class="button secondary expand">{{ _('Explore more') }}</a>
+    </div>
 
 
     <div id="tweezaModal" class="reveal-modal small" data-reveal>
