@@ -94,7 +94,7 @@ def callback():
         except KeyError:
             email = ''
 
-        user.email = email
+        user.email = email or ''
         location = githuber['location'] if 'location' in githuber else ''
         user.location = location
         name = githuber['login']
