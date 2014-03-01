@@ -18,7 +18,16 @@ These are **just examples**, what we can do and share is countless. we just need
 
 Before walking through the following steps, please make sure you have [MongoDB](http://www.mongodb.org/) installed on your system.
 
-It's highly recommended to install [Pip](https://pypi.python.org/pypi/pip) then [Virtual env](https://pypi.python.org/pypi/virtualenv) 
+Start mongodb as a service/daemon, for Ubuntu:
+`[sudo] service mongodb start`
+
+For systemd-based distributions:
+`[sudo] systemctl start mongodb`
+
+If you want it to be started automatically after system reboot:
+`[sudo] systemctl enable mongodb`
+
+Then, it's highly recommended to install [Pip](https://pypi.python.org/pypi/pip) then [Virtual env](https://pypi.python.org/pypi/virtualenv) 
 first, respectively.
 
 For Pip under Ubuntu, try: `apt-get install python-pip` or search the web in case the name of the package has changed. Make sure that the pip package is for Python2 not Python3.
@@ -55,11 +64,14 @@ If all goes well, you should see something like this in your Terminal:
 
 Then open the following URL in your browser to test the app: http://127.0.0.1:5000.
 
-Exit by `<CTRL> + <C>`.
+Now, customize the config file to your needs:
+* under the `tweeza/instance` folder, copy `example.cfg` to `config.cfg`
+* [create new Github app](https://github.com/settings/applications/new) for Oauth with github. set its callback URL to `http://127.0.0.1:5000/callback`
+* back to the `config.cfg` file you copied under `tweeza/instance`, past you Github consumer key and consumer secret there, edit your email config and whatever fits you better (caching ..etc).
 
-Exit the virtual Python environment, type:`deactivate`.
+That's it! if you want to stop the app, press `<CTRL> + <C>`.
 
-Check the config file in `instance/example.cfg` modify it to your custom environment, rename it to `config.cfg` or `production.cfg`.
+To exit the virtual Python environment, type:`deactivate`.
 
 # Technical information
 
