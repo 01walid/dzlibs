@@ -64,14 +64,13 @@ If all goes well, you should see something like this in your Terminal:
 
 Then open the following URL in your browser to test the app: http://127.0.0.1:5000.
 
-Now, customize the config file to your needs:
+Now, follow these steps if you want customize the config file to your needs:
 * under the `tweeza/instance` folder, copy `example.cfg` to `config.cfg`
 * [create new Github app](https://github.com/settings/applications/new) for Oauth with github. set its callback URL to `http://127.0.0.1:5000/callback`
 * back to the `config.cfg` file you copied under `tweeza/instance`, past you Github consumer key and consumer secret there, edit your email config and whatever fits you better (caching ..etc).
+* restart the app to read the new `condig.cfg` file
 
-That's it! if you want to stop the app, press `<CTRL> + <C>`.
-
-To exit the virtual Python environment, type:`deactivate`.
+That's it! to exit the virtual Python environment, type:`deactivate`.
 
 # Technical information
 
@@ -105,6 +104,7 @@ To exit the virtual Python environment, type:`deactivate`.
 │   ├── static # everything static (js/css/images..)
 │   │   ├── bower.json
 │   │   ├── images
+│   │   ├── css
 │   │   ├── js
 │   │   ├── scss # where the SASS files reside
 │   │   └── vendors # third-party js libraries, like jQuery, Modernizr... etc
@@ -112,8 +112,7 @@ To exit the virtual Python environment, type:`deactivate`.
 │   ├── tests # the test suite for Tweeza
 │   ├── translations # generated and compiled translations
 │   ├── utils.py # useful functions and/or classes goes here
-│   ├── manage.py # some useful automated scripts for the app
-.   .
+│   └── manage.py # some useful automated scripts for the app
 .
 ```
 
@@ -148,7 +147,3 @@ In short you have the right to:
 * Copy, Distribute, Modify, as long as you're giving the source code under the same license.
 * Private use (e.g. using this web app inside your company or organization for managing its reusable items there) without revealing the source of your custom code you've added. You can as well make profit of it.
 * Any public distribution (like another website other than dzlibs.io) has to give the added source code.
-
-
-
-
