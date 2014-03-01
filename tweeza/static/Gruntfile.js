@@ -1,27 +1,24 @@
-'use strict';
-
-module.exports = function(grunt) {
-
+module.exports = function(grunt){
+	
 	grunt.initConfig({
-		compass:{
-			dist:{
-				options:{
-					sassDir:'sass',
-					cssDir: 'css',
-					outputStyle: 'compressed'
+		compass: {
+			dist: {
+				options: {
+					config: 'config.rb'
 				}
 			}
 		},
 
 		watch:{
 			compass:{
-				files:[ 'sass/**/*.scss' ],
-				tasks:[ 'compass' ]
+				files:['scss/**/*.scss'],
+				tasks:['compass']
 			}
 		}
 	});
 
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-contrib-imagemin');
 	grunt.loadNpmTasks('grunt-contrib-compass');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+
+	grunt.registerTask('default', ['watch']);
 };
