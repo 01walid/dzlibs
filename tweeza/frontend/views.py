@@ -88,7 +88,7 @@ def callback():
         user = User()
 
         # mandatory information
-	email = ''
+        email = ''
         try:
             email = githuber['email']
         except KeyError:
@@ -184,10 +184,10 @@ def contact():
 
             name = form.name.data.strip()
             email = form.email.data.strip()
-            subject = form.subject.data.strip()
+            subject = "[dzlibs.io] %s" % form.subject.data.strip()
             message = form.message.data.strip()
 
-            msg = Message(subject, sender=email,
+            msg = Message(subject, sender=app.config['ADMINS'][0],
                           recipients=app.config['ADMINS'])
             msg.body = """
             From: %s <%s>
