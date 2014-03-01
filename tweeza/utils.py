@@ -10,47 +10,13 @@ import os
 from datetime import datetime
 
 ALLOWED_THUMBNAILS = set(['png', 'jpg', 'jpeg', 'gif'])
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'zip',
-                          'doc', 'docx', 'php', 'gzip', 'rar', 'java', 'h',
-                          'py', 'db', 'latex', 'tex', 'sty', 'c', 'cpp', 'rb',
-                          'tar.gz', 'csharp', 'md', 'rst', 'cs', 'vb', 'js',
-                          'css', 'sass', 'scss', 'less', 'xml', 'xsd', 'html',
-                          'xhtml', 'htm', 'dll', 'ico', 'resx', 'bmp', 'svg',
-                          'psd', 'ai', '7z', 'jar', 'tar', 'go', 'ttf', 'tiff',
-                          'dot', 'dotx', 'docm', 'dotm', 'json', 'xls', 'xlsm',
-                          'xlt', 'xlsx', 'xltx', 'ppt', 'pot', 'pps', 'pptx',
-                          'pptm', 'potx', 'ppsx', 'ppsm', 'database', 'ACCDB',
-                          'ACCDE', 'ACCDT', 'ACCDR'
-                          ])
+
+DISALLOWED_EXTENSIONS = set(['exe'])  # only exe for now to prevent viruses
+
 # Form validation
-
-USERNAME_LEN_MIN = 4
-USERNAME_LEN_MAX = 25
-
-REALNAME_LEN_MIN = 4
-REALNAME_LEN_MAX = 25
 
 PASSWORD_LEN_MIN = 6
 PASSWORD_LEN_MAX = 16
-
-AGE_MIN = 1
-AGE_MAX = 300
-
-DEPOSIT_MIN = 0.00
-DEPOSIT_MAX = 9999999999.99
-
-# Sex type.
-MALE = 1
-FEMALE = 2
-OTHER = 9
-SEX_TYPE = {
-    MALE: u'Male',
-    FEMALE: u'Female',
-    OTHER: u'Other',
-}
-
-# Model
-STRING_LEN = 64
 
 
 def get_current_time():
@@ -69,8 +35,7 @@ def allowed_thumbnails(filename):
 
 # For a given file, return whether it's an allowed type or not
 def allowed_file(filename):
-    return '.' in filename and \
-        filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+    return filename.split('.')[-1].lower() not in DISALLOWED_EXTENSIONS
 
 
 def id_generator(size=10, chars=string.ascii_letters + string.digits):
