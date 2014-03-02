@@ -18,7 +18,8 @@ These are **just examples**, what we can do and share is countless. we just need
 
 Before walking through the following steps, please make sure you have [MongoDB](http://www.mongodb.org/) installed on your system.
 
-Start mongodb as a service/daemon, for Ubuntu:
+Start mongodb as a service/daemon: 
+### For Ubuntu:
 
 `[sudo] service mongodb start`
 
@@ -29,6 +30,24 @@ For systemd-based distributions:
 If you want it to be started automatically after system reboot:
 
 `[sudo] systemctl enable mongodb`
+
+### For Mac
+
+You need to install MongoDB first, and then start it. Just folow these steps:
+
+```bash
+# Install HomeBrew, further information at: http://brew.sh/
+$ ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+# After finishing, install mongodb
+$ brew install mongodb
+# After that, do some configuration...
+$ [sudo] mkdir -p /data/db
+$ [sudo] chown `id -u` /data/db
+# Now, everything is ok. Start MongoDB with:
+$ mongod
+```
+
+
 
 Then, it's highly recommended to install [Pip](https://pypi.python.org/pypi/pip) then [Virtual env](https://pypi.python.org/pypi/virtualenv) 
 first, respectively.
