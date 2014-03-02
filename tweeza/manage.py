@@ -73,9 +73,6 @@ def setup():
 
     from items.models import Category, License
 
-    # create categories
-    Category.objects.delete()
-
     assets = Category()
     assets.name_fr = 'Resources'
     assets.name_ar = u'مصادر'

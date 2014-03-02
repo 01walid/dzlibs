@@ -19,12 +19,15 @@ These are **just examples**, what we can do and share is countless. we just need
 Before walking through the following steps, please make sure you have [MongoDB](http://www.mongodb.org/) installed on your system.
 
 Start mongodb as a service/daemon, for Ubuntu:
+
 `[sudo] service mongodb start`
 
 For systemd-based distributions:
+
 `[sudo] systemctl start mongodb`
 
 If you want it to be started automatically after system reboot:
+
 `[sudo] systemctl enable mongodb`
 
 Then, it's highly recommended to install [Pip](https://pypi.python.org/pypi/pip) then [Virtual env](https://pypi.python.org/pypi/virtualenv) 
