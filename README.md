@@ -71,6 +71,15 @@ Now, follow these steps if you want customize the config file to your needs:
 * restart the app to read the new `condig.cfg` file
 
 That's it! to exit the virtual Python environment, type:`deactivate`.
+### automating frontend tasks with Grunt
+
+```bash
+$ cd tweeza/static # all frontend dependencies are here
+ # first install grunt dependencies
+$ npm install
+# then run grunt with the:
+$ grunt
+```
 
 # Technical information
 
@@ -131,7 +140,6 @@ Soon. but if you really want to, be sure to write a [PEP](http://www.python.org/
 
 # TODO
 
-- ☐ Automate the frontend development with Grunt.
 - ☐ The APIs part (I'm considering the use of [python-eve](http://python-eve.org/), please tell me if you have a better suggestion on how to design the APIs).
 - ☐ Docs/Wiki (coming soon).
 
