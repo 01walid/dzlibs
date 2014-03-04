@@ -1,11 +1,11 @@
 {% extends 'layouts/base.html' %}
 
-{% set page_title = _("Item details") %}
+{% set page_title = item.titles | what_title | capitalize %}
 
 {% block body %}
     
     <div class="row">
-        <h2>{{ page_title }}</h2>
+        <h2>{{ _('Item details') }}</h2>
         <hr>
 
         <div class="row">
@@ -77,12 +77,13 @@
                             {% if item.submitter.facebook_username %}
                                 <li><a href="{{ item.submitter.getFacebook() }}"><i class="fi-social-facebook"></i></a></li>
                             {% endif %}
+
+                            {% if item.submitter.website %}
+                                <li><a title="{{ _("Submitter website") }}" href="{{ item.submitter.website }}"><i class="fi-link"></i></li>
+                            {% endif %}
+
                         </ul>
-                        {% if item.submitter.website %}
-                            <ul class="no-bullet">
-                                <li><strong>{{ _("Website") }}: </strong><a href="{{ item.submitter.website }}">{{ item.submitter.website }}</a></li>
-                            </ul>
-                        {% endif %}
+
                         {% if item.submitter.hireable %}
                             <p class="text-center">
                             <span class="label success radius">{{ _("This guy is free to hire!") }}</span></p>
@@ -111,6 +112,14 @@
                 </ul>
 
                 {% if item.github %}
+                    <hr>
+                    <p class="text-center">
+                        <iframe src="http://ghbtns.com/github-btn.html?user={{ user }}&repo={{ repo_name }}&type=watch&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="120" height="30">
+                        </iframe>
+
+                        <iframe src="http://ghbtns.com/github-btn.html?user={{ user }}&repo={{ repo_name }}&type=fork&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="120" height="30">
+                        </iframe>
+                    </p>
                     <h3 class="items_details_title"><i class="fi-info"></i> {{ _("Item information") }}:</h3>
                     <ul class="no-bullet">
                         <li><a href="{{ item.github }}" target="_blank" class="button secondary expand"><i class="fi-social-github"></i> {{ _("Item repository on Github") }}</a></li>

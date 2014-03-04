@@ -4,9 +4,9 @@ from flask import (Blueprint, request, render_template, flash,
 from werkzeug import secure_filename
 from flask.views import MethodView
 from users.models import User
-from models import Item, Title, Category, License
+from items.models import Item, Title, Category, License
 from flask.ext.login import login_required, current_user
-from forms import AddItemForm, EditGithubItemForm, EditItemForm
+from items.forms import AddItemForm, EditGithubItemForm, EditItemForm
 from utils import allowed_thumbnails, allowed_file
 from mongoengine.fields import GridFSProxy
 from extensions import cache
@@ -45,8 +45,8 @@ class DetailView(MethodView):
             clone_string = 'git clone https://github.com/%s/%s.git' \
                            % (user, repo_name)
             return render_template('items/item_details.html', item=item,
-                                   content=description.text,
-                                   zip_link=zip_link,
+                                   content=description.text, user=user,
+                                   zip_link=zip_link, repo_name=repo_name,
                                    clone_string=clone_string)
         return render_template('items/item_details.html', item=item)
 
