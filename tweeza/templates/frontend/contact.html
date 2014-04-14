@@ -72,6 +72,24 @@
                 {% endif %}
             </div>
         </div>
+
+        <div class="row">
+            <div class="small-2 columns">
+                <h3>
+                    <i class="fi-info"></i>
+                    <label class="right inline" for="recaptcha">{{ _('Are you human?') }}</label>
+                </h3>
+            </div>
+            <div class="small-8 columns left">
+                {{ form.recaptcha }}
+
+                {% if form.recaptcha.errors -%}
+                    {% for error in form.recaptcha.errors -%}
+                        <span class="help-block error">{{ error }}</span>
+                    {%- endfor %}
+                {% endif %}
+            </div>
+        </div>
         
         <hr>
         

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from flask.ext.wtf import Form
+from flask.ext.wtf import Form, RecaptchaField
 from wtforms import TextField, TextAreaField, SubmitField
 from wtforms.validators import Required
 from flask.ext.wtf.html5 import EmailField
@@ -17,5 +17,7 @@ class ContactForm(Form):
                        description=u"What's your email address?")
 
     message = TextAreaField(_('Message'), validators=[Required()])
+
+    recaptcha = RecaptchaField()
 
     submit = SubmitField(u'Send')
