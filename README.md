@@ -47,9 +47,9 @@ $ [sudo] chown `id -u` /data/db
 $ mongod
 ```
 
+### Then
 
-
-Then, it's highly recommended to install [Pip](https://pypi.python.org/pypi/pip) then [Virtual env](https://pypi.python.org/pypi/virtualenv) 
+it's highly recommended to install [Pip](https://pypi.python.org/pypi/pip) then [Virtual env](https://pypi.python.org/pypi/virtualenv) 
 first, respectively.
 
 For Pip under Ubuntu, try: `apt-get install python-pip` or search the web in case the name of the package has changed. Make sure that the pip package is for Python2 not Python3.
