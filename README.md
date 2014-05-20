@@ -46,6 +46,15 @@ $ [sudo] chown `id -u` /data/db
 # Now, everything is ok. Start MongoDB with:
 $ mongod
 ```
+### For Windows:
+
+Download MongoDB for Windows and extract the downloaded file to `C:\MongoDB`, then Create data directory `C:\MongoDB\DATA` to store all data of MongoDB and create a `StartMongoDB.bat` file in `C:\MongoDB\bin` contains this line:
+
+`C:\MongoDB\bin\mongod.exe --dbpath "C:\MongoDB\DATA"`
+
+Now, you can run that batch file to Start mongodb.
+
+To install **tweeza** in windows, please make sure you have [GCC-MinGW](https://github.com/develersrl/gccwinbinaries) installed on your system.
 
 ### Then
 
@@ -75,6 +84,13 @@ $ cd tweeza
 # setup initial categories and licenses
 $ python manage.py setup
 $ python manage.py runserver
+```
+
+If you are using Windows edit (create if not existing) `distutils.cfg` file located at `ENV_DIR\Lib\distutils\distutils.cfg` to be : 
+
+```
+[build]
+compiler=mingw32
 ```
 
 If all goes well, you should see something like this in your Terminal:
