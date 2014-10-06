@@ -3,178 +3,147 @@
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-01-05 21:21+0100\n"
-"PO-Revision-Date: 2014-01-05 21:23+0100\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2014-10-06 11:20+0100\n"
+"PO-Revision-Date: 2014-10-06 14:23+0100\n"
+"Last-Translator: Walid ZIOUCHE <01walid@gmail.com>\n"
 "Language-Team: fr <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
+"Language: fr\n"
+"X-Generator: Poedit 1.6.9\n"
 
-#: utils.py:68
-msgid "just now"
-msgstr "seulement maintenant"
+#: app.py:173
+msgid "No title!"
+msgstr "Pas de titre!"
 
-#: utils.py:82
-#, python-format
-msgid "%(num)s year"
-msgid_plural "%(num)s years"
-msgstr[0] ""
-msgstr[1] "%(num)s an"
-msgstr[2] "%(num)s ans"
+#: frontend/forms.py:12 templates/users/user_profile.html:10
+msgid "Name"
+msgstr "Nom"
 
-#: utils.py:83
-#, python-format
-msgid "%(num)s month"
-msgid_plural "%(num)s months"
-msgstr[0] ""
-msgstr[1] "%(num)s mois"
+#: frontend/forms.py:14
+msgid "Subject"
+msgstr "Sujet"
 
-#: utils.py:84
-#, python-format
-msgid "%(num)s week"
-msgid_plural "%(num)s weeks"
-msgstr[0] ""
-msgstr[1] "une semaine"
-msgstr[2] "%(num)s semaines"
+#: frontend/forms.py:16 users/forms.py:21
+msgid "Email"
+msgstr "Email"
 
-#: utils.py:85
-#, python-format
-msgid "%(num)s day"
-msgid_plural "%(num)s days"
-msgstr[0] ""
-msgstr[1] "%(num)s jour"
-msgstr[2] "%(num)s jours"
+#: frontend/forms.py:19
+msgid "Message"
+msgstr "Message"
 
-#: utils.py:86
-#, python-format
-msgid "%(num)s hour"
-msgid_plural "%(num)s hours"
-msgstr[0] ""
-msgstr[1] "une heure"
-msgstr[2] "%(num)s heures"
+#: frontend/views.py:85 frontend/views.py:114
+msgid "Logged in as "
+msgstr "Connecté en tant que"
 
-#: utils.py:87
-#, python-format
-msgid "%(num)s minute"
-msgid_plural "%(num)s minutes"
-msgstr[0] ""
-msgstr[1] "une minute"
-msgstr[2] "%(num)s minutes"
-
-#: utils.py:88
-#, python-format
-msgid "%(num)s second"
-msgid_plural "%(num)s seconds"
-msgstr[0] ""
-msgstr[1] "une seconde"
-msgstr[2] "%(num)s secondes"
-
-#: utils.py:93
-#, python-format
-msgid "%(period)s ago"
-msgstr "depuis %(period)s"
-
-#: frontend/views.py:103 frontend/views.py:129
-msgid "Logged in"
-msgstr "Connecté"
-
-#: frontend/views.py:132
-msgid "Sorry, invalid password"
-msgstr "Désolé, ce mot de passe n'est pas valide"
+#: frontend/views.py:115
+msgid " now get a shiny profile :)"
+msgstr ""
 
 #: frontend/views.py:134
-msgid "Sorry, incorrect email!"
-msgstr "Désolé, cet email n'est pas valide"
-
-#: frontend/views.py:145
 msgid "Logged out"
-msgstr "Déconnecté"
+msgstr ""
 
-#: items/forms.py:14
-msgid "Remote repository URL"
-msgstr "URL de la remote repository"
+#: frontend/views.py:199
+msgid "Message sent successfully"
+msgstr ""
 
-#: items/forms.py:16
-msgid "Item title in Arabic"
-msgstr "Titre de l'article en Arabe"
+#: frontend/views.py:202 users/views.py:43
+msgid "Error happened, see below"
+msgstr "Erreur survenue, voir ci-dessous"
+
+#: items/forms.py:15
+msgid "Blog post URL"
+msgstr ""
 
 #: items/forms.py:17
-msgid "Item title in English"
-msgstr "Titre de l'article en Anglais"
+msgid "Item title in Arabic"
+msgstr ""
 
 #: items/forms.py:18
-msgid "Item title in French"
-msgstr "Titre de l'article en Français"
+msgid "Item title in English"
+msgstr ""
 
-#: items/forms.py:20
-msgid "Short description in Arabic"
-msgstr "Description succincte en Arabe"
+#: items/forms.py:19
+msgid "Item title in French"
+msgstr ""
 
 #: items/forms.py:21
-msgid "Short description in English"
-msgstr "Description succincte en Anglais"
-
-#: items/forms.py:22
-msgid "Short description in French"
-msgstr "Description succincte en Français"
-
-#: items/forms.py:24
-msgid "Long description"
-msgstr "Longue description"
-
-#: items/forms.py:25 items/forms.py:28
 msgid "Thumbnail (minimum dimensions 230x230)"
-msgstr "Miniature (dimension minimale 230x230)"
+msgstr ""
 
-#: items/forms.py:31
+#: items/forms.py:23 templates/items/item_details.html:18
 msgid "Tags"
-msgstr "Etiquettes"
+msgstr "Mots clés"
 
-#: items/forms.py:33 templates/items/add_item.html:5
-#: templates/layouts/base.html:67
+#: items/forms.py:25
+msgid "Category"
+msgstr "Catégorie"
+
+#: items/forms.py:37 items/forms.py:56
+msgid "Remote repository URL"
+msgstr ""
+
+#: items/forms.py:38 items/forms.py:65
+msgid "Description"
+msgstr "Description"
+
+#: items/forms.py:40 items/forms.py:63
+msgid "Files"
+msgstr "Fichiers"
+
+#: items/forms.py:42 items/forms.py:67 templates/items/item_details.html:127
+#: templates/items/item_details.html:134
+msgid "License"
+msgstr "Licence"
+
+#: items/forms.py:44 templates/items/add_item.html:5
+#: templates/layouts/base.html:81
 msgid "Add item"
-msgstr "Ajouter un article"
+msgstr "Ajouter un item"
+
+#: items/forms.py:58 items/forms.py:69
+msgid "Update"
+msgstr "Mettre à jour"
 
 #: templates/errors/forbidden_page.html:3
 msgid "Forbidden page"
-msgstr "Accès à la page interdit"
+msgstr ""
 
 #: templates/errors/forbidden_page.html:7
 msgid "Forbidden Page"
-msgstr "Accès à la page interdit"
+msgstr ""
 
 #: templates/errors/forbidden_page.html:9
 msgid "You shall NOT pass!"
 msgstr "Vous NE pouvez PAS passer!"
 
 #: templates/errors/forbidden_page.html:10
-#: templates/errors/page_not_found.html:27
 msgid "It looks like this was the result of either:"
 msgstr ""
 
 #: templates/errors/forbidden_page.html:12
 msgid "no permission"
-msgstr "Pas de permission"
+msgstr "pas de permission"
 
-#: templates/errors/layout.html:6 templates/layouts/base.html:6
+#: templates/errors/layout.html:6
 msgid "DzLibs Project"
 msgstr "Projet DzLibs"
 
-#: templates/errors/layout.html:8 templates/layouts/base.html:8
+#: templates/errors/layout.html:8 templates/layouts/base.html:9
 msgid "The Algerian index of reusable resources and librairies"
-msgstr "L'index Algérien des ressources et librairies réutilisables"
+msgstr ""
 
 #: templates/errors/page_not_found.html:3
 msgid "Page not found"
-msgstr "Page non trouvée"
+msgstr "Page introuvable"
 
 #: templates/errors/page_not_found.html:7
 msgid "Bachee"
@@ -182,19 +151,19 @@ msgstr "Bâchée"
 
 #: templates/errors/page_not_found.html:8
 msgid "Not found"
-msgstr "Non trouvé"
+msgstr "Page introuvable"
 
 #: templates/errors/page_not_found.html:11
-msgid "Look underneath, you may find something:"
-msgstr "Regarder en dessous, vous pourriez trouver quelque chose:"
+msgid "Look underneath ya Kho, you may find something:"
+msgstr "Regardez en dessous ya Kho, vous pourriez trouver quelque chose:"
 
-#: templates/errors/page_not_found.html:30
-msgid "a mistyped address"
-msgstr ""
+#: templates/errors/page_not_found.html:19 templates/layouts/base.html:67
+msgid "search for an item here..."
+msgstr "rechercher un item ici..."
 
-#: templates/errors/page_not_found.html:31
-msgid "an out-of-date link"
-msgstr "un lien obselète"
+#: templates/errors/page_not_found.html:22 templates/layouts/base.html:70
+msgid "Go"
+msgstr "Go"
 
 #: templates/errors/server_error.html:3
 msgid "Server error"
@@ -208,166 +177,446 @@ msgstr "Erreur du serveur"
 msgid "Inner peacer..."
 msgstr ""
 
+#: templates/frontend/about.html:3 templates/layouts/base.html:54
+msgid "About"
+msgstr "À propos"
+
+#: templates/frontend/about.html:10
+msgid "About DzLibs project"
+msgstr "À propos le projet DzLibs"
+
+#: templates/frontend/category_listing.html:4
+msgid "Categories"
+msgstr "Catégories"
+
+#: templates/frontend/category_listing.html:11
+msgid "No items shared in this category, yet."
+msgstr "Pas encore d'items partagés dans cette catégorie."
+
+#: templates/frontend/contact.html:3
+msgid "Contact us"
+msgstr "Contactez-nous"
+
+#: templates/frontend/contact.html:11
+msgid "Note"
+msgstr "Remarque"
+
+#: templates/frontend/contact.html:11
+msgid ""
+"For bug reports / feature requests, please open up a <a href='https://github."
+"com/01walid/dzlibs/issues/new'>new issue</a> on github instead."
+msgstr ""
+
+#: templates/frontend/contact.html:36
+msgid "To get back to you"
+msgstr ""
+
+#: templates/frontend/contact.html:80
+msgid "Are you human?"
+msgstr "Êtes-vous humain?"
+
 #: templates/frontend/create_profile.html:10
 msgid "One more step, and you're done!"
-msgstr "Une dernière étape et c'est fini!"
+msgstr ""
 
-#: templates/frontend/index.html:3
+#: templates/frontend/index.html:4
 msgid "Home"
 msgstr "Accueil"
 
-#: templates/frontend/index.html:14
+#: templates/frontend/index.html:15
 msgid "The Algerian index of reusable assets and libraries"
 msgstr "L'index Algérien des ressources et librairies réutilisables"
 
-#: templates/frontend/index.html:22
-msgid "ara"
-msgstr ""
+#: templates/frontend/index.html:17
+msgid "That is made  of two parts"
+msgstr "Constitué de deux parties"
+
+#: templates/frontend/index.html:23
+msgid "api"
+msgstr "api"
 
 #: templates/frontend/index.html:24
+msgid "&amp;"
+msgstr "&amp;"
+
+#: templates/frontend/index.html:25
 msgid "tweeza"
+msgstr "twiza"
+
+#: templates/frontend/index.html:53
+msgid "Explore more"
+msgstr "Explorer davantage"
+
+#: templates/frontend/index.html:58
+msgid "Well, you're already in the <strong>Tweeza</strong> part :)"
 msgstr ""
 
-#: templates/frontend/login.html:3 templates/frontend/login.html:22
+#: templates/frontend/index.html:59
+msgid ""
+"So, let's define sharing items here, as <code>tweezing</code>, the "
+"remarkable Algerian tradition our ancestors did <i class='fi-heart'></i> So "
+"why not, we, developers/designers, do the same? online!"
+msgstr ""
+
+#: templates/frontend/index.html:60
+msgid "Confused? you may check the"
+msgstr "Confus? vous pouvez consulter"
+
+#: templates/frontend/index.html:60
+msgid "about page"
+msgstr "la page \"à propos\""
+
+#: templates/frontend/index.html:60
+msgid "then..."
+msgstr "alors..."
+
+#: templates/frontend/index.html:62 templates/items/item_details.html:109
+msgid "Cool!"
+msgstr ""
+
+#: templates/frontend/login.html:3
 msgid "Sign in"
-msgstr "Se connecter"
-
-#: templates/frontend/login.html:16
-msgid "Sign in/up with Github"
-msgstr "se connecter avec Github"
-
-#: templates/frontend/login.html:34
-msgid "Register"
-msgstr "S'inscrire"
-
-#: templates/frontend/login.html:34
-msgid "If don't have an account"
-msgstr "Je n'ai pas de compte"
-
-#: templates/frontend/search.html:6
-#, python-format
-msgid "Search results for \"%(keywords)s\""
-msgstr "Résultats de la recherche pour \"%(keywords)s\""
-
-#: templates/frontend/search.html:8
-msgid "Keywords needed!"
-msgstr "Entrer un ou plusieurs mots clés"
-
-#: templates/frontend/search.html:13
-#, python-format
-msgid ""
-"<strong>%(total)s</strong> found for your search "
-"\"<strong>%(keywords)s</strong>\"."
-msgstr[0] ""
-msgstr[1] ""
-"<strong>%(total)s</strong> résultat trouvé pour votre recherche "
-"\"<strong>%(keywords)s</strong>\"."
-msgstr[2] ""
-"<strong>%(total)s</strong> résultats trouvés pour votre recherche "
-"\"<strong>%(keywords)s</strong>\"."
-
-#: templates/frontend/search.html:17
-#, python-format
-msgid "Sorry, Nothing found for your search \"<strong>%(keywords)s</strong>\"."
-msgstr "Désolé, aucun résultat trouvé pour votre recherche \"<strong>%(keywords)s</strong>\"."
-
-#: templates/frontend/search.html:18
-msgid ""
-"\n"
-"    <p>Suggestions:</p>\n"
-"    <ul>\n"
-"       <li>Make sure all words are spelled correctly.</li>\n"
-"       <li>Try different keywords.</li>\n"
-"       <li>Try more general keywords.</li>\n"
-"    </ul>\n"
-"    "
 msgstr ""
-"\n"
-"    <p>Suggestions:</p>\n"
-"    <ul>\n"
-"       <li>Vérifier l'orthographe des mots.</li>\n"
-"       <li>Essayer d'autres mots clés.</li>\n"
-"       <li>Essayer des mots clès plus génériques.</li>\n"
-"    </ul>\n"
-"    "
 
-#: templates/items/add_item.html:31
-msgid "Item thumbnail will appear here"
-msgstr "La miniature de l'article apparaîtra ici"
+#: templates/frontend/login.html:14
+msgid "Login with github"
+msgstr "Se connecter avec Github"
 
-#: templates/items/add_item.html:35
+#: templates/frontend/login.html:18
+msgid "Sign in/up with Github"
+msgstr "S'inscrire / S'identifier avec Github"
+
+#: templates/frontend/search_result.html:5
+msgid "Search"
+msgstr "Rechercher"
+
+#: templates/frontend/search_result.html:9
+msgid "Search result"
+msgstr "Résultats de la recherche"
+
+#: templates/frontend/search_result.html:13
+msgid "No results :("
+msgstr "Pas de résultats :("
+
+#: templates/frontend/tag.html:5
+msgid "Tag"
+msgstr ""
+
+#: templates/frontend/tag.html:9
+msgid "Items tagged with"
+msgstr ""
+
+#: templates/frontend/user_items.html:5
+msgid "User items"
+msgstr ""
+
+#: templates/frontend/user_items.html:9
+msgid "Items shared by"
+msgstr "Items partagés par"
+
+#: templates/frontend/user_items.html:13
+msgid "No items shared, yet."
+msgstr "Aucun item partagé, pour le moment."
+
+#: templates/items/add_item.html:31 templates/items/edit_item.html:33
+msgid "Item thumbnail will appear here (230x330)"
+msgstr ""
+
+#: templates/items/add_item.html:35 templates/items/edit_item.html:38
 msgid "Upload thumbnail "
-msgstr "Mettre à jour la miniature"
+msgstr ""
 
 #: templates/items/add_item.html:50
-msgid "From a remote repository (e.g. github)"
-msgstr "Depuis une remote repository (ex: github)"
+msgid "From a remote repository, recommanded! (we only support Github for now)"
+msgstr ""
 
-#: templates/items/add_item.html:53
-msgid "Past your item repository URL here"
-msgstr "Coller l'URL de la repository de votre article ici"
+#: templates/items/add_item.html:53 templates/items/edit_item.html:58
+msgid "Past your item's repository URL here"
+msgstr ""
 
 #: templates/items/add_item.html:56
 msgid "From my computer"
 msgstr "Depuis mon ordinateur"
 
-#: templates/items/add_item.html:93 templates/items/add_item.html:112
-#: templates/items/add_item.html:119
+#: templates/items/add_item.html:95 templates/items/add_item.html:105
+#: templates/items/add_item.html:115 templates/items/edit_item.html:101
+#: templates/items/edit_item.html:112 templates/items/edit_item.html:123
 msgid "Item title"
-msgstr "Titre de l'article"
+msgstr "Titre de l'item"
 
-#: templates/items/item_details.html:3
+#: templates/items/add_item.html:140 templates/items/edit_item.html:152
+msgid "If you blogged about this item, you can share your blog post here!"
+msgstr ""
+
+#: templates/items/add_item.html:144
+msgid ""
+"Ignore the license if your item is a repository URL, LICENSE file will be "
+"mentioned instead."
+msgstr ""
+
+#: templates/items/edit_item.html:5 templates/items/item_details.html:154
+msgid "Edit item"
+msgstr "Modifier l'item"
+
+#: templates/items/edit_item.html:55
+msgid "Repository URL"
+msgstr ""
+
+#: templates/items/edit_item.html:61
+msgid "Item's files (leave it blank to keep the old files)"
+msgstr ""
+
+#: templates/items/item_details.html:8
 msgid "Item details"
-msgstr "Détails de l'article"
+msgstr ""
 
-#: templates/items/items_list.html:3 templates/layouts/base.html:64
+#: templates/items/item_details.html:26
+msgid "Category: "
+msgstr "Catégorie:"
+
+#: templates/items/item_details.html:30
+msgid "Item description"
+msgstr ""
+
+#: templates/items/item_details.html:32
+msgid "(pulled from Github)"
+msgstr "(tiré de Github)"
+
+#: templates/items/item_details.html:42
+msgid "No description yet!"
+msgstr ""
+
+#: templates/items/item_details.html:65
+msgid "Submitter"
+msgstr ""
+
+#: templates/items/item_details.html:82
+msgid "Submitter website"
+msgstr ""
+
+#: templates/items/item_details.html:89 templates/users/user_profile.html:44
+msgid "This guy is free to hire!"
+msgstr ""
+
+#: templates/items/item_details.html:103
+msgid "Heads up!"
+msgstr ""
+
+#: templates/items/item_details.html:103
+msgid "This item has a blog post!"
+msgstr ""
+
+#: templates/items/item_details.html:109
+msgid "This item has api!"
+msgstr ""
+
+#: templates/items/item_details.html:123
+msgid "Item information"
+msgstr ""
+
+#: templates/items/item_details.html:125
+msgid "Item repository on Github"
+msgstr ""
+
+#: templates/items/item_details.html:127
+msgid ""
+"see the license file in the repository or read it in the README file (if "
+"it's there!)"
+msgstr ""
+
+#: templates/items/item_details.html:129
+msgid "Clone it: "
+msgstr "Cloner le:"
+
+#: templates/items/item_details.html:131
+msgid "Download"
+msgstr "Télécharger"
+
+#: templates/items/item_details.html:135
+msgid "Item files"
+msgstr ""
+
+#: templates/items/item_details.html:156
+msgid "Delete item"
+msgstr "Supprimer l'item"
+
+#: templates/items/item_details.html:159
+msgid "Are you sure you want to delete this item ?"
+msgstr ""
+
+#: templates/items/item_details.html:160
+msgid "Oh dear, that was so precious, all files will be lost!"
+msgstr ""
+
+#: templates/items/item_details.html:162
+msgid "Yes, delete :("
+msgstr "Oui, supprimer :("
+
+#: templates/items/item_details.html:164
+msgid "Nah, man! I'm just kidding"
+msgstr "Non, l'homme! Je plaisante"
+
+#: templates/items/items_list.html:5 templates/layouts/base.html:78
 msgid "Explore items"
-msgstr "Explorer les articles"
+msgstr "Explorer les items"
 
-#: templates/items/items_list.html:7
+#: templates/items/items_list.html:9
 msgid "Items list"
-msgstr "Liste des articles"
+msgstr "Liste des items"
+
+#: templates/layouts/base.html:7
+msgid "DzLibs"
+msgstr "DzLibs"
 
 #: templates/layouts/base.html:53
 msgid "Contact"
-msgstr ""
-
-#: templates/layouts/base.html:54
-msgid "About"
-msgstr "À propos"
+msgstr "Contactez-nous"
 
 #: templates/layouts/base.html:56
 msgid "Language"
 msgstr "Langue"
 
-#: templates/layouts/base.html:71
+#: templates/layouts/base.html:85
 msgid "My items"
-msgstr "Mes articles"
+msgstr "Mes items"
 
-#: templates/layouts/base.html:72
+#: templates/layouts/base.html:86 templates/users/user_profile.html:2
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
-#: templates/layouts/base.html:73
+#: templates/layouts/base.html:87
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: templates/layouts/base.html:77
+#: templates/layouts/base.html:91
 msgid "Register / Sign In"
 msgstr "S'inscrire / S'identifier"
 
-#: templates/layouts/base.html:118
-msgid "DzLibs. Copyleft. email: 01walid@gmail.com"
+#: templates/layouts/base.html:137
+msgid ""
+"DzLibs project. Under Mozilla Public license v2. Shared items have their OWN "
+"licenses. this is a community project. <a href='https://github.com/01walid/"
+"dzlibs'>Source code available here</a>."
 msgstr ""
 
 #: templates/macros/_ask_user_to_update_ie.html:3
 msgid ""
-"You are using an <strong>outdated</strong> browser. Please <a "
-"href=\"http://browsehappy.com/\">upgrade your browser</a> or <a "
-"href=\"http://www.google.com/chromeframe/?redirect=true\">activate Google"
-" Chrome Frame</a> to improve your experience."
+"You are using an <strong>outdated</strong> browser. Please <a href=\"http://"
+"browsehappy.com/\">upgrade your browser</a> or <a href=\"http://www.google."
+"com/chromeframe/?redirect=true\">activate Google Chrome Frame</a> to improve "
+"your experience."
 msgstr ""
-"Vous êtes entrain d'utiliser un navigateur <strong>obselète</strong>. Veulliez <a "
-"href=\"http://browsehappy.com/\">mettre à jour votre navigateur</a> ou <a "
-"href=\"http://www.google.com/chromeframe/?redirect=true\">activer Google"
-" Chrome Frame</a> pour améliorer votre experience."
+
+#: templates/macros/_misc.html:9
+msgid "in"
+msgstr "dans"
+
+#: templates/macros/_misc.html:26
+msgid "CATEGORY"
+msgstr "CATÉGORIE"
+
+#: templates/macros/_misc.html:27
+msgid "All"
+msgstr "Tous"
+
+#: templates/users/edit_profile.html:6 templates/users/user_profile.html:48
+msgid "Edit profile"
+msgstr ""
+
+#: templates/users/edit_profile.html:31
+msgid "Won't be published, just for future contact or notifications"
+msgstr ""
+
+#: templates/users/edit_profile.html:40
+msgid "Your awesome website or blog here"
+msgstr ""
+
+#: templates/users/edit_profile.html:55
+msgid "Twitter username here (without the '@' sign)"
+msgstr ""
+
+#: templates/users/edit_profile.html:67
+msgid ""
+"I know, getting your Facebook username is just too much work, so just past "
+"the URL here :) "
+msgstr ""
+
+#: templates/users/edit_profile.html:94
+msgid "Be honest"
+msgstr ""
+
+#: templates/users/user_profile.html:12
+msgid "Website"
+msgstr "Siteweb"
+
+#: templates/users/user_profile.html:14
+msgid "Github"
+msgstr "Github"
+
+#: templates/users/user_profile.html:16 users/forms.py:16
+msgid "Twitter"
+msgstr "Twitter"
+
+#: templates/users/user_profile.html:18 users/forms.py:17
+msgid "Facebook"
+msgstr "Facebook"
+
+#: templates/users/user_profile.html:20 users/forms.py:23
+msgid "Location"
+msgstr ""
+
+#: templates/users/user_profile.html:22 users/forms.py:30
+msgid "Bio"
+msgstr "Bio"
+
+#: templates/users/user_profile.html:25
+msgid "No bio for this user"
+msgstr ""
+
+#: templates/users/user_profile.html:38
+msgid "Joined"
+msgstr "Inscrit"
+
+#: templates/users/user_profile.html:41
+msgid "See items shared by this user!"
+msgstr "Voir les items partagés par cet utilisateur!"
+
+#: templates/users/user_profile.html:41
+msgid "Tweezed"
+msgstr "twizés"
+
+#: templates/users/user_profile.html:41
+msgid "items!"
+msgstr "tems!"
+
+#: users/forms.py:14
+msgid "Full name"
+msgstr "Nom complet"
+
+#: users/forms.py:19
+msgid "Website or blog"
+msgstr "Siteweb ou blog"
+
+#: users/forms.py:25
+msgid "Hireable"
+msgstr ""
+
+#: users/forms.py:26
+msgid "No"
+msgstr "Non"
+
+#: users/forms.py:26
+msgid "Yes"
+msgstr "Oui"
+
+#: users/forms.py:28
+msgid "Are you free to hire ?"
+msgstr ""
+
+#: users/forms.py:32
+msgid "Update profile"
+msgstr ""
+
+#: users/views.py:40
+msgid "Profile updated successfully"
+msgstr "Profil mise à jour avec succès"

@@ -10,7 +10,7 @@
     <meta name="author" content="Walid ZIOUCHE">
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <link rel="Shortcut Icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/x-icon">
+    <link rel="Shortcut Icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 
     {% block css %}
         {% if g.lang == 'ar' %}
@@ -35,7 +35,7 @@
 </head>
 <body>
     {% include "macros/_ask_user_to_update_ie.html" %}
-        
+
     {% block topbar %}
         <nav class="top-bar" data-topbar>
             <ul class="title-area">
@@ -55,8 +55,8 @@
                     <li class="has-dropdown">
                         <a href="#">{{ _('Language') }}</a>
                         <ul class="dropdown">
-                            <li dir="rtl"><a href="#">العربية (قريبا) </a></li>
-                            <li><a href="#">Français (bientot)</a></li>
+                            <li><a href="#" dir="rtl">العربية</a></li>
+                            <li><a href="#">Français</a></li>
                         </ul>
                     </li>
                     <li class="has-form">
@@ -93,14 +93,14 @@
                     {% endif %}
                 </ul>
             </section>
-        </nav> 
-    
+        </nav>
+
     {% endblock %}
-        
+
     <div class="wrapper">
 
         {% block container %}
-                    
+
             {% block flash_message %}
                 {% with messages = get_flashed_messages(with_categories=True) %}
                     {% if messages %}
@@ -118,10 +118,10 @@
 
             {% block body %}
             {% endblock %}
-        {% endblock %} 
-        
+        {% endblock %}
+
         <div class="push-footer"></div>
-    </div>  
+    </div>
 
     <footer>
         <div class="row">
@@ -136,14 +136,14 @@
                 <p class="copyright">
                 {{ current_year() }} - {{ _("DzLibs project. Under Mozilla Public license v2. Shared items have their OWN licenses. this is a community project. <a href='https://github.com/01walid/dzlibs'>Source code available here</a>.") }}
                 </p>
-            </div>          
+            </div>
         </div>
-    </footer>   
+    </footer>
 
     {% block js_btm %}
         <script src="{{ url_for('static', filename='vendors/foundation/js/foundation.min.js') }}"></script>
         <script src="{{ url_for('static', filename='js/app.js') }}"></script>
     {% endblock %}
-    
+
 </body>
 </html>

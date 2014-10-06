@@ -14,10 +14,10 @@ class ContactForm(Form):
     subject = TextField(_('Subject'), validators=[Required()])
 
     email = EmailField(_('Email'), validators=[Required()],
-                       description=u"What's your email address?")
+                       description=_("What's your email address?"))
 
     message = TextAreaField(_('Message'), validators=[Required()])
 
     recaptcha = RecaptchaField()
 
-    submit = SubmitField(u'Send')
+    submit = SubmitField(_('Send'))

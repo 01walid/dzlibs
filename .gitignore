@@ -4,6 +4,7 @@ __pycache__/
 
 # Distribution / packaging
 venv/
+.venv/
 bin/
 build/
 develop-eggs/

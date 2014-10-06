@@ -1,171 +1,120 @@
-# Arabic translations for PROJECT.
+# Arabic translations for .
 # Copyright (C) 2014 ORGANIZATION
-# This file is distributed under the same license as the PROJECT project.
+# This file is distributed under the same license as the  project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Dzlibs\n"
+"Project-Id-Version:  Dzlibs\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-01-05 21:21+0100\n"
+"POT-Creation-Date: 2014-10-06 11:20+0100\n"
 "PO-Revision-Date: 2014-02-25 16:54+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: ar <01walid@gmail.com>\n"
-"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
-"n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5);\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 "
+"&& n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
-"Language: ar\n"
-"X-Generator: Poedit 1.6.3\n"
 
-#: utils.py:68
-msgid "just now"
-msgstr "الآن فقط"
+#: app.py:173
+#, fuzzy
+msgid "No title!"
+msgstr "عنوان المادة"
 
-#: utils.py:82
-#, python-format
-msgid "%(num)s year"
-msgid_plural "%(num)s years"
-msgstr[0] ""
-msgstr[1] "سنة واحدة"
-msgstr[2] "سنتان"
-msgstr[3] "%(num)s سنوات"
-msgstr[4] "%(num)s سنة"
-msgstr[5] "%(num)s سنة"
+#: frontend/forms.py:12 templates/users/user_profile.html:10
+msgid "Name"
+msgstr ""
 
-#: utils.py:83
-#, python-format
-msgid "%(num)s month"
-msgid_plural "%(num)s months"
-msgstr[0] ""
-msgstr[1] "شهر واحد"
-msgstr[2] "شهران"
-msgstr[3] "%(num)s أشهر"
-msgstr[4] "%(num)s شهر"
-msgstr[5] "%(num)s شهر"
+#: frontend/forms.py:14
+msgid "Subject"
+msgstr ""
 
-#: utils.py:84
-#, python-format
-msgid "%(num)s week"
-msgid_plural "%(num)s weeks"
-msgstr[0] ""
-msgstr[1] "أسبوع واحد"
-msgstr[2] "أسبوعان"
-msgstr[3] "%(num)s أسابيع"
-msgstr[4] "%(num)s أسبوع"
-msgstr[5] "%(num)s أسبوع"
+#: frontend/forms.py:16 users/forms.py:21
+msgid "Email"
+msgstr ""
 
-#: utils.py:85
-#, python-format
-msgid "%(num)s day"
-msgid_plural "%(num)s days"
-msgstr[0] ""
-msgstr[1] "يوم واحد"
-msgstr[2] "يومان"
-msgstr[3] "%(num)s أيام"
-msgstr[4] "%(num)s يوم"
-msgstr[5] "%(num)s يوم"
+#: frontend/forms.py:19
+msgid "Message"
+msgstr ""
 
-#: utils.py:86
-#, python-format
-msgid "%(num)s hour"
-msgid_plural "%(num)s hours"
-msgstr[0] ""
-msgstr[1] "ساعة واحدة"
-msgstr[2] "ساعتان"
-msgstr[3] "%(num)s ساعات"
-msgstr[4] "%(num)s ساعة"
-msgstr[5] "%(num)s ساعة"
-
-#: utils.py:87
-#, python-format
-msgid "%(num)s minute"
-msgid_plural "%(num)s minutes"
-msgstr[0] ""
-msgstr[1] "دقيقة واحدة"
-msgstr[2] "دقيقتان"
-msgstr[3] "%(num)s دقائق"
-msgstr[4] "%(num)s ساعة"
-msgstr[5] "%(num)s ساعة"
-
-#: utils.py:88
-#, python-format
-msgid "%(num)s second"
-msgid_plural "%(num)s seconds"
-msgstr[0] ""
-msgstr[1] "ثانية واحدة"
-msgstr[2] "ثانيتان"
-msgstr[3] "%(num)s ثوان"
-msgstr[4] "%(num)s ثانية"
-msgstr[5] "%(num)s ثانية"
-
-#: utils.py:93
-#, python-format
-msgid "%(period)s ago"
-msgstr "منذ %(period)s"
-
-#: frontend/views.py:103 frontend/views.py:129
-msgid "Logged in"
+#: frontend/views.py:85 frontend/views.py:114
+#, fuzzy
+msgid "Logged in as "
 msgstr "مسجل دخولك"
 
-#: frontend/views.py:132
-msgid "Sorry, invalid password"
-msgstr "كلمة السر غير صالحة!"
+#: frontend/views.py:115
+msgid " now get a shiny profile :)"
+msgstr ""
 
 #: frontend/views.py:134
-msgid "Sorry, incorrect email!"
-msgstr "بريد إلكتروني غير صحيح!"
-
-#: frontend/views.py:145
 msgid "Logged out"
 msgstr "سجّلت خروجك"
 
-#: items/forms.py:14
-msgid "Remote repository URL"
+#: frontend/views.py:199
+msgid "Message sent successfully"
 msgstr ""
 
-#: items/forms.py:16
+#: frontend/views.py:202 users/views.py:43
+msgid "Error happened, see below"
+msgstr ""
+
+#: items/forms.py:15
+msgid "Blog post URL"
+msgstr ""
+
+#: items/forms.py:17
 msgid "Item title in Arabic"
 msgstr "عنوان المادة باللغة العربية"
 
-#: items/forms.py:17
+#: items/forms.py:18
 msgid "Item title in English"
 msgstr "عنوان المادة بالإنقليزية"
 
-#: items/forms.py:18
+#: items/forms.py:19
 msgid "Item title in French"
 msgstr "عنوان المادة بالفرنسية"
 
-#: items/forms.py:20
-msgid "Short description in Arabic"
-msgstr "وصف مختصر بالعربية"
-
 #: items/forms.py:21
-msgid "Short description in English"
-msgstr "وصف مختصر بالإنقليزية"
-
-#: items/forms.py:22
-msgid "Short description in French"
-msgstr "وصف مختصر بالفرنسية"
-
-#: items/forms.py:24
-msgid "Long description"
-msgstr "الوصف المفصل"
-
-#: items/forms.py:25 items/forms.py:28
 msgid "Thumbnail (minimum dimensions 230x230)"
 msgstr "الصورة المصغرة(الأبعاد تكون على الأقل 230 × 230)"
 
-#: items/forms.py:31
+#: items/forms.py:23 templates/items/item_details.html:18
 msgid "Tags"
 msgstr "الوسوم"
 
-#: items/forms.py:33 templates/items/add_item.html:5
-#: templates/layouts/base.html:67
+#: items/forms.py:25
+msgid "Category"
+msgstr ""
+
+#: items/forms.py:37 items/forms.py:56
+msgid "Remote repository URL"
+msgstr ""
+
+#: items/forms.py:38 items/forms.py:65
+#, fuzzy
+msgid "Description"
+msgstr "الوصف المفصل"
+
+#: items/forms.py:40 items/forms.py:63
+#, fuzzy
+msgid "Files"
+msgstr "ملف شخصي"
+
+#: items/forms.py:42 items/forms.py:67 templates/items/item_details.html:127
+#: templates/items/item_details.html:134
+msgid "License"
+msgstr ""
+
+#: items/forms.py:44 templates/items/add_item.html:5
+#: templates/layouts/base.html:81
 msgid "Add item"
 msgstr "إضافة مادة"
+
+#: items/forms.py:58 items/forms.py:69
+msgid "Update"
+msgstr ""
 
 #: templates/errors/forbidden_page.html:3
 msgid "Forbidden page"
@@ -180,7 +129,6 @@ msgid "You shall NOT pass!"
 msgstr "لا ينبغي لك المرور!"
 
 #: templates/errors/forbidden_page.html:10
-#: templates/errors/page_not_found.html:27
 msgid "It looks like this was the result of either:"
 msgstr "يبدو أن هذا نتيجة لأحد الأمرين:"
 
@@ -188,11 +136,11 @@ msgstr "يبدو أن هذا نتيجة لأحد الأمرين:"
 msgid "no permission"
 msgstr "بدون تصاريح"
 
-#: templates/errors/layout.html:6 templates/layouts/base.html:6
+#: templates/errors/layout.html:6
 msgid "DzLibs Project"
 msgstr "مشروع DzLibs"
 
-#: templates/errors/layout.html:8 templates/layouts/base.html:8
+#: templates/errors/layout.html:8 templates/layouts/base.html:9
 msgid "The Algerian index of reusable resources and librairies"
 msgstr "الدليل الجزائري للمكتبات والموارد القابلة لإعادة الاستخدام"
 
@@ -209,16 +157,17 @@ msgid "Not found"
 msgstr "غير موجود"
 
 #: templates/errors/page_not_found.html:11
-msgid "Look underneath, you may find something:"
+#, fuzzy
+msgid "Look underneath ya Kho, you may find something:"
 msgstr "ألق نظرة في الأسفل، قد تجد شيئا:"
 
-#: templates/errors/page_not_found.html:30
-msgid "a mistyped address"
-msgstr "عنوان خاطىء"
+#: templates/errors/page_not_found.html:19 templates/layouts/base.html:67
+msgid "search for an item here..."
+msgstr ""
 
-#: templates/errors/page_not_found.html:31
-msgid "an out-of-date link"
-msgstr "رابط قديم"
+#: templates/errors/page_not_found.html:22 templates/layouts/base.html:70
+msgid "Go"
+msgstr ""
 
 #: templates/errors/server_error.html:3
 msgid "Server error"
@@ -232,161 +181,606 @@ msgstr "خطأ على مستوى الخادم"
 msgid "Inner peacer..."
 msgstr "سلام داخلي ..."
 
+#: templates/frontend/about.html:3 templates/layouts/base.html:54
+msgid "About"
+msgstr "نبذة"
+
+#: templates/frontend/about.html:10
+#, fuzzy
+msgid "About DzLibs project"
+msgstr "مشروع DzLibs"
+
+#: templates/frontend/category_listing.html:4
+msgid "Categories"
+msgstr ""
+
+#: templates/frontend/category_listing.html:11
+msgid "No items shared in this category, yet."
+msgstr ""
+
+#: templates/frontend/contact.html:3
+#, fuzzy
+msgid "Contact us"
+msgstr "اتصل بنا"
+
+#: templates/frontend/contact.html:11
+msgid "Note"
+msgstr ""
+
+#: templates/frontend/contact.html:11
+msgid ""
+"For bug reports / feature requests, please open up a <a "
+"href='https://github.com/01walid/dzlibs/issues/new'>new issue</a> on "
+"github instead."
+msgstr ""
+
+#: templates/frontend/contact.html:36
+msgid "To get back to you"
+msgstr ""
+
+#: templates/frontend/contact.html:80
+msgid "Are you human?"
+msgstr ""
+
 #: templates/frontend/create_profile.html:10
 msgid "One more step, and you're done!"
 msgstr "خطوة أخرى وتنتهي!"
 
-#: templates/frontend/index.html:3
+#: templates/frontend/index.html:4
 msgid "Home"
 msgstr "الرئيسية"
 
-#: templates/frontend/index.html:14
+#: templates/frontend/index.html:15
 msgid "The Algerian index of reusable assets and libraries"
 msgstr "الدليل الجزائري للمكتبات والموارد القابلة لإعادة الاستخدام"
 
-#: templates/frontend/index.html:22
-msgid "ara"
+#: templates/frontend/index.html:17
+msgid "That is made  of two parts"
+msgstr ""
+
+#: templates/frontend/index.html:23
+msgid "api"
 msgstr ""
 
 #: templates/frontend/index.html:24
+msgid "&amp;"
+msgstr ""
+
+#: templates/frontend/index.html:25
 msgid "tweeza"
 msgstr "تويزة"
 
-#: templates/frontend/login.html:3 templates/frontend/login.html:22
+#: templates/frontend/index.html:53
+#, fuzzy
+msgid "Explore more"
+msgstr "استطلع المواد"
+
+#: templates/frontend/index.html:58
+msgid "Well, you're already in the <strong>Tweeza</strong> part :)"
+msgstr ""
+
+#: templates/frontend/index.html:59
+msgid ""
+"So, let's define sharing items here, as <code>tweezing</code>, the "
+"remarkable Algerian tradition our ancestors did <i class='fi-heart'></i> "
+"So why not, we, developers/designers, do the same? online!"
+msgstr ""
+
+#: templates/frontend/index.html:60
+msgid "Confused? you may check the"
+msgstr ""
+
+#: templates/frontend/index.html:60
+msgid "about page"
+msgstr ""
+
+#: templates/frontend/index.html:60
+msgid "then..."
+msgstr ""
+
+#: templates/frontend/index.html:62 templates/items/item_details.html:109
+msgid "Cool!"
+msgstr ""
+
+#: templates/frontend/login.html:3
 msgid "Sign in"
 msgstr "تسجيل الدخول"
 
-#: templates/frontend/login.html:16
+#: templates/frontend/login.html:14
+#, fuzzy
+msgid "Login with github"
+msgstr "تسجيل / تسجيل الدخول بواسطة Github"
+
+#: templates/frontend/login.html:18
 msgid "Sign in/up with Github"
 msgstr "تسجيل / تسجيل الدخول بواسطة Github"
 
-#: templates/frontend/login.html:34
-msgid "Register"
-msgstr "التسجيل"
-
-#: templates/frontend/login.html:34
-msgid "If don't have an account"
-msgstr "إن كنت لا تملك حسابا"
-
-#: templates/frontend/search.html:6
-#, python-format
-msgid "Search results for \"%(keywords)s\""
-msgstr "نتائج البحث حول \"%(keywords)s\""
-
-#: templates/frontend/search.html:8
-msgid "Keywords needed!"
-msgstr "للكلمات المفتاحية مطلوبة!"
-
-#: templates/frontend/search.html:13
-#, python-format
-msgid ""
-"<strong>%(total)s</strong> found for your search \"<strong>%(keywords)s</"
-"strong>\"."
+#: templates/frontend/search_result.html:5
+msgid "Search"
 msgstr ""
-"<strong>%(total)s</strong> نتيجة لبحثك عن \"<strong>%(keywords)s</strong>\"."
 
-#: templates/frontend/search.html:17
-#, python-format
-msgid "Sorry, Nothing found for your search \"<strong>%(keywords)s</strong>\"."
-msgstr "للأسف، لم تسفر عملية بحثك عن \"<strong>%(keywords)s</strong>\" نتائجا."
-
-#: templates/frontend/search.html:18
-msgid ""
-"\n"
-"    <p>Suggestions:</p>\n"
-"    <ul>\n"
-"       <li>Make sure all words are spelled correctly.</li>\n"
-"       <li>Try different keywords.</li>\n"
-"       <li>Try more general keywords.</li>\n"
-"    </ul>\n"
-"    "
+#: templates/frontend/search_result.html:9
+msgid "Search result"
 msgstr ""
-"\n"
-"    <p>اقتراحات:</p>\n"
-"    <ul>\n"
-"       <li>تأكد من أن جميع الكلمات مكتوبة بطريقة صحيحة.</li>\n"
-"       <li>جرّب كلمات مفتاحية أخرى.</li>\n"
-"       <li>حاول استعمال كلمات مفتاحية عامة.</li>\n"
-"    </ul>\n"
-"    "
 
-#: templates/items/add_item.html:31
-msgid "Item thumbnail will appear here"
+#: templates/frontend/search_result.html:13
+msgid "No results :("
+msgstr ""
+
+#: templates/frontend/tag.html:5
+msgid "Tag"
+msgstr ""
+
+#: templates/frontend/tag.html:9
+msgid "Items tagged with"
+msgstr ""
+
+#: templates/frontend/user_items.html:5
+#, fuzzy
+msgid "User items"
+msgstr "المواد التابعة لي"
+
+#: templates/frontend/user_items.html:9
+msgid "Items shared by"
+msgstr ""
+
+#: templates/frontend/user_items.html:13
+msgid "No items shared, yet."
+msgstr ""
+
+#: templates/items/add_item.html:31 templates/items/edit_item.html:33
+#, fuzzy
+msgid "Item thumbnail will appear here (230x330)"
 msgstr "الصورة المصغرة للمادة ستظهر هنا"
 
-#: templates/items/add_item.html:35
+#: templates/items/add_item.html:35 templates/items/edit_item.html:38
 msgid "Upload thumbnail "
 msgstr "رفع صورة مصغرة"
 
 #: templates/items/add_item.html:50
-msgid "From a remote repository (e.g. github)"
+#, fuzzy
+msgid "From a remote repository, recommanded! (we only support Github for now)"
 msgstr "من مستودع خارجي (مثل Github)"
 
-#: templates/items/add_item.html:53
-msgid "Past your item repository URL here"
+#: templates/items/add_item.html:53 templates/items/edit_item.html:58
+#, fuzzy
+msgid "Past your item's repository URL here"
 msgstr "ضع رابط مستودع المادة هنا"
 
 #: templates/items/add_item.html:56
 msgid "From my computer"
 msgstr "من جهازي"
 
-#: templates/items/add_item.html:93 templates/items/add_item.html:112
-#: templates/items/add_item.html:119
+#: templates/items/add_item.html:95 templates/items/add_item.html:105
+#: templates/items/add_item.html:115 templates/items/edit_item.html:101
+#: templates/items/edit_item.html:112 templates/items/edit_item.html:123
 msgid "Item title"
 msgstr "عنوان المادة"
 
-#: templates/items/item_details.html:3
+#: templates/items/add_item.html:140 templates/items/edit_item.html:152
+msgid "If you blogged about this item, you can share your blog post here!"
+msgstr ""
+
+#: templates/items/add_item.html:144
+msgid ""
+"Ignore the license if your item is a repository URL, LICENSE file will be"
+" mentioned instead."
+msgstr ""
+
+#: templates/items/edit_item.html:5 templates/items/item_details.html:154
+#, fuzzy
+msgid "Edit item"
+msgstr "إضافة مادة"
+
+#: templates/items/edit_item.html:55
+msgid "Repository URL"
+msgstr ""
+
+#: templates/items/edit_item.html:61
+msgid "Item's files (leave it blank to keep the old files)"
+msgstr ""
+
+#: templates/items/item_details.html:8
 msgid "Item details"
 msgstr "تفاصيل حول المادة"
 
-#: templates/items/items_list.html:3 templates/layouts/base.html:64
+#: templates/items/item_details.html:26
+msgid "Category: "
+msgstr ""
+
+#: templates/items/item_details.html:30
+#, fuzzy
+msgid "Item description"
+msgstr "الوصف المفصل"
+
+#: templates/items/item_details.html:32
+msgid "(pulled from Github)"
+msgstr ""
+
+#: templates/items/item_details.html:42
+#, fuzzy
+msgid "No description yet!"
+msgstr "الوصف المفصل"
+
+#: templates/items/item_details.html:65
+msgid "Submitter"
+msgstr ""
+
+#: templates/items/item_details.html:82
+msgid "Submitter website"
+msgstr ""
+
+#: templates/items/item_details.html:89 templates/users/user_profile.html:44
+msgid "This guy is free to hire!"
+msgstr ""
+
+#: templates/items/item_details.html:103
+msgid "Heads up!"
+msgstr ""
+
+#: templates/items/item_details.html:103
+msgid "This item has a blog post!"
+msgstr ""
+
+#: templates/items/item_details.html:109
+msgid "This item has api!"
+msgstr ""
+
+#: templates/items/item_details.html:123
+msgid "Item information"
+msgstr ""
+
+#: templates/items/item_details.html:125
+#, fuzzy
+msgid "Item repository on Github"
+msgstr "من مستودع خارجي (مثل Github)"
+
+#: templates/items/item_details.html:127
+msgid ""
+"see the license file in the repository or read it in the README file (if "
+"it's there!)"
+msgstr ""
+
+#: templates/items/item_details.html:129
+msgid "Clone it: "
+msgstr ""
+
+#: templates/items/item_details.html:131
+msgid "Download"
+msgstr ""
+
+#: templates/items/item_details.html:135
+#, fuzzy
+msgid "Item files"
+msgstr "عنوان المادة"
+
+#: templates/items/item_details.html:156
+#, fuzzy
+msgid "Delete item"
+msgstr "إضافة مادة"
+
+#: templates/items/item_details.html:159
+msgid "Are you sure you want to delete this item ?"
+msgstr ""
+
+#: templates/items/item_details.html:160
+msgid "Oh dear, that was so precious, all files will be lost!"
+msgstr ""
+
+#: templates/items/item_details.html:162
+msgid "Yes, delete :("
+msgstr ""
+
+#: templates/items/item_details.html:164
+msgid "Nah, man! I'm just kidding"
+msgstr ""
+
+#: templates/items/items_list.html:5 templates/layouts/base.html:78
 msgid "Explore items"
 msgstr "استطلع المواد"
 
-#: templates/items/items_list.html:7
+#: templates/items/items_list.html:9
 msgid "Items list"
 msgstr "قائمة المواد"
+
+#: templates/layouts/base.html:7
+msgid "DzLibs"
+msgstr ""
 
 #: templates/layouts/base.html:53
 msgid "Contact"
 msgstr "اتصل بنا"
 
-#: templates/layouts/base.html:54
-msgid "About"
-msgstr "نبذة"
-
 #: templates/layouts/base.html:56
 msgid "Language"
 msgstr "اللغة"
 
-#: templates/layouts/base.html:71
+#: templates/layouts/base.html:85
 msgid "My items"
 msgstr "المواد التابعة لي"
 
-#: templates/layouts/base.html:72
+#: templates/layouts/base.html:86 templates/users/user_profile.html:2
 msgid "Profile"
 msgstr "ملف شخصي"
 
-#: templates/layouts/base.html:73
+#: templates/layouts/base.html:87
 msgid "Logout"
 msgstr "تسجيل الخروج"
 
-#: templates/layouts/base.html:77
+#: templates/layouts/base.html:91
 msgid "Register / Sign In"
 msgstr "تسجيل / تسجيل الدخول"
 
-#: templates/layouts/base.html:118
-msgid "DzLibs. Copyleft. email: 01walid@gmail.com"
+#: templates/layouts/base.html:137
+msgid ""
+"DzLibs project. Under Mozilla Public license v2. Shared items have their "
+"OWN licenses. this is a community project. <a "
+"href='https://github.com/01walid/dzlibs'>Source code available here</a>."
 msgstr ""
 
 #: templates/macros/_ask_user_to_update_ie.html:3
 msgid ""
-"You are using an <strong>outdated</strong> browser. Please <a href=\"http://"
-"browsehappy.com/\">upgrade your browser</a> or <a href=\"http://www.google."
-"com/chromeframe/?redirect=true\">activate Google Chrome Frame</a> to improve "
-"your experience."
+"You are using an <strong>outdated</strong> browser. Please <a "
+"href=\"http://browsehappy.com/\">upgrade your browser</a> or <a "
+"href=\"http://www.google.com/chromeframe/?redirect=true\">activate Google"
+" Chrome Frame</a> to improve your experience."
 msgstr ""
-"أنت تستخدم <strong>نسخة قديمة</strong> من المتصفح.  فضلا <a href=\"http://"
-"browsehappy.com/\">رقّي متصفحك</a> أو <a href=\"http://www.google.com/"
-"chromeframe/?redirect=true\">فعّل Google Chrome Frame</a> لتحسين تجربتك "
-"للموقع."
+"أنت تستخدم <strong>نسخة قديمة</strong> من المتصفح.  فضلا <a "
+"href=\"http://browsehappy.com/\">رقّي متصفحك</a> أو <a "
+"href=\"http://www.google.com/chromeframe/?redirect=true\">فعّل Google "
+"Chrome Frame</a> لتحسين تجربتك للموقع."
+
+#: templates/macros/_misc.html:9
+msgid "in"
+msgstr ""
+
+#: templates/macros/_misc.html:26
+msgid "CATEGORY"
+msgstr ""
+
+#: templates/macros/_misc.html:27
+msgid "All"
+msgstr ""
+
+#: templates/users/edit_profile.html:6 templates/users/user_profile.html:48
+#, fuzzy
+msgid "Edit profile"
+msgstr "ملف شخصي"
+
+#: templates/users/edit_profile.html:31
+msgid "Won't be published, just for future contact or notifications"
+msgstr ""
+
+#: templates/users/edit_profile.html:40
+msgid "Your awesome website or blog here"
+msgstr ""
+
+#: templates/users/edit_profile.html:55
+msgid "Twitter username here (without the '@' sign)"
+msgstr ""
+
+#: templates/users/edit_profile.html:67
+msgid ""
+"I know, getting your Facebook username is just too much work, so just "
+"past the URL here :) "
+msgstr ""
+
+#: templates/users/edit_profile.html:94
+msgid "Be honest"
+msgstr ""
+
+#: templates/users/user_profile.html:12
+msgid "Website"
+msgstr ""
+
+#: templates/users/user_profile.html:14
+msgid "Github"
+msgstr ""
+
+#: templates/users/user_profile.html:16 users/forms.py:16
+msgid "Twitter"
+msgstr ""
+
+#: templates/users/user_profile.html:18 users/forms.py:17
+msgid "Facebook"
+msgstr ""
+
+#: templates/users/user_profile.html:20 users/forms.py:23
+msgid "Location"
+msgstr ""
+
+#: templates/users/user_profile.html:22 users/forms.py:30
+msgid "Bio"
+msgstr ""
+
+#: templates/users/user_profile.html:25
+msgid "No bio for this user"
+msgstr ""
+
+#: templates/users/user_profile.html:38
+msgid "Joined"
+msgstr ""
+
+#: templates/users/user_profile.html:41
+msgid "See items shared by this user!"
+msgstr ""
+
+#: templates/users/user_profile.html:41
+#, fuzzy
+msgid "Tweezed"
+msgstr "تويزة"
+
+#: templates/users/user_profile.html:41
+#, fuzzy
+msgid "items!"
+msgstr "المواد التابعة لي"
+
+#: users/forms.py:14
+msgid "Full name"
+msgstr ""
+
+#: users/forms.py:19
+msgid "Website or blog"
+msgstr ""
+
+#: users/forms.py:25
+msgid "Hireable"
+msgstr ""
+
+#: users/forms.py:26
+msgid "No"
+msgstr ""
+
+#: users/forms.py:26
+msgid "Yes"
+msgstr ""
+
+#: users/forms.py:28
+msgid "Are you free to hire ?"
+msgstr ""
+
+#: users/forms.py:32
+msgid "Update profile"
+msgstr ""
+
+#: users/views.py:40
+msgid "Profile updated successfully"
+msgstr ""
+
+#~ msgid "just now"
+#~ msgstr "الآن فقط"
+
+#~ msgid "%(num)s year"
+#~ msgid_plural "%(num)s years"
+#~ msgstr[0] ""
+#~ msgstr[1] "سنة واحدة"
+#~ msgstr[2] "سنتان"
+#~ msgstr[3] "%(num)s سنوات"
+#~ msgstr[4] "%(num)s سنة"
+#~ msgstr[5] "%(num)s سنة"
+
+#~ msgid "%(num)s month"
+#~ msgid_plural "%(num)s months"
+#~ msgstr[0] ""
+#~ msgstr[1] "شهر واحد"
+#~ msgstr[2] "شهران"
+#~ msgstr[3] "%(num)s أشهر"
+#~ msgstr[4] "%(num)s شهر"
+#~ msgstr[5] "%(num)s شهر"
+
+#~ msgid "%(num)s week"
+#~ msgid_plural "%(num)s weeks"
+#~ msgstr[0] ""
+#~ msgstr[1] "أسبوع واحد"
+#~ msgstr[2] "أسبوعان"
+#~ msgstr[3] "%(num)s أسابيع"
+#~ msgstr[4] "%(num)s أسبوع"
+#~ msgstr[5] "%(num)s أسبوع"
+
+#~ msgid "%(num)s day"
+#~ msgid_plural "%(num)s days"
+#~ msgstr[0] ""
+#~ msgstr[1] "يوم واحد"
+#~ msgstr[2] "يومان"
+#~ msgstr[3] "%(num)s أيام"
+#~ msgstr[4] "%(num)s يوم"
+#~ msgstr[5] "%(num)s يوم"
+
+#~ msgid "%(num)s hour"
+#~ msgid_plural "%(num)s hours"
+#~ msgstr[0] ""
+#~ msgstr[1] "ساعة واحدة"
+#~ msgstr[2] "ساعتان"
+#~ msgstr[3] "%(num)s ساعات"
+#~ msgstr[4] "%(num)s ساعة"
+#~ msgstr[5] "%(num)s ساعة"
+
+#~ msgid "%(num)s minute"
+#~ msgid_plural "%(num)s minutes"
+#~ msgstr[0] ""
+#~ msgstr[1] "دقيقة واحدة"
+#~ msgstr[2] "دقيقتان"
+#~ msgstr[3] "%(num)s دقائق"
+#~ msgstr[4] "%(num)s ساعة"
+#~ msgstr[5] "%(num)s ساعة"
+
+#~ msgid "%(num)s second"
+#~ msgid_plural "%(num)s seconds"
+#~ msgstr[0] ""
+#~ msgstr[1] "ثانية واحدة"
+#~ msgstr[2] "ثانيتان"
+#~ msgstr[3] "%(num)s ثوان"
+#~ msgstr[4] "%(num)s ثانية"
+#~ msgstr[5] "%(num)s ثانية"
+
+#~ msgid "%(period)s ago"
+#~ msgstr "منذ %(period)s"
+
+#~ msgid "Sorry, invalid password"
+#~ msgstr "كلمة السر غير صالحة!"
+
+#~ msgid "Sorry, incorrect email!"
+#~ msgstr "بريد إلكتروني غير صحيح!"
+
+#~ msgid "Short description in Arabic"
+#~ msgstr "وصف مختصر بالعربية"
+
+#~ msgid "Short description in English"
+#~ msgstr "وصف مختصر بالإنقليزية"
+
+#~ msgid "Short description in French"
+#~ msgstr "وصف مختصر بالفرنسية"
+
+#~ msgid "a mistyped address"
+#~ msgstr "عنوان خاطىء"
+
+#~ msgid "an out-of-date link"
+#~ msgstr "رابط قديم"
+
+#~ msgid "ara"
+#~ msgstr ""
+
+#~ msgid "Register"
+#~ msgstr "التسجيل"
+
+#~ msgid "If don't have an account"
+#~ msgstr "إن كنت لا تملك حسابا"
+
+#~ msgid "Search results for \"%(keywords)s\""
+#~ msgstr "نتائج البحث حول \"%(keywords)s\""
+
+#~ msgid "Keywords needed!"
+#~ msgstr "للكلمات المفتاحية مطلوبة!"
+
+#~ msgid ""
+#~ "<strong>%(total)s</strong> found for your "
+#~ "search \"<strong>%(keywords)s</strong>\"."
+#~ msgstr ""
+#~ "<strong>%(total)s</strong> نتيجة لبحثك عن "
+#~ "\"<strong>%(keywords)s</strong>\"."
+
+#~ msgid "Sorry, Nothing found for your search \"<strong>%(keywords)s</strong>\"."
+#~ msgstr "للأسف، لم تسفر عملية بحثك عن \"<strong>%(keywords)s</strong>\" نتائجا."
+
+#~ msgid ""
+#~ "\n"
+#~ "    <p>Suggestions:</p>\n"
+#~ "    <ul>\n"
+#~ "       <li>Make sure all words are spelled correctly.</li>\n"
+#~ "       <li>Try different keywords.</li>\n"
+#~ "       <li>Try more general keywords.</li>\n"
+#~ "    </ul>\n"
+#~ "    "
+#~ msgstr ""
+#~ "\n"
+#~ "    <p>اقتراحات:</p>\n"
+#~ "    <ul>\n"
+#~ "       <li>تأكد من أن جميع الكلمات مكتوبة بطريقة صحيحة.</li>\n"
+#~ "       <li>جرّب كلمات مفتاحية أخرى.</li>\n"
+#~ "       <li>حاول استعمال كلمات مفتاحية عامة.</li>\n"
+#~ "    </ul>\n"
+#~ "    "
+
+#~ msgid "DzLibs. Copyleft. email: 01walid@gmail.com"
+#~ msgstr ""
+

@@ -12,14 +12,15 @@ babel = Babel(default_locale='en')
 from flask.ext.login import LoginManager
 login_manager = LoginManager()
 
-from flaskext.bcrypt import Bcrypt
+from flask.ext.bcrypt import Bcrypt
 bcrypt = Bcrypt()
 
 # for the Gravatar service
 from flaskext.gravatar import Gravatar
 gravatar = Gravatar(size=35, rating='g', default='mm',
                     force_default=False,
-                    force_lower=False)
+                    force_lower=False,
+                    use_ssl=True)
 
 from flask.ext.misaka import Misaka
 md = Misaka(fenced_code=True, superscript=True, strikethrough=True,

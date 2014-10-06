@@ -2,7 +2,7 @@
 """ The main application entry. """
 
 import os
-from flask import Flask, request, g, render_template
+from flask import Flask, request, g, render_template, session
 # Bluprints:
 from frontend.views import frontend
 from dashboard.views import dashboard
@@ -97,7 +97,7 @@ def configure_extensions(app):
     cache.init_app(app)
 
     # Debug Toolbar
-    if app.debug:
+    if app.debug and app.config['DEBUG_TB_PROFILER_ENABLED']:
         from flask_debugtoolbar import DebugToolbarExtension
         DebugToolbarExtension(app)
 
@@ -110,9 +110,26 @@ def configure_extensions(app):
 
         """
         if not hasattr(g, 'lang'):
-            g.lang = 'en'
+            g.lang = app.config.get('BABEL_DEFAULT_LOCALE')
         accept_languages = app.config.get('ACCEPT_LANGUAGES')
-        return g.lang or request.accept_languages.best_match(accept_languages)
+        # Try to guess the language from the user accept
+        # header the browser transmits. We support ar/fr/en,
+        # The best match wins.
+
+        g.lang = session.get('language', None) or \
+            request.accept_languages.best_match(accept_languages) or \
+            g.lang
+
+        if g.lang == 'ar':
+            g.lang_dir = 'rtl'
+            g.layout_dir_class = 'right-to-left'
+            g.language_name = u'العربية'
+        else:
+            g.lang_dir = 'ltr'
+            g.layout_dir_class = 'left-to-right'
+            g.language_name = 'English' if g.lang == 'en' else u'Français'
+
+        return g.lang
 
     # flask-login
     login_manager.login_view = 'frontend.login'
