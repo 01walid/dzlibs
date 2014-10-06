@@ -20,134 +20,140 @@ msgstr ""
 
 #: utils.py:68
 msgid "just now"
-msgstr ""
+msgstr "seulement maintenant"
 
 #: utils.py:82
 #, python-format
 msgid "%(num)s year"
 msgid_plural "%(num)s years"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "%(num)s an"
+msgstr[2] "%(num)s ans"
 
 #: utils.py:83
 #, python-format
 msgid "%(num)s month"
 msgid_plural "%(num)s months"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "%(num)s mois"
 
 #: utils.py:84
 #, python-format
 msgid "%(num)s week"
 msgid_plural "%(num)s weeks"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "une semaine"
+msgstr[2] "%(num)s semaines"
 
 #: utils.py:85
 #, python-format
 msgid "%(num)s day"
 msgid_plural "%(num)s days"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "%(num)s jour"
+msgstr[2] "%(num)s jours"
 
 #: utils.py:86
 #, python-format
 msgid "%(num)s hour"
 msgid_plural "%(num)s hours"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "une heure"
+msgstr[2] "%(num)s heures"
 
 #: utils.py:87
 #, python-format
 msgid "%(num)s minute"
 msgid_plural "%(num)s minutes"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "une minute"
+msgstr[2] "%(num)s minutes"
 
 #: utils.py:88
 #, python-format
 msgid "%(num)s second"
 msgid_plural "%(num)s seconds"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "une seconde"
+msgstr[2] "%(num)s secondes"
 
 #: utils.py:93
 #, python-format
 msgid "%(period)s ago"
-msgstr ""
+msgstr "depuis %(period)s"
 
 #: frontend/views.py:103 frontend/views.py:129
 msgid "Logged in"
-msgstr ""
+msgstr "Connecté"
 
 #: frontend/views.py:132
 msgid "Sorry, invalid password"
-msgstr ""
+msgstr "Désolé, ce mot de passe n'est pas valide"
 
 #: frontend/views.py:134
 msgid "Sorry, incorrect email!"
-msgstr ""
+msgstr "Désolé, cet email n'est pas valide"
 
 #: frontend/views.py:145
 msgid "Logged out"
-msgstr ""
+msgstr "Déconnecté"
 
 #: items/forms.py:14
 msgid "Remote repository URL"
-msgstr ""
+msgstr "URL de la remote repository"
 
 #: items/forms.py:16
 msgid "Item title in Arabic"
-msgstr ""
+msgstr "Titre de l'article en Arabe"
 
 #: items/forms.py:17
 msgid "Item title in English"
-msgstr ""
+msgstr "Titre de l'article en Anglais"
 
 #: items/forms.py:18
 msgid "Item title in French"
-msgstr ""
+msgstr "Titre de l'article en Français"
 
 #: items/forms.py:20
 msgid "Short description in Arabic"
-msgstr ""
+msgstr "Description succincte en Arabe"
 
 #: items/forms.py:21
 msgid "Short description in English"
-msgstr ""
+msgstr "Description succincte en Anglais"
 
 #: items/forms.py:22
 msgid "Short description in French"
-msgstr ""
+msgstr "Description succincte en Français"
 
 #: items/forms.py:24
 msgid "Long description"
-msgstr ""
+msgstr "Longue description"
 
 #: items/forms.py:25 items/forms.py:28
 msgid "Thumbnail (minimum dimensions 230x230)"
-msgstr ""
+msgstr "Miniature (dimension minimale 230x230)"
 
 #: items/forms.py:31
 msgid "Tags"
-msgstr ""
+msgstr "Etiquettes"
 
 #: items/forms.py:33 templates/items/add_item.html:5
 #: templates/layouts/base.html:67
 msgid "Add item"
-msgstr ""
+msgstr "Ajouter un article"
 
 #: templates/errors/forbidden_page.html:3
 msgid "Forbidden page"
-msgstr ""
+msgstr "Accès à la page interdit"
 
 #: templates/errors/forbidden_page.html:7
 msgid "Forbidden Page"
-msgstr ""
+msgstr "Accès à la page interdit"
 
 #: templates/errors/forbidden_page.html:9
 msgid "You shall NOT pass!"
-msgstr ""
+msgstr "Vous NE pouvez PAS passer!"
 
 #: templates/errors/forbidden_page.html:10
 #: templates/errors/page_not_found.html:27
@@ -156,31 +162,31 @@ msgstr ""
 
 #: templates/errors/forbidden_page.html:12
 msgid "no permission"
-msgstr ""
+msgstr "Pas de permission"
 
 #: templates/errors/layout.html:6 templates/layouts/base.html:6
 msgid "DzLibs Project"
-msgstr ""
+msgstr "Projet DzLibs"
 
 #: templates/errors/layout.html:8 templates/layouts/base.html:8
 msgid "The Algerian index of reusable resources and librairies"
-msgstr ""
+msgstr "L'index Algérien des ressources et librairies réutilisables"
 
 #: templates/errors/page_not_found.html:3
 msgid "Page not found"
-msgstr ""
+msgstr "Page non trouvée"
 
 #: templates/errors/page_not_found.html:7
 msgid "Bachee"
-msgstr ""
+msgstr "Bâchée"
 
 #: templates/errors/page_not_found.html:8
 msgid "Not found"
-msgstr ""
+msgstr "Non trouvé"
 
 #: templates/errors/page_not_found.html:11
 msgid "Look underneath, you may find something:"
-msgstr ""
+msgstr "Regarder en dessous, vous pourriez trouver quelque chose:"
 
 #: templates/errors/page_not_found.html:30
 msgid "a mistyped address"
@@ -188,15 +194,15 @@ msgstr ""
 
 #: templates/errors/page_not_found.html:31
 msgid "an out-of-date link"
-msgstr ""
+msgstr "un lien obselète"
 
 #: templates/errors/server_error.html:3
 msgid "Server error"
-msgstr ""
+msgstr "Erreur du serveur"
 
 #: templates/errors/server_error.html:7
 msgid "Server Error"
-msgstr ""
+msgstr "Erreur du serveur"
 
 #: templates/errors/server_error.html:8
 msgid "Inner peacer..."
@@ -204,15 +210,15 @@ msgstr ""
 
 #: templates/frontend/create_profile.html:10
 msgid "One more step, and you're done!"
-msgstr ""
+msgstr "Une dernière étape et c'est fini!"
 
 #: templates/frontend/index.html:3
 msgid "Home"
-msgstr ""
+msgstr "Accueil"
 
 #: templates/frontend/index.html:14
 msgid "The Algerian index of reusable assets and libraries"
-msgstr ""
+msgstr "L'index Algérien des ressources et librairies réutilisables"
 
 #: templates/frontend/index.html:22
 msgid "ara"
@@ -224,40 +230,46 @@ msgstr ""
 
 #: templates/frontend/login.html:3 templates/frontend/login.html:22
 msgid "Sign in"
-msgstr ""
+msgstr "Se connecter"
 
 #: templates/frontend/login.html:16
 msgid "Sign in/up with Github"
-msgstr ""
+msgstr "se connecter avec Github"
 
 #: templates/frontend/login.html:34
 msgid "Register"
-msgstr ""
+msgstr "S'inscrire"
 
 #: templates/frontend/login.html:34
 msgid "If don't have an account"
-msgstr ""
+msgstr "Je n'ai pas de compte"
 
 #: templates/frontend/search.html:6
 #, python-format
 msgid "Search results for \"%(keywords)s\""
-msgstr ""
+msgstr "Résultats de la recherche pour \"%(keywords)s\""
 
 #: templates/frontend/search.html:8
 msgid "Keywords needed!"
-msgstr ""
+msgstr "Entrer un ou plusieurs mots clés"
 
 #: templates/frontend/search.html:13
 #, python-format
 msgid ""
 "<strong>%(total)s</strong> found for your search "
 "\"<strong>%(keywords)s</strong>\"."
-msgstr ""
+msgstr[0] ""
+msgstr[1] ""
+"<strong>%(total)s</strong> résultat trouvé pour votre recherche "
+"\"<strong>%(keywords)s</strong>\"."
+msgstr[2] ""
+"<strong>%(total)s</strong> résultats trouvés pour votre recherche "
+"\"<strong>%(keywords)s</strong>\"."
 
 #: templates/frontend/search.html:17
 #, python-format
 msgid "Sorry, Nothing found for your search \"<strong>%(keywords)s</strong>\"."
-msgstr ""
+msgstr "Désolé, aucun résultat trouvé pour votre recherche \"<strong>%(keywords)s</strong>\"."
 
 #: templates/frontend/search.html:18
 msgid ""
@@ -270,43 +282,51 @@ msgid ""
 "    </ul>\n"
 "    "
 msgstr ""
+"\n"
+"    <p>Suggestions:</p>\n"
+"    <ul>\n"
+"       <li>Vérifier l'orthographe des mots.</li>\n"
+"       <li>Essayer d'autres mots clés.</li>\n"
+"       <li>Essayer des mots clès plus génériques.</li>\n"
+"    </ul>\n"
+"    "
 
 #: templates/items/add_item.html:31
 msgid "Item thumbnail will appear here"
-msgstr ""
+msgstr "La miniature de l'article apparaîtra ici"
 
 #: templates/items/add_item.html:35
 msgid "Upload thumbnail "
-msgstr ""
+msgstr "Mettre à jour la miniature"
 
 #: templates/items/add_item.html:50
 msgid "From a remote repository (e.g. github)"
-msgstr ""
+msgstr "Depuis une remote repository (ex: github)"
 
 #: templates/items/add_item.html:53
 msgid "Past your item repository URL here"
-msgstr ""
+msgstr "Coller l'URL de la repository de votre article ici"
 
 #: templates/items/add_item.html:56
 msgid "From my computer"
-msgstr ""
+msgstr "Depuis mon ordinateur"
 
 #: templates/items/add_item.html:93 templates/items/add_item.html:112
 #: templates/items/add_item.html:119
 msgid "Item title"
-msgstr ""
+msgstr "Titre de l'article"
 
 #: templates/items/item_details.html:3
 msgid "Item details"
-msgstr ""
+msgstr "Détails de l'article"
 
 #: templates/items/items_list.html:3 templates/layouts/base.html:64
 msgid "Explore items"
-msgstr ""
+msgstr "Explorer les articles"
 
 #: templates/items/items_list.html:7
 msgid "Items list"
-msgstr ""
+msgstr "Liste des articles"
 
 #: templates/layouts/base.html:53
 msgid "Contact"
@@ -314,15 +334,15 @@ msgstr ""
 
 #: templates/layouts/base.html:54
 msgid "About"
-msgstr ""
+msgstr "À propos"
 
 #: templates/layouts/base.html:56
 msgid "Language"
-msgstr ""
+msgstr "Langue"
 
 #: templates/layouts/base.html:71
 msgid "My items"
-msgstr ""
+msgstr "Mes articles"
 
 #: templates/layouts/base.html:72
 msgid "Profile"
@@ -330,11 +350,11 @@ msgstr ""
 
 #: templates/layouts/base.html:73
 msgid "Logout"
-msgstr ""
+msgstr "Déconnexion"
 
 #: templates/layouts/base.html:77
 msgid "Register / Sign In"
-msgstr ""
+msgstr "S'inscrire / S'identifier"
 
 #: templates/layouts/base.html:118
 msgid "DzLibs. Copyleft. email: 01walid@gmail.com"
@@ -347,4 +367,7 @@ msgid ""
 "href=\"http://www.google.com/chromeframe/?redirect=true\">activate Google"
 " Chrome Frame</a> to improve your experience."
 msgstr ""
-
+"Vous êtes entrain d'utiliser un navigateur <strong>obselète</strong>. Veulliez <a "
+"href=\"http://browsehappy.com/\">mettre à jour votre navigateur</a> ou <a "
+"href=\"http://www.google.com/chromeframe/?redirect=true\">activer Google"
+" Chrome Frame</a> pour améliorer votre experience."
