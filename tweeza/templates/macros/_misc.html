@@ -11,7 +11,7 @@
                 </a>
             </div>
             <a class="submitter" href="{{ url_for('users.user_profile', id=item.submitter.user_id) }}">
-                <img src="{{ item.submitter.email | gravatar(size=30) }}"> {{ item.submitter | truncate(23) }}
+                <img src="{{ item.submitter.email | gravatar(size=30) }}"> {{ item.submitter.getName() | truncate(23) }}
             </a>
         </div>
         {% endfor %}

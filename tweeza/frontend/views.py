@@ -82,7 +82,7 @@ def callback():
 
     if user:
         login_user(user)
-        flash(_('Logged in as ') + user.name, category='success')
+        flash(_('Logged in as %s' % user.name), category='success')
         return redirect(url_for('frontend.index'))
     else:
         user = User()
@@ -111,8 +111,7 @@ def callback():
         user.save()
 
         if login_user(user):
-            flash(_("Logged in as ") + user.name +
-                  _(" now get a shiny profile :)"),
+            flash(_("Logged in as %s now get a shiny profile :)" % user.name),
                   category='success')
 
         return redirect(url_for('users.edit'))
@@ -121,7 +120,7 @@ def callback():
 @frontend.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated():
-        flash('Already Logged in as %s' % current_user, category='success')
+        flash(_('Already Logged in as %s' % current_user), category='success')
         return redirect(url_for('frontend.index'))
 
     return render_template('frontend/login.html')

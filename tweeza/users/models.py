@@ -76,6 +76,9 @@ class User(db.Document):
             return "https://facebook.com/%s" % (self.facebook_username)
         return ''
 
+    def getName(self):
+        return '%s' % self.name or self.github_username
+
     # Required for administrative interface
     def __unicode__(self):
         return self.name
