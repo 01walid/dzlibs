@@ -1,7 +1,7 @@
 {% macro render_items_listing(items) %}
     <div class="row grid">
         {% for item in items %}
-        <div class="item">        
+        <div class="item">
                 <div class="item-info" style="background-image: url({{ item.get_thumbnail() }});">
                 <a href="{{ url_for('items.detail', item_id=item.item_id) }}">
                 <hgroup>
@@ -11,7 +11,7 @@
                 </a>
             </div>
             <a class="submitter" href="{{ url_for('users.user_profile', id=item.submitter.user_id) }}">
-                <img src="{{ item.submitter.email | gravatar(size=30) }}"> {{ item.submitter }}
+                <img src="{{ item.submitter.email | gravatar(size=30) }}"> {{ item.submitter | truncate(23) }}
             </a>
         </div>
         {% endfor %}
@@ -43,7 +43,7 @@
                     {% else %}
                         <li class="arrow unavailable"><a href="">&laquo;</a></li>
                     {% endif %}
-                    
+
                     {% for page in pagination.iter_pages() %}
                         {% if page %}
                             <li class='{% if page == pagination.page %}current{% endif %}'>
