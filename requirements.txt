@@ -17,7 +17,7 @@ Markdown==2.5.1
 MarkupSafe==0.23
 Pillow==2.6.0
 WTForms==2.0.1
-Werkzeug==0.9.6
+Werkzeug==0.15.3
 blinker==1.3
 flask-mongoengine==0.7.1
 humanize==0.5
