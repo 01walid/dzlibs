@@ -15,7 +15,7 @@ Flask-WTF==0.10.2
 Jinja2==2.7.3
 Markdown==2.5.1
 MarkupSafe==0.23
-Pillow==2.6.0
+Pillow==8.2.0
 WTForms==2.0.1
 Werkzeug==0.9.6
 blinker==1.3
